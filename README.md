@@ -39,7 +39,7 @@
     * `cd ~/dev`
   * clone the project by executing the following command:
     * `git clone https://github.com/MYUSERNAME/NAMEOFPROJECT`
-
+ 
 #### Part 4 - Check Build
 * Ensure that the tests run upon opening the project.
     * You should see `Tests Failed: ${number-of-tests} of ${number-of-tests} tests`
