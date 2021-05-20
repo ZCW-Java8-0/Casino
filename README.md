@@ -20,7 +20,7 @@
         * Ensure at least 3 implementations of `GameInterface` involve gambling.
            * Enable the player to wager a `balance` that can be persisted throughout different games; when a `GameInterface` is garbage collected, the owner of the `balance` should be able to play a new game with their new `balance`.
         * Ensure there are at least 80% line coverage from testing the application.
-    * Begin by implementing the `SlotsGame`, `SlotsPlayer` as well as `NumberGuessGame` and `NumberGuessPlayer` provided in the `com.github.zipcodewilmington.casino.games` package. 
+* Begin by implementing the `SlotsGame`, `SlotsPlayer` as well as `NumberGuessGame` and `NumberGuessPlayer` provided in the `com.github.zipcodewilmington.casino.games` package. 
 
 <img src="./casino.gif">
 
