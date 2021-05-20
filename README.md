@@ -10,12 +10,15 @@
     * It is advised that you create additional methods and classes to mediate any foreseen shortcomings of the prebuilt assets. 
     * Enforce the following features in your system:
         * Ensure a console-based interface is available to allow input from and output to the users
-        * Ensure the `Casino` has a selection of at least 2 implementation of `GameInterface`.
-        * Ensure all implementation of `PlayerInterface` have reference to a `CasinoAccount`
+        * Ensure the `Casino` has a selection of at least 6 implementation of `GameInterface`.
         * Ensure `PlayerInterface` is garbage collected upon completing a respective `GameInterface`
-            * `BlackJackPlayer` should be garbage collected when `BlackJackGame` is completed
-            * `SlotsPlayer` should be garbage collected when `SlotsGame` is completed
-        * Ensure at least 5 different implementations of `GameInterface` and a respective `PlayerInterface` are defined.
+            * `SlotsPlayer` should be garbage collected when `SlotsGame` is garbage collected.
+            * `BlackJackPlayer` should be garbage collected when `BlackJackGame` is garbage collected.
+        * Ensure all implementation of `PlayerInterface` have reference to a `CasinoAccount`
+            * `CasinoAccount` should not be garbage collected when a `GameInterface` is garbage collected.
+        * Ensure at least 6 different implementations of `GameInterface` and a respective `PlayerInterface` are defined.
+        * Ensure at least 3 implementations of `GameInterface` involve gambling.
+           * Enable the player to wager a `balance` that can be persisted throughout different games; when a `GameInterface` is garbage collected, the owner of the `balance` should be able to play a new game with their new `balance`.
         * Ensure there are at least 80% line coverage from testing the application.
     * Please begin by implementing the `SlotsGame`, `SlotsPlayer` as well as `NumberGuessGame` and `NumberGuessPlayer` provided in the `com.github.zipcodewilmington.casino.games` package. 
 
