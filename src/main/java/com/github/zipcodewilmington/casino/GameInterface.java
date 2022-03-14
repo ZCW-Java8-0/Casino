@@ -28,4 +28,7 @@ public interface GameInterface<PlayerType extends PlayerInterface> extends Runna
      * specifies how the game will run
      */
     void run();
+
+    void testMethod();
 }
+
