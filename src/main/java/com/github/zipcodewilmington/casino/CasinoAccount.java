@@ -5,5 +5,6 @@ package com.github.zipcodewilmington.casino;
  * `ArcadeAccount` is registered for each user of the `Arcade`.
  * The `ArcadeAccount` is used to log into the system to select a `Game` to play.
  */
-public class CasinoAccount {
+public abstract class CasinoAccount implements PlayerInterface {
+    //get username
 }
