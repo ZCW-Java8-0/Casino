@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/mike/Projects/Casino</OriginalElement>
+  <nodes>
+    <node x="479.0" y="672.0">com.github.zipcodewilmington.casino.CasinoAccount</node>
+    <node x="0.0" y="770.0">com.github.zipcodewilmington.casino.games.roulette.RouletteGame</node>
+    <node x="0.0" y="386.0">com.github.zipcodewilmington.casino.CasinoAccountManager</node>
+    <node x="761.0" y="551.0">com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer</node>
+    <node x="223.0" y="551.0">com.github.zipcodewilmington.casino.games.blackjack.BlackJackGame</node>
+    <node x="0.0" y="868.0">com.github.zipcodewilmington.casino.games.war.WarPlayer</node>
+    <node x="0.0" y="672.0">com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame</node>
+    <node x="0.0" y="0.0">com.github.zipcodewilmington.utils.AnsiColor</node>
+    <node x="648.0" y="386.0">com.github.zipcodewilmington.ApplicationRunnerTest</node>
+    <node x="264.0" y="0.0">com.github.zipcodewilmington.utils.IOConsole</node>
+    <node x="660.0" y="0.0">com.github.zipcodewilmington.Casino</node>
+    <node x="176.0" y="868.0">com.github.zipcodewilmington.casino.games.war.WarGame</node>
+    <node x="254.0" y="672.0">com.github.zipcodewilmington.casino.games.blackjack.BlackJackPlayer</node>
+    <node x="400.0" y="770.0">com.github.zipcodewilmington.casino.games.craps.CrapsGame</node>
+    <node x="775.0" y="770.0">com.github.zipcodewilmington.casino.games.slots.SlotsGame</node>
+    <node x="0.0" y="551.0">com.github.zipcodewilmington.MainApplication</node>
+    <node x="695.0" y="672.0">com.github.zipcodewilmington.casino.games.roulette.RoulettePlayer</node>
+    <node x="444.0" y="551.0">com.github.zipcodewilmington.casino.PlayerInterface</node>
+    <node x="208.0" y="770.0">com.github.zipcodewilmington.casino.games.craps.CrapsPlayer</node>
+    <node x="589.0" y="770.0">com.github.zipcodewilmington.casino.games.slots.SlotsPlayer</node>
+    <node x="374.0" y="386.0">com.github.zipcodewilmington.casino.GameInterface</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="486.5" y="460.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
