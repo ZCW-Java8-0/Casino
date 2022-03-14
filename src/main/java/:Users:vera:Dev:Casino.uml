@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/vera/Dev/Casino</OriginalElement>
+  <nodes>
+    <node x="680.0" y="460.0">com.github.zipcodewilmington.casino.CasinoAccountManager</node>
+    <node x="781.0" y="735.0">com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer</node>
+    <node x="957.0" y="954.0">com.github.zipcodewilmington.casino.games.war.WarPlayer</node>
+    <node x="0.0" y="856.0">com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame</node>
+    <node x="285.0" y="735.0">com.github.zipcodewilmington.ApplicationRunnerTest</node>
+    <node x="317.5" y="0.0">java.lang.Runnable</node>
+    <node x="254.0" y="856.0">com.github.zipcodewilmington.casino.games.blackjack.BlackJackPlayer</node>
+    <node x="400.0" y="954.0">com.github.zipcodewilmington.casino.games.craps.CrapsGame</node>
+    <node x="810.0" y="158.5">com.github.zipcodewilmington.casino.Player</node>
+    <node x="0.0" y="735.0">com.github.zipcodewilmington.casino.PlayerInterface</node>
+    <node x="501.0" y="114.5">com.github.zipcodewilmington.casino.GameInterface</node>
+    <node x="700.0" y="856.0">com.github.zipcodewilmington.casino.CasinoAccount</node>
+    <node x="0.0" y="954.0">com.github.zipcodewilmington.casino.games.roulette.RouletteGame</node>
+    <node x="479.0" y="856.0">com.github.zipcodewilmington.casino.games.blackjack.BlackJackGame</node>
+    <node x="416.0" y="460.0">com.github.zipcodewilmington.utils.AnsiColor</node>
+    <node x="0.0" y="460.0">com.github.zipcodewilmington.utils.IOConsole</node>
+    <node x="0.0" y="103.0">com.github.zipcodewilmington.casino.Game</node>
+    <node x="249.0" y="113.5">com.github.zipcodewilmington.Casino</node>
+    <node x="0.0" y="1052.0">com.github.zipcodewilmington.casino.games.war.WarGame</node>
+    <node x="377.5" y="317.0">com.github.zipcodewilmington.casino.GameEngineInterface</node>
+    <node x="558.0" y="735.0">com.github.zipcodewilmington.MainApplication</node>
+    <node x="775.0" y="954.0">com.github.zipcodewilmington.casino.games.slots.SlotsGame</node>
+    <node x="916.0" y="856.0">com.github.zipcodewilmington.casino.games.roulette.RoulettePlayer</node>
+    <node x="208.0" y="954.0">com.github.zipcodewilmington.casino.games.craps.CrapsPlayer</node>
+    <node x="589.0" y="954.0">com.github.zipcodewilmington.casino.games.slots.SlotsPlayer</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.github.zipcodewilmington.casino.GameEngineInterface" target="com.github.zipcodewilmington.casino.Player" relationship="DEPENDENCY">
+      <point x="0.0" y="-49.0" />
+      <point x="487.5" y="292.0" />
+      <point x="860.5" y="292.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.GameInterface" target="java.lang.Runnable" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-70.5" />
+      <point x="645.5" y="83.0" />
+      <point x="411.25" y="83.0" />
+      <point x="31.25" y="26.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.GameEngineInterface" target="com.github.zipcodewilmington.casino.Game" relationship="DEPENDENCY">
+      <point x="0.0" y="-49.0" />
+      <point x="487.5" y="379.4805598755832" />
+      <point x="44.515552099533465" y="379.4805598755832" />
+      <point x="44.515552099533465" y="279.5" />
+      <point x="114.5" y="279.5" />
+      <point x="0.0" y="82.0" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.utils.AnsiColor" target="com.github.zipcodewilmington.utils.AnsiColor" relationship="DEPENDENCY">
+      <point x="0.0" y="72.0" />
+      <point x="525.5" y="624.0" />
+      <point x="396.0" y="624.0" />
+      <point x="396.0" y="532.0" />
+      <point x="-109.5" y="-0.0" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.Game" target="java.lang.Runnable" relationship="REALIZATION">
+      <point x="0.0" y="-82.0" />
+      <point x="114.5" y="83.0" />
+      <point x="239.75" y="83.0" />
+      <point x="239.75" y="73.0" />
+      <point x="348.75" y="73.0" />
+      <point x="-31.25" y="26.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="java.lang.Runnable" relationship="REALIZATION">
+      <point x="0.0" y="-71.5" />
+      <point x="365.0" y="83.0" />
+      <point x="239.75" y="83.0" />
+      <point x="239.75" y="73.0" />
+      <point x="348.75" y="73.0" />
+      <point x="-31.25" y="26.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5715555555555556" showDependencies="true" x="544.0" y="552.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
