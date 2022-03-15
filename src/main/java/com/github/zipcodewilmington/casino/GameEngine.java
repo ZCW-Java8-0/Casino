@@ -2,7 +2,7 @@ package com.github.zipcodewilmington.casino;
 
 import java.util.ArrayList;
 
-public class GameEngine implements GameEngineInterface {
+public abstract class GameEngine implements GameEngineInterface {
     @Override
     public void start() {
 
