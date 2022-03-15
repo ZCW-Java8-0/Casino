@@ -10,9 +10,9 @@ public class Cards {
     public Cards(Rank rank, Suit suit) {
         this.rank = rank;
         this.suit = suit;
-        isFaceUp = true;
+        isFaceUp = false;
     }
-
+    // Methods
     public String getSuit() {
         return suit.printSuit();
     }
@@ -25,7 +25,6 @@ public class Cards {
         String str = "";
         if (isFaceUp) {
         str += rank.getRank() + " of " + suit.printSuit();
-        suit.printSuit();
         } else {
             str = "Face Down";
         }
