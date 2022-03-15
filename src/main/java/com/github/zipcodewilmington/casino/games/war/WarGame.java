@@ -1,4 +1,8 @@
 package com.github.zipcodewilmington.casino.games.war;
 
-public class WarGame {
+import com.github.zipcodewilmington.casino.Game;
+
+public class WarGame extends Game {
+    Boolean isCardGame = true;
+
 }

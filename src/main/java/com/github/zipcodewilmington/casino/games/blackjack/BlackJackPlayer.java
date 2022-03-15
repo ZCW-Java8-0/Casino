@@ -1,4 +1,6 @@
 package com.github.zipcodewilmington.casino.games.blackjack;
 
-public class BlackJackPlayer {
+import com.github.zipcodewilmington.casino.Player;
+
+public class BlackJackPlayer extends Player {
 }

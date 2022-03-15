@@ -1,7 +1,9 @@
 package com.github.zipcodewilmington.casino;
 
+import java.util.ArrayList;
+
 public interface GameEngineInterface {
     void start();
     Game getGame();
-    Iterable<Player> getPlayers();
+    ArrayList<Player> getPlayers();
 }
