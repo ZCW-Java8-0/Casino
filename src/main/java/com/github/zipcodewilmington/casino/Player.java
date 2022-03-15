@@ -1,6 +1,6 @@
 package com.github.zipcodewilmington.casino;
 
-public class Player implements PlayerInterface{
+public abstract class Player implements PlayerInterface{
     private String accountName = "";
     private int chips;
 
