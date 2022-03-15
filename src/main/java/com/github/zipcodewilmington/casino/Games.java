@@ -1,5 +1,7 @@
 package com.github.zipcodewilmington.casino;
 
+import com.github.zipcodewilmington.casino.games.Person.Player;
+
 import java.util.Map;
 
 public interface Games {
