@@ -1,6 +1,37 @@
 package com.github.zipcodewilmington.casino.cards;
 
-public abstract class Cards {
+public class Cards {
+    //Private Fields
+    private Suit suit;
+    private Rank rank;
+    private boolean isFaceUp;
 
-    public Cards(){}
-}
+    //Constructor
+    public Cards(Rank rank, Suit suit) {
+        this.rank = rank;
+        this.suit = suit;
+        isFaceUp = true;
+    }
+
+    public String getSuit() {
+        return suit.printSuit();
+    }
+
+    public int getRank() {
+        return rank.getRank();
+    }
+
+    public String toString() {
+        String str = "";
+        if (isFaceUp) {
+        str += rank.getRank() + " of " + suit.printSuit();
+        suit.printSuit();
+        } else {
+            str = "Face Down";
+        }
+        return str;
+    }
+
+    }
+
+
