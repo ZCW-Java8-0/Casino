@@ -67,8 +67,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
 
     @Override
-    public Map<BlackJackPlayer, Boolean> setWinCondition() {
-        return null;
+    public void setWinCondition() {
     }
 
     @Override
