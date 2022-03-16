@@ -10,6 +10,8 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
     private Map<BlackJackPlayer, Integer> bets;
     private Map<BlackJackPlayer, Card[]> playerHand;
     private Map<BlackJackPlayer, Integer> playerHandSum;
+    private Map<BlackJackPlayer, Boolean> winLose;
+    private Map<BlackJackPlayer, Boolean> blackJackFlag;
     private int dealerHandSum;
     private Card[] dealerHand;
     private int maxPartySize;
@@ -50,6 +52,32 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         return value;
     }
 
+    public void blackJackCheck(BlackJackPlayer blackJackPlayer){
+        Card[] tempPlayerHand = playerHand.get(blackJackPlayer);
+        if (tempPlayerHand.length != 2)
+        {
+            blackJackFlag.put(blackJackPlayer, false);
+        }
+        else if (this.CardValue(tempPlayerHand[0])[0]==10)
+        {
+            if (tempPlayerHand[1].getCardFace().equals(CardFace.Ace))
+            {
+                blackJackFlag.put(blackJackPlayer, true);
+            }
+            else
+                blackJackFlag.put(blackJackPlayer, false);
+        }
+        else if (this.CardValue(tempPlayerHand[1])[0]==10)
+        {
+            if (tempPlayerHand[0].getCardFace().equals(CardFace.Ace))
+            {
+                blackJackFlag.put(blackJackPlayer, true);
+            }
+            else
+                blackJackFlag.put(blackJackPlayer, false);
+        }
+    }
+
     @Override
     public void setPlayerMax() {
         this.maxPartySize = 4;
@@ -67,7 +95,14 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
 
     @Override
-    public void setWinCondition() {
+    public void winConditionCheck(BlackJackPlayer blackJackPlayer) {
+        int playerSum = playerHandSum.get(blackJackPlayer);
+        if (blackJackFlag.get(blackJackPlayer)==true)
+            this.winLose.put(blackJackPlayer, true);
+        else if (playerSum>dealerHandSum && playerSum <= 21)
+            this.winLose.put(blackJackPlayer, true);
+        else
+            this.winLose.put(blackJackPlayer,false);
     }
 
     @Override

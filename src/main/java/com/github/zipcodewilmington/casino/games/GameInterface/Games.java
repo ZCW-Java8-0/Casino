@@ -9,7 +9,7 @@ public interface Games<PlayerType extends Player> {
     void setPlayerMax();
     void addPlayer(PlayerType player);
     void removePlayer(PlayerType player);
-    void setWinCondition();
+    void winConditionCheck(PlayerType player);
     Player[] getWinner();
     void exit();
 }
