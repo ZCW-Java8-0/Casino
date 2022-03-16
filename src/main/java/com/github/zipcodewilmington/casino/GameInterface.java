@@ -29,6 +29,6 @@ public interface GameInterface<PlayerType extends PlayerInterface> extends Runna
      */
     void run();
 
-    void testMethod();
+
 }
 
