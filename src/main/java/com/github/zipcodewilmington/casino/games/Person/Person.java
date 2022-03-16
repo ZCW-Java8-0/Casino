@@ -20,7 +20,5 @@ public class Person {
         return wallet;
     }
 
-    public void setWallet(int funds) {
-        this.wallet = wallet;
-    }
+    public void setWallet(int funds) {this.wallet = wallet;}
 }
