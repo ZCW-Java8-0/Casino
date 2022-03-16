@@ -1,41 +1,40 @@
 package com.github.zipcodewilmington.casino.games.war;
 
 import com.github.zipcodewilmington.casino.Game;
+import com.github.zipcodewilmington.casino.cards.Cards;
+import com.github.zipcodewilmington.casino.cards.Deck;
+import java.util.Collections;
+import java.util.*;
 
-import java.util.ArrayDeque;
-import java.util.Scanner;
-import java.util.Stack;
+public class WarGame extends Game { // NON-GAMBLING // ROUGH DRAFT
 
-public class WarGame extends Game {
-    // NON-GAMBLING
     Boolean isCardGame = true;
 
     Scanner scanner = new Scanner(System.in);
 
-    Deque<Deck> temporary = new ArrayDeque<Deck>();
-
     // I don't think I need a main method here as the game will be initiated in another class.
 
-    public void warGame() { // ROUGH DRAFT
-        // import deck (stack/deque) (shuffled)
+    public void warGame() {
+        ArrayDeque<Cards> deck = createWarDeck();
+        Deque<Cards> temporary = new ArrayDeque<Cards>();
         // player1 = whoever
         // player2 = whoever else
-        Deque<Deck> handPlayer1 = new ArrayDeque<Deck>(); // Stack<Deck> handPlayer1 = new Stack<Deck>();
-        Deque<Deck> handPlayer2 = new ArrayDeque<Deck>(); // Stack<Deck> handPlayer2 = new Stack<Deck>();
+        Deque<Cards> handPlayer1 = new ArrayDeque<Cards>(); // Stack<Deck> handPlayer1 = new Stack<Deck>();
+        Deque<Cards> handPlayer2 = new ArrayDeque<Cards>(); // Stack<Deck> handPlayer2 = new Stack<Deck>();
         for (int i = 1; i <= 26; i++) { // deal cards
             handPlayer1.addFirst(deck.removeFirst());
             handPlayer2.addFirst(deck.removeFirst());
         }
 
         while (handPlayer1.size() < 52 && handPlayer2.size() < 52) {
-            Deck player1Card = handPlayer1.removeFirst();
-            Deck player2Card = handPlayer2.removeFirst();
+            Cards player1Card = handPlayer1.removeFirst();
+            Cards player2Card = handPlayer2.removeFirst();
             compareAndRedistribute(player1Card, player2Card);
         }
 
-        if (handPlayer1.empty()) {
+        if (handPlayer1.size() == 0) {
             // PLAYER2 WINS
-        } else if (handPlayer2.empty()) {
+        } else if (handPlayer2.size() == 0) {
             // PLAYER1 WINS
         }
     }
@@ -55,7 +54,7 @@ public class WarGame extends Game {
         }
     }
 
-    public void compareAndRedistribute(Deck player1Card, Deck player2Card) {
+    public void compareAndRedistribute(Cards player1Card, Cards player2Card) {
         if (player1Card > player2Card) {
             handPlayer1.addLast(player1Card);
             handPlayer1.addLast(player2Card);
@@ -116,4 +115,18 @@ public class WarGame extends Game {
                 }
             }
         }
+
+    public ArrayDeque<Cards> createWarDeck() {
+        Deck deck = new Deck();
+        ArrayList<Cards> deckOfCards = deck.createDeck();
+        ArrayList<Cards> shuffledDeckOfCards = shuffle(deckOfCards);
+        ArrayDeque<Cards> startingDeck = new ArrayDeque<>(shuffledDeckOfCards);
+        return startingDeck;
+    }
+
+    public ArrayList<Cards> shuffle(ArrayList<Cards> inputDeck) {
+        Collections.shuffle(inputDeck);
+        return inputDeck;
+    }
+
     }
