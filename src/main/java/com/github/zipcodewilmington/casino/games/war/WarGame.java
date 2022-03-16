@@ -12,6 +12,8 @@ public class WarGame extends Game {
 
     Scanner scanner = new Scanner(System.in);
 
+    Deque<Deck> temporary = new ArrayDeque<Deck>();
+
     // I don't think I need a main method here as the game will be initiated in another class.
 
     public void warGame() { // ROUGH DRAFT
@@ -20,7 +22,6 @@ public class WarGame extends Game {
         // player2 = whoever else
         Deque<Deck> handPlayer1 = new ArrayDeque<Deck>(); // Stack<Deck> handPlayer1 = new Stack<Deck>();
         Deque<Deck> handPlayer2 = new ArrayDeque<Deck>(); // Stack<Deck> handPlayer2 = new Stack<Deck>();
-        Deque<Deck> temporary = new ArrayDeque<Deck>();
         for (int i = 1; i <= 26; i++) { // deal cards
             handPlayer1.addFirst(deck.removeFirst());
             handPlayer2.addFirst(deck.removeFirst());
@@ -29,9 +30,11 @@ public class WarGame extends Game {
         while (handPlayer1.size() < 52 && handPlayer2.size() < 52) {
             Deck player1Card = handPlayer1.removeFirst();
             Deck player2Card = handPlayer2.removeFirst();
+
             if(player1Card > player2Card) {
                 handPlayer1.addLast(player1Card);
                 handPlayer1.addLast(player2Card);
+                distributeTemporaryCards(PLAYER 1);
                 System.out.println("Player 1: " + player1Card); // rename players to account names
                 System.out.println("Player 2: " + player2Card); // rename players to account names
                 System.out.println("Player 1 Wins This Round!"); // rename players to account names
@@ -39,9 +42,11 @@ public class WarGame extends Game {
                 // to account names
                 System.out.println("Player 2 Has " + handPlayer2.size() + " cards."); // rename players
                 // to account names
+
             } else if (player1Card < player2Card) {
                 handPlayer2.addLast(player1Card);
                 handPlayer2.addLast(player2Card);
+                distributeTemporaryCards(PLAYER 2);
                 System.out.println("Player 1: " + player1Card); // rename players to account names
                 System.out.println("Player 2: " + player2Card); // rename players to account names
                 System.out.println("Player 2 Wins This Round!"); // rename players to account names
@@ -49,6 +54,7 @@ public class WarGame extends Game {
                 // to account names
                 System.out.println("Player 2 Has " + handPlayer2.size() + " cards."); // rename players
                 // to account names
+
             } else if (player1Card == player2Card) {
                 temporary.addFirst(handPlayer1.removeFirst());
                 temporary.addFirst(handPlayer1.removeFirst());
@@ -56,6 +62,14 @@ public class WarGame extends Game {
                 temporary.addFirst(handPlayer2.removeFirst());
                 temporary.addFirst(handPlayer2.removeFirst());
                 temporary.addFirst(handPlayer2.removeFirst());
+                if (handPlayer1.size() < 0 && handPlayer2.size() < 0) {
+                    // back to top of loop
+                }
+                // if player1 and player 2 both have 1+ card remaining --- what if not???
+                // THen recursion??? or whatever needs to happen to go to top of loop --- but need to get
+                // all temporary cards -- make separate method to put temp cards into hand??
+                // else flip what they have
+
 
 
                 // TIE -- what if they run out of cards???
@@ -73,11 +87,15 @@ public class WarGame extends Game {
 
     // 2 players or 1v computer
     // how do they quit midgame?
-
+// clear temporary at end so no carry over betwen games?
 
     // try test driven development - but hard since don't know where each piece is going
     // review generics lecture - Wei posted slides in watercrest, vandana got recording
 
-
+    public void distributeTemporaryCards(WINNING PLAYER) {
+        for (int t = 1; t <= temporary.size; t++) {
+            // distribute cards to winning player
+        }
+    }
 
 }
