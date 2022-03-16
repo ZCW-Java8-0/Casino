@@ -4,12 +4,12 @@ import com.github.zipcodewilmington.casino.games.Person.Player;
 
 import java.util.Map;
 
-public interface Games {
+public interface Games<PlayerType extends Player> {
     void play();
     void setPlayerMax();
-    void addPlayer(Player player);
-    void removePlayer(Player player);
-    Map<Player, Boolean> winCondition();
+    void addPlayer(PlayerType player);
+    void removePlayer(PlayerType player);
+    void setWinCondition();
     Player[] getWinner();
     void exit();
 }
