@@ -3,7 +3,6 @@ package com.github.zipcodewilmington.casino;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CasinoAccountManagerTest {
 
@@ -23,22 +22,21 @@ class CasinoAccountManagerTest {
         // Then
         assertEquals(expected,actual);
     }
-//    @Test
-//    void getAccountForNonExistentAccount() {
-//        // Given
-//        CasinoAccountManager testManager = new CasinoAccountManager();
-//        CasinoAccount testAccount;
-//        String accountName = "test";
-//        String accountPassword = "test123";
-//
-//        // When
-//        testAccount = new CasinoAccount(accountName, accountPassword);
-//        testManager.registerAccount(testAccount);
-//        CasinoAccount expected = testAccount;
-//        CasinoAccount actual = testManager.getAccount();
-//        // Then
-//        assertEquals(expected,actual);
-//    }
+    @Test
+    void getAccountForUnregisteredAccount() {
+        // Given
+        CasinoAccountManager testManager = new CasinoAccountManager();
+        CasinoAccount testAccount;
+        String accountName = "test";
+        String accountPassword = "test123";
+
+        // When
+        testAccount = new CasinoAccount(accountName, accountPassword);
+        CasinoAccount expected = null;
+        CasinoAccount actual = testManager.getAccount(accountName,accountPassword);
+        // Then
+        assertEquals(expected,actual);
+    }
 //    @Test
 //    void getAccountForErroneousPassword() {
 //        // Given
@@ -56,17 +54,17 @@ class CasinoAccountManagerTest {
 //        assertEquals(expected,actual);
 //    }
 
-    @Test
-    void createAccount() {
-    }
-
-    @Test
-    void registerAccount() {
-    }
-
-    @Test
-    void getCasinoAccount() {
-    }
+//    @Test
+//    void createAccount() {
+//    }
+//
+//    @Test
+//    void registerAccount() {
+//    }
+//
+//    @Test
+//    void getCasinoAccount() {
+//    }
 
     @Test
     void getAccountByUsername() {

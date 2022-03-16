@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino;
 
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +36,7 @@ public class CasinoAccountManager {
                     return account;
                 }
             }
-            logger.log(Level.WARNING,"Your password does not match the account you are trying to access.");
+            System.out.println("Your password does not match the account you are trying to access.");
 
         }
         return null;
@@ -51,7 +52,7 @@ public class CasinoAccountManager {
     public CasinoAccount createAccount(String accountName,String accountPassword){
 //
         CasinoAccount newAccount = new CasinoAccount (accountName, accountPassword);
-        logger.log(Level.INFO,"Your account has been created.");
+        System.out.println("Your account has been created.");
 
         return newAccount;
 
@@ -67,7 +68,7 @@ public class CasinoAccountManager {
         casinoAccountList.add(casinoAccount);
         accounts.put(accountUsername,casinoAccount);
 
-        logger.log(Level.INFO,  "Your account " + "\"" + casinoAccount.getAccountName() + "\"" + " has been registered.");
+        System.out.println("Your account " + "\"" + casinoAccount.getAccountName() + "\"" + " has been registered.");
     }
 
     public CasinoAccount getAccountByUsername(String accountName){
