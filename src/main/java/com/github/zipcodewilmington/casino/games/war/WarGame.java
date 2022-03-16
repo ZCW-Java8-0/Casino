@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class WarGame extends Game {
+
     // NON-GAMBLING
     Boolean isCardGame = true;
 
@@ -48,6 +49,7 @@ public class WarGame extends Game {
 
     // try test driven development - but hard since don't know where each piece is going
     // review generics lecture - Wei posted slides in watercrest, vandana got recording
+
 
     public void distributeTemporaryCards(WINNING PLAYER) {
         for (int t = 1; t <= temporary.size; t++) {
