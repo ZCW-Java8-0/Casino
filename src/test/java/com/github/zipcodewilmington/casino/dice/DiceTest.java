@@ -3,19 +3,23 @@ package com.github.zipcodewilmington.casino.dice;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static com.github.zipcodewilmington.casino.dice.Dice.roll;
-import static org.junit.jupiter.api.Assertions.*;
 
 class DiceTest {
 
     @Test
-    void roll() {
+    public void rollTest() {
         //given
-        Dice.numDice = 2;
+        int expected = 5;
         //when
-        int expected = 2;
+
+        ArrayList<Integer> actualRoll = Dice.roll(5);
+        int actual = actualRoll.size();
+
         //then
-        int actual = roll.size();
-        assertEquals(expected, actual);
+
+        Assert.assertEquals(expected, actual);
     }
 }

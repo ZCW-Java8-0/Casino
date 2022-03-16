@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class WarGame extends Game {
-    // NON-GAMBLING
+     NON-GAMBLING
     Boolean isCardGame = true;
 
     Scanner scanner = new Scanner(System.in);
@@ -71,12 +71,12 @@ public class WarGame extends Game {
     }
 
 
-    // 2 players or 1v computer
-    // how do they quit midgame?
+     2 players or 1v computer
+     how do they quit midgame?
 
 
-    // try test driven development - but hard since don't know where each piece is going
-    // review generics lecture - Wei posted slides in watercrest, vandana got recording
+     try test driven development - but hard since don't know where each piece is going
+     review generics lecture - Wei posted slides in watercrest, vandana got recording
 
 
 

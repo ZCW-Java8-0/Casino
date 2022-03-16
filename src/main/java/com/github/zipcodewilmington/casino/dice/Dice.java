@@ -11,13 +11,17 @@ public class Dice {
         Dice.numDice = numDice;
     }
 
-    public static ArrayList<Integer> roll(){
+    public static ArrayList<Integer> roll(int numDice){
      for (int i = 0; i < numDice; i++) {
-        roll.set(i, (int) Math.floor(Math.random() * 6 + 1));
+        roll.add(i, (int) Math.floor(Math.random() * 6 + 1));
     }
         System.out.println(roll);
         return roll;
     }
 
 
+    @Override
+    public String toString() {
+        return "Dice{}";
+    }
 }
