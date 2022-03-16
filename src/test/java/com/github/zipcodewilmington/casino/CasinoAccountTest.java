@@ -26,19 +26,6 @@ class CasinoAccountTest {
         assertEquals(expected,actual);
     }
 
-    @Test
-    void getAccountByUsername() {
-        // Given
-        CasinoAccount testAccount;
-        String accountName = "test";
-        String accountPassword = "test123";
-        testAccount = new CasinoAccount(accountName, accountPassword);
-        // When
-        CasinoAccount expected = testAccount;
-        CasinoAccount actual = casinoAccount.getAccountByUsername();
-        // Then
-        assertEquals(expected,actual);
-    }
 
     @Test
     void getAccountPassword() {

@@ -16,7 +16,6 @@ public class CasinoAccount{
     protected CasinoAccount(String accountName, String accountPassword) {
         this.accountName = accountName;
         this.accountPassword = accountPassword;
-        accounts.put(accountName, this);
         this.accountBalance = 50000;
     }
 

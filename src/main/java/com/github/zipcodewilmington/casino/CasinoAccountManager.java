@@ -60,6 +60,7 @@ public class CasinoAccountManager {
     public void registerAccount(CasinoAccount casinoAccount) {
         String accountUsername = casinoAccount.getAccountName();
         casinoAccountList.add(casinoAccount);
+        accounts.put(accountUsername,casinoAccount);
 
         logger.log(Level.INFO,  "Your account " + casinoAccount + " has been registered.");
     }
