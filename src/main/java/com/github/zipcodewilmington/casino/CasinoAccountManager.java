@@ -11,7 +11,9 @@ import java.util.logging.Logger;
  */
 public class CasinoAccountManager {
     private static Logger logger = Logger.getLogger(CasinoAccountManager.class.getName());
+    private HashMap<String,CasinoAccount> accounts = new HashMap<>();
     List <CasinoAccount> casinoAccountList = new ArrayList<>();
+
 
     public CasinoAccountManager() {
         logger.log(Level.INFO,"Account Manager has been initialized.");
@@ -56,7 +58,17 @@ public class CasinoAccountManager {
      * @param casinoAccount the casinoAccount to be added to `this.getCasinoAccountList()`
      */
     public void registerAccount(CasinoAccount casinoAccount) {
+        String accountUsername = casinoAccount.getAccountName();
         casinoAccountList.add(casinoAccount);
+
+        logger.log(Level.INFO,  "Your account " + casinoAccount + " has been registered.");
+    }
+
+    public CasinoAccount getAccountByUsername(String accountName){
+        if (accounts.containsKey(accountName)){
+            return accounts.get(accountName);
+        }
+        return null;
     }
 
     public List getCasinoAccount(){

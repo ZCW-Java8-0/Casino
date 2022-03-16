@@ -11,7 +11,6 @@ import java.util.HashSet;
 public class CasinoAccount{
     private final String accountName;
     private String accountPassword;
-    private HashMap<String,CasinoAccount> accounts = new HashMap<>();
     private Integer accountBalance;
 
     protected CasinoAccount(String accountName, String accountPassword) {
@@ -25,13 +24,6 @@ public class CasinoAccount{
 
     public String getAccountName() {
         return accountName;
-    }
-
-    public CasinoAccount getAccountByUsername(String accountName){
-        if (accounts.containsKey(accountName)){
-            return accounts.get(accountName);
-        }
-        return null;
     }
 
 
