@@ -56,7 +56,7 @@ public class WarGame extends Game {
     }
 
     public void compareAndRedistribute(Deck player1Card, Deck player2Card) {
-        if(player1Card > player2Card) {
+        if (player1Card > player2Card) {
             handPlayer1.addLast(player1Card);
             handPlayer1.addLast(player2Card);
             distributeTemporaryCards(PLAYER 1);
@@ -80,21 +80,40 @@ public class WarGame extends Game {
             System.out.println("Player 2 Has " + handPlayer2.size() + " cards."); // rename players
             // to account names
 
-        } else if (player1Card == player2Card) {
-            temporary.addFirst(handPlayer1.removeFirst());
-            temporary.addFirst(handPlayer1.removeFirst());
-            temporary.addFirst(handPlayer1.removeFirst());
-            temporary.addFirst(handPlayer2.removeFirst());
-            temporary.addFirst(handPlayer2.removeFirst());
-            temporary.addFirst(handPlayer2.removeFirst());
-            if (handPlayer1.size() < 0 && handPlayer2.size() < 0) {
+        } else if (player1Card == player2Card) { // what if that was the last card for one of them?
+            if (handPlayer1.size() > 3 && handPlayer2.size() > 3) {
+                temporary.addFirst(handPlayer1.removeFirst()); // make sub-method w/ player parameter to...
+                temporary.addFirst(handPlayer1.removeFirst()); // ...move 3 cards to temp
+                temporary.addFirst(handPlayer1.removeFirst());
+                temporary.addFirst(handPlayer2.removeFirst());
+                temporary.addFirst(handPlayer2.removeFirst());
+                temporary.addFirst(handPlayer2.removeFirst());
                 return;
-            } else if (WHAT TO DO IF THEY DON'T HAVE A CAR E RMEAIN?') {
-// could do while loop like "while player has 1+ card keft put down up to 3 cards???
+            } else if (handPlayer1.size() > 3 && handPlayer2.size() < 3) {
+                temporary.addFirst(handPlayer1.removeFirst());
+                temporary.addFirst(handPlayer1.removeFirst());
+                temporary.addFirst(handPlayer1.removeFirst());
+                while (handPlayer2.size > 1) {
+                    temporary.addFirst(handPlayer2.removeFirst());
+                }
+                return;
+            } else if (handPlayer1.size() < 3 && handPlayer2.size() > 3) {
+                temporary.addFirst(handPlayer2.removeFirst());
+                temporary.addFirst(handPlayer2.removeFirst());
+                temporary.addFirst(handPlayer2.removeFirst());
+                while (handPlayer1.size > 1) {
+                    temporary.addFirst(handPlayer1.removeFirst());
+                }
+                return;
+                } else {
+                    while (handPlayer1.size > 1) {
+                        temporary.addFirst(handPlayer1.removeFirst());
+                    }
+                    while (handPlayer2.size > 1) {
+                        temporary.addFirst(handPlayer2.removeFirst());
+                    }
+                    return;
+                }
             }
-
-
-            // catch out of cards and use last care in pile (including if they don't have enough for 3 facedown
         }
     }
-}
