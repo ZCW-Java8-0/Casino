@@ -1,8 +1,6 @@
 package com.github.zipcodewilmington.casino;
 
-import java.sql.SQLOutput;
 import java.util.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -12,12 +10,11 @@ import java.util.logging.Logger;
  */
 public class CasinoAccountManager {
     private static Logger logger = Logger.getLogger(CasinoAccountManager.class.getName());
-    private HashMap<String,CasinoAccount> accounts = new HashMap<>();
+    private HashMap<String,CasinoAccount> accountsMap = new HashMap<>();
     List <CasinoAccount> casinoAccountList = new ArrayList<>();
 
 
     public CasinoAccountManager() {
-        logger.log(Level.INFO,"Account Manager has been initialized.");
     }
 
 
@@ -29,14 +26,14 @@ public class CasinoAccountManager {
     public CasinoAccount getAccount(String accountName, String accountPassword) {
         // if the accountName is not linked to a casino account warn user.
         if (!casinoAccountList.contains(getAccountByUsername(accountName))){
-            System.out.println("This account has not been created yet.");
+//            System.out.println("This account has not been created yet.");
         } else {
             for (CasinoAccount account : casinoAccountList) {
                 if (accountName.equals(account.getAccountName()) && accountPassword.equals(account.getAccountPassword())) {
                     return account;
                 }
             }
-            System.out.println("Your password does not match the account you are trying to access.");
+//            System.out.println("Your password does not match the account you are trying to access.");
 
         }
         return null;
@@ -52,7 +49,8 @@ public class CasinoAccountManager {
     public CasinoAccount createAccount(String accountName,String accountPassword){
 //
         CasinoAccount newAccount = new CasinoAccount (accountName, accountPassword);
-        System.out.println("Your account has been created.");
+        registerAccount(newAccount);
+//        System.out.println("Your account has been created.");
 
         return newAccount;
 
@@ -66,14 +64,14 @@ public class CasinoAccountManager {
     public void registerAccount(CasinoAccount casinoAccount) {
         String accountUsername = casinoAccount.getAccountName();
         casinoAccountList.add(casinoAccount);
-        accounts.put(accountUsername,casinoAccount);
+        accountsMap.put(accountUsername,casinoAccount);
 
-        System.out.println("Your account " + "\"" + casinoAccount.getAccountName() + "\"" + " has been registered.");
+//        System.out.println("Your account " + "\"" + casinoAccount.getAccountName() + "\"" + " has been registered.");
     }
 
     public CasinoAccount getAccountByUsername(String accountName){
-        if (accounts.containsKey(accountName)){
-            return accounts.get(accountName);
+        if (accountsMap.containsKey(accountName)){
+            return accountsMap.get(accountName);
         }
         return null;
     }

@@ -42,5 +42,8 @@ public class CasinoAccount{
         this.accountBalance = accountBalance;
     }
 
-
+    @Override
+    public String toString() {
+        return "'" + accountName + "'";
+    }
 }
