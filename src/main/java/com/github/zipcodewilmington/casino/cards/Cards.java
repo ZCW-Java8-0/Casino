@@ -7,7 +7,7 @@ public class Cards {
     private final Suit suit;
     private final Rank rank;
     private int tier;
-    private ArrayList<Cards> cardDeck = new ArrayList<>();
+    public static ArrayList<Cards> cardDeck = new ArrayList<>();
 
     //Constructor
     public Cards(Rank rank, Suit suit, int tier) {
@@ -18,8 +18,10 @@ public class Cards {
 
 
 
+
     // Methods
     public ArrayList<Cards> createDeck() {
+        ArrayList<Cards> cardDeck = new ArrayList<>(0);
         for (int i = 1; i < 15; i++) {
             switch (i) {
                 case 1:
@@ -39,7 +41,7 @@ public class Cards {
                          ) {cardDeck.add(new Cards(rank, Suit.CLUBS, i++));
                 }i = 1;
             }
-            System.out.println(cardDeck);
+
         } return cardDeck;
     }
 
