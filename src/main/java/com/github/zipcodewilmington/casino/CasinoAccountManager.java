@@ -14,6 +14,7 @@ public class CasinoAccountManager {
     private HashMap<String, CasinoAccount> casinoAccounts = new HashMap<>();
     List <CasinoAccount> casinoAccountList = new ArrayList<>();
 
+    public CasinoAccountManager(){}
     public CasinoAccountManager(CasinoAccount account){
         casinoAccounts.put(account.getAccountName(), account.getAccountByUsername(account.getAccountName()));
         logger.log(Level.INFO,"Account Manager has been initialized.");
