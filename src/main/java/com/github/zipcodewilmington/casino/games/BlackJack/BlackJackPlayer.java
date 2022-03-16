@@ -22,4 +22,9 @@ public class BlackJackPlayer extends Player implements Gambler {
     public int getBalance() {
         return this.getPerson().getWallet();
     }
+
+    @Override
+    public void deductBet(Integer bet) {
+        this.getPerson().setWallet(this.getBalance()-bet);
+    }
 }

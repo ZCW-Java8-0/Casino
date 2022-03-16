@@ -3,10 +3,10 @@ package com.github.zipcodewilmington.casino.games.BlackJack;
 import com.github.zipcodewilmington.casino.games.GameInterface.GamblingGame;
 import com.github.zipcodewilmington.casino.games.Person.Player;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BlackJack implements GamblingGame<BlackJackPlayer> {
+    Scanner scanner = new Scanner(System.in);
     private Map<BlackJackPlayer, Integer> bets;
     private Map<BlackJackPlayer, Card[]> playerHand;
     private Map<BlackJackPlayer, Integer> playerHandSum;
@@ -54,23 +54,19 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
     public void blackJackCheck(BlackJackPlayer blackJackPlayer){
         Card[] tempPlayerHand = playerHand.get(blackJackPlayer);
-        if (tempPlayerHand.length != 2)
-        {
+        if (tempPlayerHand.length != 2) {
             blackJackFlag.put(blackJackPlayer, false);
         }
         else if (this.CardValue(tempPlayerHand[0])[0]==10)
         {
-            if (tempPlayerHand[1].getCardFace().equals(CardFace.Ace))
-            {
+            if (tempPlayerHand[1].getCardFace().equals(CardFace.Ace)) {
                 blackJackFlag.put(blackJackPlayer, true);
             }
             else
                 blackJackFlag.put(blackJackPlayer, false);
         }
-        else if (this.CardValue(tempPlayerHand[1])[0]==10)
-        {
-            if (tempPlayerHand[0].getCardFace().equals(CardFace.Ace))
-            {
+        else if (this.CardValue(tempPlayerHand[1])[0]==10) {
+            if (tempPlayerHand[0].getCardFace().equals(CardFace.Ace)) {
                 blackJackFlag.put(blackJackPlayer, true);
             }
             else
@@ -106,8 +102,13 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
     }
 
     @Override
-    public Player[] getWinner() {
-        return new Player[0];
+    public BlackJackPlayer[] getWinner() {
+        List<BlackJackPlayer> winner = new ArrayList<>();
+        for (BlackJackPlayer s : winLose.keySet()){
+            if (winLose.get(s)==true)
+                winner.add(s);
+        }
+        return winner.toArray(new BlackJackPlayer[winner.size()]);
     }
 
     @Override
@@ -116,9 +117,30 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
     @Override
     public void setBets() {
+        Integer bet = 0, walletBalance;
+        for (BlackJackPlayer s: bets.keySet()){
+            walletBalance = s.getBalance();
+            try {
+                System.out.println("Hello" +s.getPerson().getName() + ", how much would you like to bet?");
+                System.out.println();
+                bet=scanner.nextInt();
+                if (bet<walletBalance){
+                    System.out.println("Bet exceeds what you have, try again");
+                    continue;
+                }
+            } catch (InputMismatchException e){
+                System.out.println("Not a number, try again");
+                continue;
+            }
+            bets.put(s, bet);
+            s.deductBet(bet);
+        }
     }
 
     @Override
-    public void distributeWinningsToWinners() {
+    public void distributeWinningsToWinners(BlackJackPlayer[] winner) {
+        for (BlackJackPlayer s: winner) {
+            s.addWinning(bets.get(s)*2);
+        }
     }
 }
