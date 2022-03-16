@@ -6,7 +6,7 @@
 //import java.util.Scanner;
 //import java.util.Stack;
 //
-//public class WarGame extends Game {
+//public class WarGame implements GameInterface<WarPlayer> {
 //
 //    // NON-GAMBLING
 //    Boolean isCardGame = true;
