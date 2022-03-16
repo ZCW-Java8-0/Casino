@@ -12,10 +12,10 @@ class DiceTest {
     @Test
     public void rollTest() {
         //given
-        int expected = 5;
+        int expected = 2;
         //when
 
-        ArrayList<Integer> actualRoll = Dice.roll(5);
+        ArrayList<Integer> actualRoll = Dice.roll(2);
         int actual = actualRoll.size();
 
         //then
