@@ -16,12 +16,13 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
 
     private int maxPartySize;
     private Map<CeeLoPlayer, Integer> bets;
-
+    static Random diceNumber = new Random();
+    private Map<CeeLoPlayer, Integer[]> rollResult;
     public CeeLoGame(List<CeeLoPlayer> players) {
         for (CeeLoPlayer s : players) {
             this.bets.put(s,null);
             if(bets.size() > maxPartySize){
-                System.out.println("The max amount of players is 4 people.");
+                System.out.println("The max amount of players is 2 people.");
                 break;
             }
         }
@@ -45,7 +46,7 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
 
     @Override
     public void setPlayerMax() {
-        this.maxPartySize = 4;
+        this.maxPartySize = 2;
     }
 
     @Override
@@ -78,24 +79,52 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
 //    Rolls with dice1 and dice2 have same values and dice 3 has a different value, result = dice 3
 //    Rolls with all three dice that are the same = 6 + the dice value.
 
-    public static int rollConditions(int[] ints){
-        boolean validRoll = true;
-        Random diceNumber = new Random();
-        int[] diceArray = Dice.rollDice(diceNumber);
-
-
+    public int rollResults(CeeLoPlayer player){
+        Integer[] diceArray = rollResult.get(player);
         Arrays.sort(diceArray);// just to read outcome better.
-        if (diceArray[0] == 4 && diceArray[1] == 5 && diceArray[0] == 6) {return 13;}///automatic win break out of game pay winnings
-        if (diceArray[0] == 1 && diceArray[1] == 2 && diceArray[0] == 3) {return 0;}///automatic lose break out of game lose bet.
-        if (diceArray[0] == diceArray[1]) {return diceArray[2];}
-        if (diceArray[0] == diceArray[2]) {return diceArray[1];}
-        if (diceArray[1] == diceArray[2]) {return diceArray[0];}
-        if (diceArray[0] == diceArray[1] && diceArray[1] == diceArray[2]) {return diceArray[1] + 6;}
-        return 0;
+        int rollvalue = 0;
+        for (int i=0; i < diceArray.length; i++) {
+            if (diceArray[0] == 4 && diceArray[1] == 5 && diceArray[2] == 6) {
+                return rollvalue = 13;
+            }///automatic win break out of game pay winnings
+            if (diceArray[0] == 1 && diceArray[1] == 2 && diceArray[2] == 3) {
+                return 0;
+            }///automatic lose break out of game lose bet.
+            if (diceArray[0] == diceArray[1] && diceArray[0] == diceArray[2]) {
+                return rollvalue = diceArray[0] + 6;
+            }
+            if (diceArray[0] == diceArray[1]) {
+                return rollvalue = diceArray[2];
+            }
+            if (diceArray[0] == diceArray[2]) {
+                return rollvalue = diceArray[1];
+            }
+            if (diceArray[1] == diceArray[2]) {
+                return rollvalue = diceArray[0];
+            }
+
+        }
+        return rollvalue;
     }
-    public static int getWinner (int[]ceeLoPlayer1Roll,int[]ceeLoPlayer2Roll,int[]ceeLoPlayer3Roll,int[]ceeLoPlayer4Roll ){
-        Random diceNumber = new Random();
-        int ceeLoplayer1 = rollConditions(Dice.rollDice(diceNumber));
+    public int getWinner(CeeLoPlayer player1, CeeLoPlayer player2){
+
+        int ceeLoPlayer1 = rollResults(player1);
+        int ceeLoPlayer2 = rollResults(player2);
+
+        if (ceeLoPlayer1 == ceeLoPlayer2) {
+            System.out.println("It is a tie! Double bets and re-roll!");
+            //re-roll and put through roll results again
+
+        }else if (ceeLoPlayer1==13) {
+            System.out.println("Player 1 got an automatic win!");
+
+
+
+        }else if (ceeLoPlayer1 > ceeLoPlayer2){
+            // if either player gets 13, auto win and take money
+            System.out.println("");
+        }else {}
+
         return 0;
     }
 
