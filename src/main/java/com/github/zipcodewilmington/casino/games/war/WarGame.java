@@ -30,51 +30,7 @@ public class WarGame extends Game {
         while (handPlayer1.size() < 52 && handPlayer2.size() < 52) {
             Deck player1Card = handPlayer1.removeFirst();
             Deck player2Card = handPlayer2.removeFirst();
-
-            if(player1Card > player2Card) {
-                handPlayer1.addLast(player1Card);
-                handPlayer1.addLast(player2Card);
-                distributeTemporaryCards(PLAYER 1);
-                System.out.println("Player 1: " + player1Card); // rename players to account names
-                System.out.println("Player 2: " + player2Card); // rename players to account names
-                System.out.println("Player 1 Wins This Round!"); // rename players to account names
-                System.out.println("Player 1 Has " + handPlayer1.size() + " cards."); // rename players
-                // to account names
-                System.out.println("Player 2 Has " + handPlayer2.size() + " cards."); // rename players
-                // to account names
-
-            } else if (player1Card < player2Card) {
-                handPlayer2.addLast(player1Card);
-                handPlayer2.addLast(player2Card);
-                distributeTemporaryCards(PLAYER 2);
-                System.out.println("Player 1: " + player1Card); // rename players to account names
-                System.out.println("Player 2: " + player2Card); // rename players to account names
-                System.out.println("Player 2 Wins This Round!"); // rename players to account names
-                System.out.println("Player 1 Has " + handPlayer1.size() + " cards."); // rename players
-                // to account names
-                System.out.println("Player 2 Has " + handPlayer2.size() + " cards."); // rename players
-                // to account names
-
-            } else if (player1Card == player2Card) {
-                temporary.addFirst(handPlayer1.removeFirst());
-                temporary.addFirst(handPlayer1.removeFirst());
-                temporary.addFirst(handPlayer1.removeFirst());
-                temporary.addFirst(handPlayer2.removeFirst());
-                temporary.addFirst(handPlayer2.removeFirst());
-                temporary.addFirst(handPlayer2.removeFirst());
-                if (handPlayer1.size() < 0 && handPlayer2.size() < 0) {
-                    // back to top of loop
-                }
-                // if player1 and player 2 both have 1+ card remaining --- what if not???
-                // THen recursion??? or whatever needs to happen to go to top of loop --- but need to get
-                // all temporary cards -- make separate method to put temp cards into hand??
-                // else flip what they have
-
-
-
-                // TIE -- what if they run out of cards???
-                // catch out of cards and use last care in pile
-            }
+            compareAndRedistribute(player1Card, player2Card);
         }
 
         if (handPlayer1.empty()) {
@@ -88,6 +44,7 @@ public class WarGame extends Game {
     // 2 players or 1v computer
     // how do they quit midgame?
 // clear temporary at end so no carry over betwen games?
+    // player input/output???
 
     // try test driven development - but hard since don't know where each piece is going
     // review generics lecture - Wei posted slides in watercrest, vandana got recording
@@ -98,4 +55,46 @@ public class WarGame extends Game {
         }
     }
 
+    public void compareAndRedistribute(Deck player1Card, Deck player2Card) {
+        if(player1Card > player2Card) {
+            handPlayer1.addLast(player1Card);
+            handPlayer1.addLast(player2Card);
+            distributeTemporaryCards(PLAYER 1);
+            System.out.println("Player 1: " + player1Card); // rename players to account names
+            System.out.println("Player 2: " + player2Card); // rename players to account names
+            System.out.println("Player 1 Wins This Round!"); // rename players to account names
+            System.out.println("Player 1 Has " + handPlayer1.size() + " cards."); // rename players
+            // to account names
+            System.out.println("Player 2 Has " + handPlayer2.size() + " cards."); // rename players
+            // to account names
+
+        } else if (player1Card < player2Card) {
+            handPlayer2.addLast(player1Card);
+            handPlayer2.addLast(player2Card);
+            distributeTemporaryCards(PLAYER 2);
+            System.out.println("Player 1: " + player1Card); // rename players to account names
+            System.out.println("Player 2: " + player2Card); // rename players to account names
+            System.out.println("Player 2 Wins This Round!"); // rename players to account names
+            System.out.println("Player 1 Has " + handPlayer1.size() + " cards."); // rename players
+            // to account names
+            System.out.println("Player 2 Has " + handPlayer2.size() + " cards."); // rename players
+            // to account names
+
+        } else if (player1Card == player2Card) {
+            temporary.addFirst(handPlayer1.removeFirst());
+            temporary.addFirst(handPlayer1.removeFirst());
+            temporary.addFirst(handPlayer1.removeFirst());
+            temporary.addFirst(handPlayer2.removeFirst());
+            temporary.addFirst(handPlayer2.removeFirst());
+            temporary.addFirst(handPlayer2.removeFirst());
+            if (handPlayer1.size() < 0 && handPlayer2.size() < 0) {
+                return;
+            } else if (WHAT TO DO IF THEY DON'T HAVE A CAR E RMEAIN?') {
+// could do while loop like "while player has 1+ card keft put down up to 3 cards???
+            }
+
+
+            // catch out of cards and use last care in pile (including if they don't have enough for 3 facedown
+        }
+    }
 }
