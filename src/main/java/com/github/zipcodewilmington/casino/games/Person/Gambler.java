@@ -4,5 +4,4 @@ public interface Gambler {
     void addWinning(int winning);
     void applyBet(int bet);
     int getBalance();
-    void deductBet(Integer bet);
 }

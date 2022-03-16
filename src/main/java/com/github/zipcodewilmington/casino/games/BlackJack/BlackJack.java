@@ -133,7 +133,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                 continue;
             }
             bets.put(s, bet);
-            s.deductBet(bet);
+            s.applyBet(bet);
         }
     }
 
