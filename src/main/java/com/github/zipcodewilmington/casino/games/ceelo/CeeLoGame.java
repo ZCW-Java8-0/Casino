@@ -6,10 +6,27 @@ import com.github.zipcodewilmington.casino.games.Person.Player;
 
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 
+
 public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
+
+    private int maxPartySize;
+    private Map<CeeLoPlayer, Integer> bets;
+
+    public CeeLoGame(List<CeeLoPlayer> players) {
+        for (CeeLoPlayer s : players) {
+            this.bets.put(s,null);
+            if(bets.size() > maxPartySize){
+                System.out.println("The max amount of players is 4 people.");
+                break;
+            }
+        }
+    }
+
     @Override
     public void setBets() {
 
@@ -28,17 +45,17 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
 
     @Override
     public void setPlayerMax() {
-
+        this.maxPartySize = 4;
     }
 
     @Override
     public void addPlayer(CeeLoPlayer player) {
-
+    this.bets.put(player,0);
     }
 
     @Override
     public void removePlayer(CeeLoPlayer player) {
-
+    this.bets.remove(player);
     }
 
     @Override
@@ -60,7 +77,8 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
 //    Invalid rolls will result in 0 or re-roll
 //    Rolls with dice1 and dice2 have same values and dice 3 has a different value, result = dice 3
 //    Rolls with all three dice that are the same = 6 + the dice value.
-    public static int rollConditions(){
+
+    public static int rollConditions(int[] ints){
         boolean validRoll = true;
         Random diceNumber = new Random();
         int[] diceArray = Dice.rollDice(diceNumber);
@@ -75,5 +93,11 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
         if (diceArray[0] == diceArray[1] && diceArray[1] == diceArray[2]) {return diceArray[1] + 6;}
         return 0;
     }
+    public static int getWinner (int[]ceeLoPlayer1Roll,int[]ceeLoPlayer2Roll,int[]ceeLoPlayer3Roll,int[]ceeLoPlayer4Roll ){
+        Random diceNumber = new Random();
+        int ceeLoplayer1 = rollConditions(Dice.rollDice(diceNumber));
+        return 0;
+    }
+
 
 }
