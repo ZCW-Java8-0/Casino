@@ -5,7 +5,6 @@ public abstract class Player {
     public Player(Person person){
         this.person=person;
     }
-
     public Person getPerson() {
         return person;
     }
