@@ -332,15 +332,15 @@ $tf/
 # Guidance Automation Toolkit
 *.gpState
 
-# ReSharper is a .NET coding add-in
+# ReSharper is a .NET coding addPlayer-in
 _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
-# JustCode is a .NET coding add-in
+# JustCode is a .NET coding addPlayer-in
 .JustCode
 
-# TeamCity is a build add-in
+# TeamCity is a build addPlayer-in
 _TeamCity*
 
 # DotCover is a Code Coverage Tool
@@ -369,7 +369,7 @@ AutoTest.Net/
 # Installshield output folder
 [Ee]xpress/
 
-# DocProject is a documentation generator add-in
+# DocProject is a documentation generator addPlayer-in
 DocProject/buildhelp/
 DocProject/Help/*.HxT
 DocProject/Help/*.HxC
