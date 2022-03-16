@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington.casino.games.BlackJack;
 
 import com.github.zipcodewilmington.casino.games.GameInterface.GamblingGame;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.*;
 
@@ -18,17 +19,25 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
     @Override
     public void play() {
+        //need to add players and set bets condense dealer into player maps
         String input;
         int cardValue = 0;
         Card temp;
-        boolean AceFlag=false;
+        Map <BlackJackPlayer, Boolean> AceFlag = null;
         while(exitFlag==false) {
             Deck deck = new Deck();
             for (int i=0; i<2;i++) {
                 for (BlackJackPlayer s : bets.keySet()) {
+                    temp = deck.getTopCard();
                     playerHand.get(s).add(deck.getTopCard());
+                    playerHandSum.put(s, playerHandSum.get(s) + this.cardValue(temp)[0]);
+                    if(temp.getCardFace().equals(CardFace.Ace))
+                        AceFlag.put(s,true);
                 }
+                temp = deck.getTopCard();
                 dealerHand.add(deck.getTopCard());
+                if(temp.getCardFace().equals(CardFace.Ace))
+                    AceFlag.put(dealer,true);
             }
             System.out.println("Dealer got a " + dealerHand.get(0).toString());
             for (BlackJackPlayer s : bets.keySet()){
@@ -40,7 +49,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                         playerHand.get(s).add(temp);
                         cardValue += this.cardValue(temp)[0];
                         if(temp.getCardFace().equals(CardFace.Ace))
-                            AceFlag=true;
+                            AceFlag.put(s,true);
                     }
                     else if (input == "stay")
                         break;
@@ -50,7 +59,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                         break;
                     }
                     else if (playerHandSum.get(s)>21){
-                        if (AceFlag){
+                        if (AceFlag.get(s)){
                             cardValue -= 10;
                         }
                         else {
@@ -85,8 +94,12 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         }
     }
 
-    public void dealerPlay(){
+    public void dealerPlays(){
 
+        System.out.println("Dealer got:");
+        for (Card s: dealerHand){
+            System.out.println(s.toString());
+        }
     }
 
     private int[] cardValue(Card card){
