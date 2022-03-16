@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class WarGame extends Game {
+    // NON-GAMBLING
     Boolean isCardGame = true;
 
     Scanner scanner = new Scanner(System.in);
@@ -19,6 +20,7 @@ public class WarGame extends Game {
         // player2 = whoever else
         Deque<Deck> handPlayer1 = new ArrayDeque<Deck>(); // Stack<Deck> handPlayer1 = new Stack<Deck>();
         Deque<Deck> handPlayer2 = new ArrayDeque<Deck>(); // Stack<Deck> handPlayer2 = new Stack<Deck>();
+        Deque<Deck> temporary = new ArrayDeque<Deck>();
         for (int i = 1; i <= 26; i++) { // deal cards
             handPlayer1.addFirst(deck.removeFirst());
             handPlayer2.addFirst(deck.removeFirst());
@@ -30,18 +32,35 @@ public class WarGame extends Game {
             if(player1Card > player2Card) {
                 handPlayer1.addLast(player1Card);
                 handPlayer1.addLast(player2Card);
+                System.out.println("Player 1: " + player1Card); // rename players to account names
+                System.out.println("Player 2: " + player2Card); // rename players to account names
+                System.out.println("Player 1 Wins This Round!"); // rename players to account names
+                System.out.println("Player 1 Has " + handPlayer1.size() + " cards."); // rename players
+                // to account names
+                System.out.println("Player 2 Has " + handPlayer2.size() + " cards."); // rename players
+                // to account names
             } else if (player1Card < player2Card) {
                 handPlayer2.addLast(player1Card);
                 handPlayer2.addLast(player2Card);
+                System.out.println("Player 1: " + player1Card); // rename players to account names
+                System.out.println("Player 2: " + player2Card); // rename players to account names
+                System.out.println("Player 2 Wins This Round!"); // rename players to account names
+                System.out.println("Player 1 Has " + handPlayer1.size() + " cards."); // rename players
+                // to account names
+                System.out.println("Player 2 Has " + handPlayer2.size() + " cards."); // rename players
+                // to account names
             } else if (player1Card == player2Card) {
-                // TIE
+                temporary.addFirst(handPlayer1.removeFirst());
+                temporary.addFirst(handPlayer1.removeFirst());
+                temporary.addFirst(handPlayer1.removeFirst());
+                temporary.addFirst(handPlayer2.removeFirst());
+                temporary.addFirst(handPlayer2.removeFirst());
+                temporary.addFirst(handPlayer2.removeFirst());
+
+
+                // TIE -- what if they run out of cards???
+                // catch out of cards and use last care in pile
             }
-            // player input - play card
-            // if p1 > p2 vs p2>p1 vs tie - player output show card and winner
-            // cards to winner
-            // display hand size i.e. 26/52
-            // pop stack(deck) to pull card
-            // code for lose - one person is out of cards
         }
 
         if (handPlayer1.empty()) {
@@ -54,7 +73,6 @@ public class WarGame extends Game {
 
     // 2 players or 1v computer
     // how do they quit midgame?
-    // war is a non-gambling game, right? CORRECT
 
 
     // try test driven development - but hard since don't know where each piece is going
