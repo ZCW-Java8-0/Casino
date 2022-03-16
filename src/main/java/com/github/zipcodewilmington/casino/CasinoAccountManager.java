@@ -26,15 +26,20 @@ public class CasinoAccountManager {
      * @return `CasinoAccount` with specified `accountName` and `accountPassword` if none exists return null.
      */
     public CasinoAccount getAccount(String accountName, String accountPassword) {
-        for (CasinoAccount account : casinoAccountList){
-            if (accountName.equals(account.getAccountName()) && accountPassword.equals(account.getAccountPassword())){
-                return account;
+        // if the accountName is not linked to a casino account warn user.
+        if (!casinoAccountList.contains(getAccountByUsername(accountName))){
+            System.out.println("This account has not been created yet.");
+        } else {
+            for (CasinoAccount account : casinoAccountList) {
+                if (accountName.equals(account.getAccountName()) && accountPassword.equals(account.getAccountPassword())) {
+                    return account;
+                }
             }
+            logger.log(Level.WARNING,"Your password does not match the account you are trying to access.");
+
         }
-        logger.log(Level.WARNING,"An account with those details does not exist.");
         return null;
     }
-
     /**
      * logs & creates a new `ArcadeAccount`
      *
@@ -44,7 +49,7 @@ public class CasinoAccountManager {
      */
 
     public CasinoAccount createAccount(String accountName,String accountPassword){
-//        if(){}
+//
         CasinoAccount newAccount = new CasinoAccount (accountName, accountPassword);
         logger.log(Level.INFO,"Your account has been created.");
 
@@ -62,7 +67,7 @@ public class CasinoAccountManager {
         casinoAccountList.add(casinoAccount);
         accounts.put(accountUsername,casinoAccount);
 
-        logger.log(Level.INFO,  "Your account " + casinoAccount + " has been registered.");
+        logger.log(Level.INFO,  "Your account " + "\"" + casinoAccount.getAccountName() + "\"" + " has been registered.");
     }
 
     public CasinoAccount getAccountByUsername(String accountName){

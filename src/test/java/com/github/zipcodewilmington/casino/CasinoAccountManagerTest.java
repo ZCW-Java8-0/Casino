@@ -9,7 +9,52 @@ class CasinoAccountManagerTest {
 
     @Test
     void getAccount() {
+        // Given
+        CasinoAccountManager testManager = new CasinoAccountManager();
+        CasinoAccount testAccount;
+        String accountName = "test";
+        String accountPassword = "test123";
+
+        // When
+        testAccount = new CasinoAccount(accountName, accountPassword);
+        testManager.registerAccount(testAccount);
+        CasinoAccount expected = testAccount;
+        CasinoAccount actual = testManager.getAccount(accountName,accountPassword);
+        // Then
+        assertEquals(expected,actual);
     }
+//    @Test
+//    void getAccountForNonExistentAccount() {
+//        // Given
+//        CasinoAccountManager testManager = new CasinoAccountManager();
+//        CasinoAccount testAccount;
+//        String accountName = "test";
+//        String accountPassword = "test123";
+//
+//        // When
+//        testAccount = new CasinoAccount(accountName, accountPassword);
+//        testManager.registerAccount(testAccount);
+//        CasinoAccount expected = testAccount;
+//        CasinoAccount actual = testManager.getAccount();
+//        // Then
+//        assertEquals(expected,actual);
+//    }
+//    @Test
+//    void getAccountForErroneousPassword() {
+//        // Given
+//        CasinoAccountManager testManager = new CasinoAccountManager();
+//        CasinoAccount testAccount;
+//        String accountName = "test";
+//        String accountPassword = "test123";
+//
+//        // When
+//        testAccount = new CasinoAccount(accountName, accountPassword);
+//        testManager.registerAccount(testAccount);
+//        CasinoAccount expected = testAccount;
+//        CasinoAccount actual = testManager.getAccount();
+//        // Then
+//        assertEquals(expected,actual);
+//    }
 
     @Test
     void createAccount() {
