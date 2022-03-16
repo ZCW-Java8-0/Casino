@@ -11,14 +11,10 @@ import java.util.logging.Logger;
  */
 public class CasinoAccountManager {
     private static Logger logger = Logger.getLogger(CasinoAccountManager.class.getName());
-    private HashMap<String, CasinoAccount> casinoAccounts = new HashMap<>();
     List <CasinoAccount> casinoAccountList = new ArrayList<>();
 
-    public CasinoAccountManager(){}
-    public CasinoAccountManager(CasinoAccount account){
-        casinoAccounts.put(account.getAccountName(), account.getAccountByUsername(account.getAccountName()));
+    public CasinoAccountManager() {
         logger.log(Level.INFO,"Account Manager has been initialized.");
-
     }
 
 
@@ -48,8 +44,9 @@ public class CasinoAccountManager {
     public CasinoAccount createAccount(String accountName,String accountPassword){
 //        if(){}
         CasinoAccount newAccount = new CasinoAccount (accountName, accountPassword);
-        return newAccount;
+        logger.log(Level.INFO,"Your account has been created.");
 
+        return newAccount;
 
     }
 
