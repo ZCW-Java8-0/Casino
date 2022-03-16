@@ -140,9 +140,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
     }
 
     @Override
-    public void distributeWinningsToWinners(BlackJackPlayer[] winner) {
-        for (BlackJackPlayer s: winner) {
-            s.addWinning(bets.get(s)*2);
-        }
+    public void distributeWinningsToWinners(BlackJackPlayer winner) {
+        winner.addWinning(bets.get(winner)*2);
     }
 }
