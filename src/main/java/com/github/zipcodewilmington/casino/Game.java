@@ -30,9 +30,4 @@ public class Game implements GameInterface {
     public void run() {
 
     }
-
- @Override
- public void testMethod() {
-
- }
 }

@@ -11,13 +11,11 @@ import java.util.HashSet;
 public class CasinoAccount{
     private final String accountName;
     private String accountPassword;
-    private HashMap<String,CasinoAccount> accounts = new HashMap<>();
     private Integer accountBalance;
 
     protected CasinoAccount(String accountName, String accountPassword) {
         this.accountName = accountName;
         this.accountPassword = accountPassword;
-        accounts.put(accountName, this);
         this.accountBalance = 50000;
     }
 
@@ -27,12 +25,6 @@ public class CasinoAccount{
         return accountName;
     }
 
-    public CasinoAccount getAccountByUsername(String accountName){
-        if (accounts.containsKey(accountName)){
-            return accounts.get(accountName);
-        }
-        return null;
-    }
 
     public String getAccountPassword() {
         return accountPassword;
@@ -50,5 +42,8 @@ public class CasinoAccount{
         this.accountBalance = accountBalance;
     }
 
-
+    @Override
+    public String toString() {
+        return "'" + accountName + "'";
+    }
 }
