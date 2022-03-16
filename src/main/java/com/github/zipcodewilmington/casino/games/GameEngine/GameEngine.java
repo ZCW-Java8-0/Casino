@@ -13,8 +13,6 @@ abstract class GameEngine <PlayerType extends Player, GameType>
         this.game = game;
         this.players = players;
     }
-    public void start(){
-    }
 
     public List<PlayerType> getPlayers() {
         return players;
