@@ -45,6 +45,10 @@ public class Cards {
         } return cardDeck;
     }
 
+    public void shuffle(){
+        //Shuffle Cards
+    }
+
     @Override
     public String toString() {
         return "Cards{" +
