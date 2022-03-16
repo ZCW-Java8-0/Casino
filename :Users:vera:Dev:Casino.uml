@@ -1,45 +1,382 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>JAVA</ID>
-  <OriginalElement>/Users/vera/Dev/Casino</OriginalElement>
+  <OriginalElement>/Users/vera/dev/Casino</OriginalElement>
   <nodes>
-    <node x="255.0" y="484.0">com.github.zipcodewilmington.casino.CasinoAccountManager</node>
-    <node x="781.0" y="650.0">com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer</node>
-    <node x="0.0" y="771.0">com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame</node>
-    <node x="182.0" y="967.0">com.github.zipcodewilmington.casino.games.war.WarPlayer</node>
-    <node x="285.0" y="650.0">com.github.zipcodewilmington.ApplicationRunnerTest</node>
-    <node x="254.0" y="771.0">com.github.zipcodewilmington.casino.games.blackjack.BlackJackPlayer</node>
-    <node x="396.0" y="0.0">com.github.zipcodewilmington.casino.Player</node>
-    <node x="612.0" y="869.0">com.github.zipcodewilmington.casino.games.craps.CrapsGame</node>
-    <node x="0.0" y="650.0">com.github.zipcodewilmington.casino.PlayerInterface</node>
-    <node x="551.0" y="275.0">com.github.zipcodewilmington.casino.GameInterface</node>
-    <node x="700.0" y="771.0">com.github.zipcodewilmington.casino.CasinoAccount</node>
-    <node x="212.0" y="869.0">com.github.zipcodewilmington.casino.games.roulette.RouletteGame</node>
-    <node x="479.0" y="771.0">com.github.zipcodewilmington.casino.games.blackjack.BlackJackGame</node>
-    <node x="701.0" y="0.0">com.github.zipcodewilmington.utils.AnsiColor</node>
-    <node x="0.0" y="484.0">com.github.zipcodewilmington.casino.GameEngine</node>
-    <node x="0.0" y="0.0">com.github.zipcodewilmington.utils.IOConsole</node>
-    <node x="0.0" y="275.0">com.github.zipcodewilmington.casino.Game</node>
-    <node x="358.0" y="967.0">com.github.zipcodewilmington.casino.games.war.WarGame</node>
-    <node x="274.0" y="275.0">com.github.zipcodewilmington.Casino</node>
-    <node x="629.0" y="484.0">com.github.zipcodewilmington.casino.GameEngineInterface</node>
-    <node x="0.0" y="967.0">com.github.zipcodewilmington.casino.games.slots.SlotsGame</node>
-    <node x="558.0" y="650.0">com.github.zipcodewilmington.MainApplication</node>
-    <node x="0.0" y="869.0">com.github.zipcodewilmington.casino.games.roulette.RoulettePlayer</node>
-    <node x="420.0" y="869.0">com.github.zipcodewilmington.casino.games.craps.CrapsPlayer</node>
-    <node x="801.0" y="869.0">com.github.zipcodewilmington.casino.games.slots.SlotsPlayer</node>
+    <node x="197.0" y="1623.0">com.github.zipcodewilmington.casino.cards.WarCards</node>
+    <node x="10.5" y="241.0">com.github.zipcodewilmington.casino.CasinoAccountManager</node>
+    <node x="125.5" y="1520.0">com.github.zipcodewilmington.casino.cards.Cards</node>
+    <node x="2410.453007518796" y="1009.0">com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer</node>
+    <node x="2059.453007518796" y="1009.0">com.github.zipcodewilmington.casino.games.war.WarPlayer</node>
+    <node x="1502.4530075187956" y="1009.0">com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame</node>
+    <node x="540.867794486214" y="1398.0">com.github.zipcodewilmington.ApplicationRunnerTest</node>
+    <node x="2210.453007518796" y="1009.0">com.github.zipcodewilmington.casino.games.blackjack.BlackJackPlayer</node>
+    <node x="2642.453007518796" y="1009.0">com.github.zipcodewilmington.casino.games.klondike.KlondikePlayer</node>
+    <node x="996.4530075187956" y="1009.0">com.github.zipcodewilmington.casino.games.craps.CrapsGame</node>
+    <node x="2433.602443609021" y="633.0">com.github.zipcodewilmington.casino.Player</node>
+    <node x="1833.9774436090213" y="263.0">com.github.zipcodewilmington.casino.PlayerInterface</node>
+    <node x="1638.6024436090213" y="416.0">com.github.zipcodewilmington.casino.GameInterface</node>
+    <node x="0.0" y="1623.0">com.github.zipcodewilmington.casino.cards.BlackJackCards</node>
+    <node x="1420.227443609021" y="0.0">com.github.zipcodewilmington.casino.CasinoAccount</node>
+    <node x="800.4530075187956" y="997.0">com.github.zipcodewilmington.casino.games.blackjack.BlackJackGame</node>
+    <node x="347.45300751879563" y="666.0">com.github.zipcodewilmington.utils.AnsiColor</node>
+    <node x="2844.578007518796" y="1214.0">com.github.zipcodewilmington.casino.GameEngine</node>
+    <node x="281.45300751879563" y="920.0">com.github.zipcodewilmington.utils.IOConsole</node>
+    <node x="1782.2274436090213" y="657.0">com.github.zipcodewilmington.casino.Game</node>
+    <node x="652.4530075187956" y="1009.0">com.github.zipcodewilmington.casino.games.war.WarGame</node>
+    <node x="315.86779448621405" y="1203.0">com.github.zipcodewilmington.Casino</node>
+    <node x="1317.4530075187956" y="1009.0">com.github.zipcodewilmington.casino.games.klondike.KlondikeGame</node>
+    <node x="2904.828007518796" y="986.0">com.github.zipcodewilmington.casino.GameEngineInterface</node>
+    <node x="342.86779448621405" y="1398.0">com.github.zipcodewilmington.MainApplication</node>
+    <node x="1160.4530075187956" y="1009.0">com.github.zipcodewilmington.casino.games.slots.SlotsGame</node>
+    <node x="371.0" y="1520.0">com.github.zipcodewilmington.casino.dice.Dice</node>
+    <node x="1731.4530075187956" y="1009.0">com.github.zipcodewilmington.casino.games.craps.CrapsPlayer</node>
+    <node x="1898.4530075187956" y="1009.0">com.github.zipcodewilmington.casino.games.slots.SlotsPlayer</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="com.github.zipcodewilmington.utils.AnsiColor" target="com.github.zipcodewilmington.utils.AnsiColor" relationship="DEPENDENCY">
-      <point x="0.0" y="72.0" />
-      <point x="810.5" y="164.0" />
-      <point x="681.0" y="164.0" />
-      <point x="681.0" y="72.0" />
-      <point x="-109.5" y="-0.0" />
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.casino.CasinoAccount" relationship="DEPENDENCY">
+      <point x="-77.33333333333331" y="-72.5" />
+      <point x="354.5344611528808" y="1182.0" />
+      <point x="172.95300751879563" y="1182.0" />
+      <point x="172.95300751879563" y="1172.0" />
+      <point x="0.0" y="1172.0" />
+      <point x="0.0" y="220.0" />
+      <point x="1525.227443609021" y="220.0" />
+      <point x="1525.227443609021" y="210.0" />
+      <point x="1570.227443609021" y="210.0" />
+      <point x="50.0" y="94.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.craps.CrapsPlayer" target="com.github.zipcodewilmington.casino.Player" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="1804.9530075187956" y="898.0" />
+      <point x="2179.9511278195473" y="898.0" />
+      <point x="2179.9511278195473" y="868.0" />
+      <point x="2493.602443609021" y="868.0" />
+      <point x="-60.0" y="106.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.slots.SlotsPlayer" target="com.github.zipcodewilmington.casino.Player" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="1968.9530075187956" y="898.0" />
+      <point x="2179.9511278195473" y="898.0" />
+      <point x="2179.9511278195473" y="868.0" />
+      <point x="2493.602443609021" y="868.0" />
+      <point x="-60.0" y="106.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.Player" target="com.github.zipcodewilmington.casino.CasinoAccount" relationship="DEPENDENCY">
+      <point x="60.0" y="-106.5" />
+      <point x="2613.602443609021" y="606.0" />
+      <point x="2559.102443609021" y="606.0" />
+      <point x="2559.102443609021" y="220.0" />
+      <point x="1525.227443609021" y="220.0" />
+      <point x="1525.227443609021" y="210.0" />
+      <point x="1570.227443609021" y="210.0" />
+      <point x="50.0" y="94.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.CasinoAccountManager" target="com.github.zipcodewilmington.casino.CasinoAccount" relationship="TO_ONE">
+      <point x="-82.25" y="-60.5" />
+      <point x="92.75" y="210.0" />
+      <point x="1470.227443609021" y="210.0" />
+      <point x="-50.0" y="94.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.blackjack.BlackJackPlayer" target="com.github.zipcodewilmington.casino.Player" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="2300.453007518796" y="898.0" />
+      <point x="2179.9511278195473" y="898.0" />
+      <point x="2179.9511278195473" y="868.0" />
+      <point x="2493.602443609021" y="868.0" />
+      <point x="-60.0" y="106.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame" target="com.github.zipcodewilmington.casino.Game" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="1606.9530075187956" y="898.0" />
+      <point x="1107.4511278195475" y="898.0" />
+      <point x="1107.4511278195475" y="888.0" />
+      <point x="1839.4774436090213" y="888.0" />
+      <point x="-57.25" y="82.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.slots.SlotsGame" target="com.github.zipcodewilmington.casino.Game" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="1228.9530075187956" y="898.0" />
+      <point x="1107.4511278195475" y="898.0" />
+      <point x="1107.4511278195475" y="888.0" />
+      <point x="1839.4774436090213" y="888.0" />
+      <point x="-57.25" y="82.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.klondike.KlondikePlayer" target="com.github.zipcodewilmington.casino.Player" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="2726.453007518796" y="898.0" />
+      <point x="2179.9511278195473" y="898.0" />
+      <point x="2179.9511278195473" y="868.0" />
+      <point x="2493.602443609021" y="868.0" />
+      <point x="-60.0" y="106.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.ApplicationRunnerTest" target="com.github.zipcodewilmington.Casino" relationship="CREATE">
+      <point x="0.0" y="-38.5" />
+      <point x="654.867794486214" y="1373.0" />
+      <point x="431.86779448621405" y="1373.0" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.utils.IOConsole" target="com.github.zipcodewilmington.utils.AnsiColor" relationship="TO_ONE">
+      <point x="87.75" y="-115.5" />
+      <point x="544.7030075187956" y="898.0" />
+      <point x="511.70300751879563" y="898.0" />
+      <point x="54.75" y="73.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer" target="com.github.zipcodewilmington.casino.Player" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="2516.453007518796" y="898.0" />
+      <point x="2179.9511278195473" y="898.0" />
+      <point x="2179.9511278195473" y="868.0" />
+      <point x="2493.602443609021" y="868.0" />
+      <point x="-60.0" y="106.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.war.WarPlayer" target="com.github.zipcodewilmington.casino.Player" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="2124.953007518796" y="898.0" />
+      <point x="2179.9511278195473" y="898.0" />
+      <point x="2179.9511278195473" y="868.0" />
+      <point x="2493.602443609021" y="868.0" />
+      <point x="-60.0" y="106.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.GameInterface" target="com.github.zipcodewilmington.casino.PlayerInterface" relationship="DEPENDENCY">
+      <point x="0.0" y="-81.5" />
+      <point x="1783.1024436090213" y="384.0" />
+      <point x="1893.9774436090213" y="384.0" />
+      <point x="-60.0" y="38.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.Game" target="com.github.zipcodewilmington.casino.PlayerInterface" relationship="DEPENDENCY">
+      <point x="57.25" y="-82.5" />
+      <point x="1953.9774436090213" y="606.0" />
+      <point x="1938.1024436090213" y="606.0" />
+      <point x="1938.1024436090213" y="394.0" />
+      <point x="1783.1024436090213" y="394.0" />
+      <point x="1783.1024436090213" y="384.0" />
+      <point x="1893.9774436090213" y="384.0" />
+      <point x="-60.0" y="38.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.klondike.KlondikeGame" target="com.github.zipcodewilmington.casino.Game" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="1399.9530075187956" y="898.0" />
+      <point x="1107.4511278195475" y="898.0" />
+      <point x="1107.4511278195475" y="888.0" />
+      <point x="1839.4774436090213" y="888.0" />
+      <point x="-57.25" y="82.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.cards.BlackJackCards" target="com.github.zipcodewilmington.casino.cards.Cards" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="88.5" y="1598.0" />
+      <point x="175.0" y="1598.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.GameEngine" target="com.github.zipcodewilmington.casino.GameEngineInterface" relationship="REALIZATION">
+      <point x="52.5" y="-61.5" />
+      <point x="3002.078007518796" y="1182.0" />
+      <point x="3014.828007518796" y="1182.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.utils.IOConsole" relationship="TO_ONE">
+      <point x="0.0" y="-72.5" />
+      <point x="431.86779448621405" y="1182.0" />
+      <point x="369.20300751879563" y="1182.0" />
+      <point x="-87.75" y="115.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.PlayerInterface" target="com.github.zipcodewilmington.casino.CasinoAccount" relationship="DEPENDENCY">
+      <point x="-2.2737367544323206E-13" y="-38.5" />
+      <point x="1953.977443609021" y="220.0" />
+      <point x="1525.227443609021" y="220.0" />
+      <point x="1525.227443609021" y="210.0" />
+      <point x="1570.227443609021" y="210.0" />
+      <point x="50.0" y="94.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.CasinoAccountManager" target="com.github.zipcodewilmington.casino.CasinoAccount" relationship="DEPENDENCY">
+      <point x="82.25" y="-60.5" />
+      <point x="257.25" y="220.0" />
+      <point x="1525.227443609021" y="220.0" />
+      <point x="1525.227443609021" y="210.0" />
+      <point x="1570.227443609021" y="210.0" />
+      <point x="50.0" y="94.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.casino.games.slots.SlotsGame" relationship="CREATE">
+      <point x="77.33333333333331" y="-72.5" />
+      <point x="509.2011278195473" y="1182.0" />
+      <point x="1460.0" y="1182.0" />
+      <point x="1460.0" y="1172.0" />
+      <point x="1228.9530075187956" y="1172.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.Player" target="com.github.zipcodewilmington.casino.PlayerInterface" relationship="REALIZATION">
+      <point x="-60.0" y="-106.5" />
+      <point x="2493.602443609021" y="606.0" />
+      <point x="2518.352443609021" y="606.0" />
+      <point x="2518.352443609021" y="394.0" />
+      <point x="2013.9774436090213" y="394.0" />
+      <point x="60.0" y="38.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.casino.games.slots.SlotsPlayer" relationship="CREATE">
+      <point x="77.33333333333331" y="-72.5" />
+      <point x="509.2011278195473" y="1182.0" />
+      <point x="1460.0" y="1182.0" />
+      <point x="1460.0" y="1172.0" />
+      <point x="1968.9530075187956" y="1172.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.utils.IOConsole" target="com.github.zipcodewilmington.utils.AnsiColor" relationship="DEPENDENCY">
+      <point x="-87.75" y="-115.5" />
+      <point x="369.20300751879563" y="898.0" />
+      <point x="451.95300751879563" y="898.0" />
+      <point x="451.95300751879563" y="888.0" />
+      <point x="402.20300751879563" y="888.0" />
+      <point x="-54.75" y="73.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.war.WarGame" target="com.github.zipcodewilmington.casino.Game" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="716.4530075187956" y="898.0" />
+      <point x="1107.4511278195475" y="898.0" />
+      <point x="1107.4511278195475" y="888.0" />
+      <point x="1839.4774436090213" y="888.0" />
+      <point x="-57.25" y="82.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.GameEngine" target="com.github.zipcodewilmington.casino.Game" relationship="DEPENDENCY">
+      <point x="-52.5" y="-61.5" />
+      <point x="2897.078007518796" y="1182.0" />
+      <point x="2889.328007518796" y="1182.0" />
+      <point x="2889.328007518796" y="1172.0" />
+      <point x="2820.953007518796" y="1172.0" />
+      <point x="2820.953007518796" y="878.0" />
+      <point x="1953.9774436090213" y="878.0" />
+      <point x="57.25" y="82.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.GameEngineInterface" target="com.github.zipcodewilmington.casino.Game" relationship="DEPENDENCY">
+      <point x="0.0" y="-49.5" />
+      <point x="3014.828007518796" y="888.0" />
+      <point x="2820.953007518796" y="888.0" />
+      <point x="2820.953007518796" y="878.0" />
+      <point x="1953.9774436090213" y="878.0" />
+      <point x="57.25" y="82.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.utils.IOConsole" relationship="CREATE">
+      <point x="77.33333333333331" y="-72.5" />
+      <point x="509.2011278195473" y="1182.0" />
+      <point x="1460.0" y="1182.0" />
+      <point x="1460.0" y="1172.0" />
+      <point x="544.7030075187956" y="1172.0" />
+      <point x="87.75" y="115.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame" relationship="CREATE">
+      <point x="77.33333333333331" y="-72.5" />
+      <point x="509.2011278195473" y="1182.0" />
+      <point x="1460.0" y="1182.0" />
+      <point x="1460.0" y="1172.0" />
+      <point x="1606.9530075187956" y="1172.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.MainApplication" target="com.github.zipcodewilmington.Casino" relationship="CREATE">
+      <point x="0.0" y="-38.5" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.craps.CrapsGame" target="com.github.zipcodewilmington.casino.Game" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="1068.4530075187956" y="898.0" />
+      <point x="1107.4511278195475" y="898.0" />
+      <point x="1107.4511278195475" y="888.0" />
+      <point x="1839.4774436090213" y="888.0" />
+      <point x="-57.25" y="82.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer" relationship="CREATE">
+      <point x="77.33333333333331" y="-72.5" />
+      <point x="509.2011278195473" y="1182.0" />
+      <point x="1460.0" y="1182.0" />
+      <point x="1460.0" y="1172.0" />
+      <point x="2516.453007518796" y="1172.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.games.blackjack.BlackJackGame" target="com.github.zipcodewilmington.casino.Game" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.5" />
+      <point x="888.4530075187956" y="898.0" />
+      <point x="1107.4511278195475" y="898.0" />
+      <point x="1107.4511278195475" y="888.0" />
+      <point x="1839.4774436090213" y="888.0" />
+      <point x="-57.25" y="82.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.casino.GameInterface" relationship="DEPENDENCY">
+      <point x="-77.33333333333331" y="-72.5" />
+      <point x="354.5344611528808" y="1182.0" />
+      <point x="172.95300751879563" y="1182.0" />
+      <point x="172.95300751879563" y="1172.0" />
+      <point x="178.20300751879563" y="1172.0" />
+      <point x="178.20300751879563" y="606.0" />
+      <point x="1710.8524436090213" y="606.0" />
+      <point x="-72.25" y="81.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.Game" target="com.github.zipcodewilmington.casino.GameInterface" relationship="REALIZATION">
+      <point x="-57.25" y="-82.5" />
+      <point x="1839.4774436090213" y="606.0" />
+      <point x="1855.3524436090213" y="606.0" />
+      <point x="72.25" y="81.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.GameEngineInterface" target="com.github.zipcodewilmington.casino.Player" relationship="DEPENDENCY">
+      <point x="0.0" y="-49.5" />
+      <point x="3014.828007518796" y="878.0" />
+      <point x="2954.578007518796" y="878.0" />
+      <point x="2954.578007518796" y="868.0" />
+      <point x="2613.602443609021" y="868.0" />
+      <point x="60.0" y="106.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.casino.CasinoAccountManager" relationship="CREATE">
+      <point x="77.33333333333331" y="-72.5" />
+      <point x="509.2011278195473" y="1182.0" />
+      <point x="1460.0" y="1182.0" />
+      <point x="1460.0" y="1172.0" />
+      <point x="270.95300751879574" y="1172.0" />
+      <point x="270.95300751879563" y="384.0" />
+      <point x="175.0" y="384.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.GameEngine" target="com.github.zipcodewilmington.casino.Player" relationship="DEPENDENCY">
+      <point x="-52.5" y="-61.5" />
+      <point x="2897.078007518796" y="1182.0" />
+      <point x="2889.328007518796" y="1182.0" />
+      <point x="2889.328007518796" y="1172.0" />
+      <point x="2894.328007518796" y="1172.0" />
+      <point x="2894.328007518796" y="898.0" />
+      <point x="2954.578007518796" y="898.0" />
+      <point x="2954.578007518796" y="868.0" />
+      <point x="2613.602443609021" y="868.0" />
+      <point x="60.0" y="106.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.casino.PlayerInterface" relationship="DEPENDENCY">
+      <point x="-77.33333333333331" y="-72.5" />
+      <point x="354.5344611528808" y="1182.0" />
+      <point x="172.95300751879563" y="1182.0" />
+      <point x="172.95300751879563" y="1172.0" />
+      <point x="167.70300751879563" y="1172.0" />
+      <point x="167.70300751879563" y="394.0" />
+      <point x="1783.1024436090213" y="394.0" />
+      <point x="1783.1024436090213" y="384.0" />
+      <point x="1893.9774436090213" y="384.0" />
+      <point x="-60.0" y="38.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.casino.cards.WarCards" target="com.github.zipcodewilmington.casino.cards.Cards" relationship="GENERALIZATION">
+      <point x="0.0" y="-26.5" />
+      <point x="261.5" y="1598.0" />
+      <point x="175.0" y="1598.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="com.github.zipcodewilmington.Casino" target="com.github.zipcodewilmington.utils.AnsiColor" relationship="DEPENDENCY">
+      <point x="-77.33333333333331" y="-72.5" />
+      <point x="354.5344611528808" y="1182.0" />
+      <point x="172.95300751879563" y="1182.0" />
+      <point x="172.95300751879563" y="1172.0" />
+      <point x="178.20300751879563" y="1172.0" />
+      <point x="178.20300751879563" y="898.0" />
+      <point x="451.95300751879563" y="898.0" />
+      <point x="451.95300751879563" y="888.0" />
+      <point x="402.20300751879563" y="888.0" />
+      <point x="-54.75" y="73.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="0.5894230769230769" showDependencies="true" x="496.5" y="510.0" />
+  <settings layout="Hierarchic" zoom="0.7705087440381558" showDependencies="true" x="644.1132776230269" y="1363.1112142783452" />
   <SelectedNodes />
   <Categories>
     <Category>Constructors</Category>
