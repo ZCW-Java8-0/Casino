@@ -1,8 +1,8 @@
 package com.github.zipcodewilmington.casino;
 
-import com.github.zipcodewilmington.Casino;
-
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by leon on 7/21/2020.
@@ -10,35 +10,29 @@ import java.util.*;
  * it is advised that every instruction in this class is logged
  */
 public class CasinoAccountManager {
-    private CasinoAccount[] casinoAccounts;
+    private static Logger logger = Logger.getLogger(CasinoAccountManager.class.getName());
+    private HashMap<String, CasinoAccount> casinoAccounts = new HashMap<>();
+    List <CasinoAccount> casinoAccountList = new ArrayList<>();
 
-    public CasinoAccountManager(CasinoAccount...accounts){
-        this.casinoAccounts = accounts;
+    public CasinoAccountManager(CasinoAccount account){
+        casinoAccounts.put(account.getAccountName(), account.getAccountByUsername(account.getAccountName()));
+        logger.log(Level.INFO,"Account Manager has been initialized.");
 
     }
 
+
     /**
      * @param accountName     name of account to be returned
      * @param accountPassword password of account to be returned
-     * @return `ArcadeAccount` with specified `accountName` and `accountPassword`
-     */
-//    public CasinoAccount getAccount(String accountName, String accountPassword) {
-//        String currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
-//        String currentClassName = getClass().getName();
-//        String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
-//        throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
-//    }
-    /**
-     * @param accountName     name of account to be returned
-     * @param accountPassword password of account to be returned
-     * @return `ArcadeAccount` with specified `accountName` and `accountPassword` if none exists return null.
+     * @return `CasinoAccount` with specified `accountName` and `accountPassword` if none exists return null.
      */
     public CasinoAccount getAccount(String accountName, String accountPassword) {
-        for (CasinoAccount account : casinoAccounts){
+        for (CasinoAccount account : casinoAccountList){
             if (accountName.equals(account.getAccountName()) && accountPassword.equals(account.getAccountPassword())){
                 return account;
             }
         }
+        logger.log(Level.WARNING,"An account with those details does not exist.");
         return null;
     }
 
@@ -51,30 +45,23 @@ public class CasinoAccountManager {
      */
 
     public CasinoAccount createAccount(String accountName,String accountPassword){
+//        if(){}
         CasinoAccount newAccount = new CasinoAccount (accountName, accountPassword);
         return newAccount;
 
+
     }
-//    public CasinoAccount createAccount(String accountName, String accountPassword) {
-//        String currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
-//        String currentClassName = getClass().getName();
-//        String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
-//        throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
-//    }
 
     /**
-     * logs & registers a new `ArcadeAccount` to `this.getArcadeAccountList()`
+     * logs & registers a new `CasinoAccount` to `this.getCasinoAccountList()`
      *
-     * @param casinoAccount the arcadeAccount to be added to `this.getArcadeAccountList()`
+     * @param casinoAccount the casinoAccount to be added to `this.getCasinoAccountList()`
      */
     public void registerAccount(CasinoAccount casinoAccount) {
-        String currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
-        String currentClassName = getClass().getName();
-        String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
-        throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
+        casinoAccountList.add(casinoAccount);
     }
 
-    public List getArcadeAccountList(){
-        return null;
+    public List getCasinoAccount(){
+        return casinoAccountList;
     }
 }
