@@ -1,7 +1,6 @@
 package com.github.zipcodewilmington.casino.games.BlackJack;
 
 import com.github.zipcodewilmington.casino.games.GameInterface.GamblingGame;
-import com.github.zipcodewilmington.casino.games.Person.Player;
 
 import java.util.*;
 
@@ -15,9 +14,13 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
     private int dealerHandSum;
     private Card[] dealerHand;
     private int maxPartySize;
+    private boolean exitFlag = false;
 
     @Override
     public void play() {
+        while(exitFlag==false){
+
+        }
     }
 
     public BlackJack(List<BlackJackPlayer> players) {
@@ -44,9 +47,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             case Seven: value= new int[]{7}; break;
             case Eight: value= new int[]{8}; break;
             case Nine: value= new int[]{9}; break;
-            case Ten:
-            case Jack:
-            case Queen:
+            case Ten: case Jack: case Queen:
             case King: value= new int[]{10}; break;
         }
         return value;
@@ -113,6 +114,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
     @Override
     public void exit() {
+        this.exitFlag=true;
     }
 
     @Override
@@ -133,7 +135,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                 continue;
             }
             bets.put(s, bet);
-            s.deductBet(bet);
+            s.applyBet(bet);
         }
     }
 
