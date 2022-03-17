@@ -1,25 +1,85 @@
 package com.github.zipcodewilmington.casino.games.BlackJack;
 
 import com.github.zipcodewilmington.casino.games.GameInterface.GamblingGame;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.*;
 
 public class BlackJack implements GamblingGame<BlackJackPlayer> {
     Scanner scanner = new Scanner(System.in);
-    private Map<BlackJackPlayer, Integer> bets;
-    private Map<BlackJackPlayer, Card[]> playerHand;
-    private Map<BlackJackPlayer, Integer> playerHandSum;
-    private Map<BlackJackPlayer, Boolean> winLose;
-    private Map<BlackJackPlayer, Boolean> blackJackFlag;
+    private Map<BlackJackPlayer, Integer> bets = new HashMap<>();
+    private Map<BlackJackPlayer, List<Card>> playerHand = new HashMap<>();
+    private Map<BlackJackPlayer, Integer> playerHandSum = new HashMap<>();
+    private Map<BlackJackPlayer, Boolean> winLose = new HashMap<>();
+    private Map<BlackJackPlayer, Boolean> blackJackFlag = new HashMap<>();
     private int dealerHandSum;
-    private Card[] dealerHand;
+    private List<Card> dealerHand;
     private int maxPartySize;
     private boolean exitFlag = false;
 
     @Override
     public void play() {
-        while(exitFlag==false){
-
+        //need to add players and set bets condense dealer into player maps
+        String input;
+        int cardValue = 0;
+        Card temp;
+        Map <BlackJackPlayer, Boolean> AceFlag = null;
+        while(exitFlag==false) {
+            Deck deck = new Deck();
+            for (int i=0; i<2;i++) {
+                for (BlackJackPlayer s : bets.keySet()) {
+                    temp = deck.getTopCard();
+                    playerHand.get(s).add(deck.getTopCard());
+                    playerHandSum.put(s, playerHandSum.get(s) + this.cardValue(temp)[0]);
+                    if(temp.getCardFace().equals(CardFace.Ace))
+                        AceFlag.put(s,true);
+                }
+                temp = deck.getTopCard();
+                dealerHand.add(deck.getTopCard());
+                if(temp.getCardFace().equals(CardFace.Ace))
+                    AceFlag.put(dealer,true);
+            }
+            System.out.println("Dealer got a " + dealerHand.get(0).toString());
+            for (BlackJackPlayer s : bets.keySet()){
+                while (true){
+                    System.out.println(s.getPerson().getName() + ", do you want to hit, double, or stay?");
+                    input= scanner.nextLine();
+                    if (input == "hit") {
+                        temp = deck.getTopCard();
+                        playerHand.get(s).add(temp);
+                        cardValue += this.cardValue(temp)[0];
+                        if(temp.getCardFace().equals(CardFace.Ace))
+                            AceFlag.put(s,true);
+                    }
+                    else if (input == "stay")
+                        break;
+                    else if (input == "double") {
+                        playerHand.get(s).add(deck.getTopCard());
+                        bets.put(s,bets.get(s)*2);
+                        break;
+                    }
+                    else if (playerHandSum.get(s)>21){
+                        if (AceFlag.get(s)){
+                            cardValue -= 10;
+                        }
+                        else {
+                            System.out.println("Busted!");
+                            break;
+                        }
+                    }
+                    input = "";
+                }
+            }
+            dealerPlays();
+            for (BlackJackPlayer s: bets.keySet()){
+                winConditionCheck(s);
+                if (winLose.get(s))
+                    distributeWinningsToWinners(s);
+            }
+            input=scanner.nextLine();
+            if (input=="Exit"){
+                exitFlag=true;
+            }
         }
     }
 
@@ -34,11 +94,19 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         }
     }
 
-    private int[] CardValue(Card card){
+    public void dealerPlays(){
+
+        System.out.println("Dealer got:");
+        for (Card s: dealerHand){
+            System.out.println(s.toString());
+        }
+    }
+
+    private int[] cardValue(Card card){
         int[] value = new int[0];
         CardFace cardFace = card.getCardFace();
         switch (cardFace){
-            case Ace: value= new int[]{1, 11}; break;
+            case Ace: value= new int[]{11, 1}; break;
             case Two: value= new int[]{2}; break;
             case Three: value= new int[]{3}; break;
             case Four: value= new int[]{4}; break;
@@ -54,20 +122,20 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
     }
 
     public void blackJackCheck(BlackJackPlayer blackJackPlayer){
-        Card[] tempPlayerHand = playerHand.get(blackJackPlayer);
-        if (tempPlayerHand.length != 2) {
+        List<Card> tempPlayerHand = playerHand.get(blackJackPlayer);
+        if (tempPlayerHand.size() != 2) {
             blackJackFlag.put(blackJackPlayer, false);
         }
-        else if (this.CardValue(tempPlayerHand[0])[0]==10)
+        else if (this.cardValue(tempPlayerHand.get(0))[0]==10)
         {
-            if (tempPlayerHand[1].getCardFace().equals(CardFace.Ace)) {
+            if (tempPlayerHand.get(1).getCardFace().equals(CardFace.Ace)) {
                 blackJackFlag.put(blackJackPlayer, true);
             }
             else
                 blackJackFlag.put(blackJackPlayer, false);
         }
-        else if (this.CardValue(tempPlayerHand[1])[0]==10) {
-            if (tempPlayerHand[0].getCardFace().equals(CardFace.Ace)) {
+        else if (this.cardValue(tempPlayerHand.get(1))[0]==10) {
+            if (tempPlayerHand.get(0).getCardFace().equals(CardFace.Ace)) {
                 blackJackFlag.put(blackJackPlayer, true);
             }
             else
@@ -102,7 +170,6 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             this.winLose.put(blackJackPlayer,false);
     }
 
-    @Override
     public BlackJackPlayer[] getWinner() {
         List<BlackJackPlayer> winner = new ArrayList<>();
         for (BlackJackPlayer s : winLose.keySet()){
