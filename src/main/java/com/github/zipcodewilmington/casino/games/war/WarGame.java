@@ -18,7 +18,10 @@ public class WarGame implements GameInterface<WarPlayer> { // NON-GAMBLING // RO
     Deque<Cards> handPlayer1 = new ArrayDeque<Cards>();
     Deque<Cards> handPlayer2 = new ArrayDeque<Cards>();
 
-    // I don't think I need a main method here as the game will be initiated in another class.
+    public static void main(String[] args) { // I don't think I need a main method here as the game will be initiated in another class.
+        WarGame wargame = new WarGame();
+        wargame.warGame();
+    }
 
     public void warGame() {
         // assign players
@@ -79,7 +82,7 @@ public class WarGame implements GameInterface<WarPlayer> { // NON-GAMBLING // RO
 
     public void compareAndRedistribute(Cards player1Card, Cards player2Card) {
         int tierCard1 = player1Card.getTier(); // need method added
-        int tierCard2 = player2Card.getTier();
+        int tierCard2 = player2Card.getTier(); // need method added
         if (tierCard1 > tierCard2) {
             handPlayer1.addLast(player1Card);
             handPlayer1.addLast(player2Card);
