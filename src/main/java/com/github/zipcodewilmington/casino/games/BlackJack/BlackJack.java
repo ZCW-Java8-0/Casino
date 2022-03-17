@@ -170,7 +170,6 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             this.winLose.put(blackJackPlayer,false);
     }
 
-    @Override
     public BlackJackPlayer[] getWinner() {
         List<BlackJackPlayer> winner = new ArrayList<>();
         for (BlackJackPlayer s : winLose.keySet()){
