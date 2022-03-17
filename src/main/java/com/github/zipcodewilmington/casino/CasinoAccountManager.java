@@ -18,9 +18,9 @@ public class CasinoAccountManager {
     public CasinoAccount getAccount(String accountName, String accountPassword) {
         CasinoAccount tempAccount=casinoAccounts.get(accountName);
         if (tempAccount!=null){
-            if (tempAccount.getAccountPassword()==accountPassword)
+            if (!accountPassword.equals(tempAccount.getAccountPassword()))
                 System.out.println("Invalid password.");
-            else if (tempAccount.getAccountPassword()==accountPassword)
+            else if (accountPassword.equals(tempAccount.getAccountPassword()))
                 return tempAccount;
         }
         else
