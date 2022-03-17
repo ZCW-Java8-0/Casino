@@ -29,7 +29,7 @@ public class WarGame implements GameInterface<WarPlayer> { // NON-GAMBLING // RO
         String player2 = "PLAYER2"; // update this piece
 
         // create decks and deal cards
-        ArrayDeque<Cards> deck = createWarDeck();
+        ArrayDeque<Cards> deck = generateWarDeck();
         for (int i = 1; i <= 26; i++) {
             handPlayer1.addFirst(deck.removeFirst());
             handPlayer2.addFirst(deck.removeFirst());
@@ -61,17 +61,27 @@ public class WarGame implements GameInterface<WarPlayer> { // NON-GAMBLING // RO
 
     // ============================= SUB-METHODS =============================
 
-    public ArrayDeque<Cards> createWarDeck() {
+    public ArrayDeque<Cards> generateWarDeck() {
+        ArrayList<Cards> unShuffled = createWarDeck();
+        ArrayList<Cards> shuffled = shuffle(unShuffled);
+        ArrayDeque<Cards> deck = convertDeckToDeque(shuffled);
+        return deck;
+    }
+
+    public ArrayList<Cards> createWarDeck() {
         Deck deck = new Deck();
-        ArrayList<Cards> deckOfCards = deck.createDeck();
-        ArrayList<Cards> shuffledDeckOfCards = shuffle(deckOfCards);
-        ArrayDeque<Cards> startingDeck = new ArrayDeque<>(shuffledDeckOfCards);
-        return startingDeck;
+        ArrayList<Cards> unShuffledWarDeck = deck.createDeck();
+        return unShuffledWarDeck;
     }
 
     public ArrayList<Cards> shuffle(ArrayList<Cards> inputDeck) {
         Collections.shuffle(inputDeck);
         return inputDeck;
+    }
+
+    public ArrayDeque<Cards> convertDeckToDeque(ArrayList<Cards> inputDeck) {
+        ArrayDeque<Cards> convertedDeck = new ArrayDeque<>(inputDeck);
+        return convertedDeck;
     }
 
     public void distributeTemporaryCards(Deque<Cards> handOfWinner) {
