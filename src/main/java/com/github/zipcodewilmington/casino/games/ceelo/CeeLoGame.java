@@ -34,6 +34,11 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
     }
 
     @Override
+    public void distributeWinningsToWinners(CeeLoPlayer winner) {
+
+    }
+
+    @Override
     public void distributeWinningsToWinners() {
 
     }
@@ -57,6 +62,11 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
     @Override
     public void removePlayer(CeeLoPlayer player) {
     this.bets.remove(player);
+    }
+
+    @Override
+    public void winConditionCheck(CeeLoPlayer player) {
+
     }
 
     @Override
@@ -90,13 +100,13 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
             if (diceArray[0] == 1 && diceArray[1] == 2 && diceArray[2] == 3) {
                 return 0;
             }///automatic lose break out of game lose bet.
-            if (diceArray[0] == diceArray[1] && diceArray[0] == diceArray[2]) {
+            if (diceArray[0].equals(diceArray[1]) && diceArray[0].equals(diceArray[2])) {
                 return rollvalue = diceArray[0] + 6;
             }
-            if (diceArray[0] == diceArray[1]) {
+            if (diceArray[0].equals(diceArray[1])) {
                 return rollvalue = diceArray[2];
             }
-            if (diceArray[0] == diceArray[2]) {
+            if (diceArray[0].equals(diceArray[2])) {
                 return rollvalue = diceArray[1];
             }
             if (diceArray[1] == diceArray[2]) {
@@ -117,16 +127,19 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
 
         }else if (ceeLoPlayer1==13) {
             System.out.println("Player 1 got an automatic win!");
-
+            // if either player gets 13, auto win and take money
 
 
         }else if (ceeLoPlayer1 > ceeLoPlayer2){
-            // if either player gets 13, auto win and take money
-            System.out.println("");
-        }else {}
+
+            System.out.println("Player 1 has won!");
+        }else if (ceeLoPlayer2 > ceeLoPlayer1){
+
+            System.out.println("Player 2 has won!");{}
 
         return 0;
     }
+
 
 
 }
