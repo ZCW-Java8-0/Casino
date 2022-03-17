@@ -24,4 +24,8 @@ public class Card {
     public void setCardFace(CardFace cardFace) {
         this.cardFace = cardFace;
     }
+
+    public String toString(){
+        return this.cardFace + " of " + this.suit;
+    }
 }
