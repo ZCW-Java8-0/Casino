@@ -20,19 +20,23 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
     @Override
     public void play() {
-        //implement exit game
         while(exitFlag) {
             dealFirst2Cards();
             blackJackCheck();
             if (dealerBlackJack) {
                 System.out.println("Dealer Blackjack!");
             } else {
-                System.out.println("Dealer got a " + dealerHand.get(0).toString());
+                System.out.println(displayCard(dealerHand, "Dealer"));
                 for (BlackJackPlayer s : bets.keySet()) {
                     playerOption(s);
                 }
             }
             postPlayerTurn();
+            System.out.println("Do you want to exit this game?");
+            if (scanner.nextLine().equals("Yes"))
+                exitFlag=true;
+            else
+                System.out.println("Dealing next hand");
         }
     }
 
@@ -42,6 +46,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             winConditionCheck(s);
             if (winLose.get(s))
                 distributeWinningsToWinners(s);
+            System.out.println(displayCard(playerHand.get(s),s.getPerson().getName()));
         }
     }
 
@@ -82,6 +87,14 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         }
     }
 
+    public String displayCard(List<Card> hand, String name){
+        String cards= name+" has:";
+        for (Card s: hand){
+            cards+="\n"+s.toString();
+        }
+        return cards;
+    }
+
     public void playerOption(BlackJackPlayer player) {
         String input;
         Card temp;
@@ -91,7 +104,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                 break;
             System.out.println(player.getPerson().getName() + ", do you want to hit, double, or stay?");
             input = scanner.nextLine();
-            //need to display current hand
+            System.out.println(displayCard(playerHand.get(player), player.getPerson().getName()));
             if (input == "hit") {
                 temp = deck.getTopCard();
                 playerHand.get(player).add(temp);
