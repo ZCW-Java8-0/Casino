@@ -37,6 +37,11 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
 
     }
 
+    @Override
+    public Map<Player, Boolean> winCondition () {
+        return null;
+    }
+
 
     @Override
     public void play() {

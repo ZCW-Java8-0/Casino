@@ -5,11 +5,16 @@ import com.github.zipcodewilmington.casino.games.Person.Player;
 
 import java.util.Map;
 
-public class RouletteGame implements GamblingGame {
+public class RouletteGame implements GamblingGame<RoulettePlayer> {
+    private  Map<RoulettePlayer,Integer> bets;  //Map<playerType,howMuch>
+    private Map<RoulettePlayer, Integer>  betOddEven;  // betting number
+    private  int winningNumber;  //dealer announce number
+   private int  maxPlayers;
+
     @Override
     public void setBets () {
         //ask for betting money?
-        //check for bet within avaialble balance
+        //check for bet within available balance
         //ask for no which is odd/even
     }
 
@@ -26,19 +31,28 @@ public class RouletteGame implements GamblingGame {
     /**
      * Validate spinned number is Even/Odd
      */
-    public  void spinWheel(){
-          int result=random(0,36);
+    public  int rouletteSpinWheel(){   //determine spinned nUmber is  Odd/even
+          int result=random(0,36); //10
+
           if(result %2==0){
-              System.out.println("Winner is Even");
+              return result;
+              //System.out.println("Winner is Even");
           }
           else {
-              System.out.println("Winner is Odd");
+              return result;
+              //System.out.println("Winner is Odd");
           }
       }
 
     @Override
     public void distributeWinningsToWinners () {
 
+
+    }
+
+    @Override
+    public Map<Player, Boolean> winCondition () {
+        return null;
     }
 
     @Override
@@ -48,23 +62,29 @@ public class RouletteGame implements GamblingGame {
 
     @Override
     public void setPlayerMax () {
+        this.maxPlayers =4;
 
     }
 
     @Override
-    public void addPlayer ( Player player ) {
+    public void addPlayer ( RoulettePlayer player ) {
 
     }
 
     @Override
-    public void removePlayer ( Player player ) {
+    public void removePlayer ( RoulettePlayer player ) {
 
     }
+
 
     @Override
-    public Map<Player, Boolean> winCondition () {
-        return null;
+    public void setWinCondition () {
+
     }
+
+
+
+
 
     @Override
     public Player[] getWinner () {
