@@ -4,13 +4,18 @@ import com.github.zipcodewilmington.casino.games.GameInterface.GamblingGame;
 import com.github.zipcodewilmington.casino.games.Person.Player;
 
 import java.util.Map;
+import java.util.Scanner;
+import java.util.SortedMap;
 
 public class RouletteGame implements GamblingGame<RoulettePlayer> {
-    private  Map<RoulettePlayer,Integer> bets;  //Map<playerType,howMuch>
-    private Map<RoulettePlayer, Integer>  betOddEven;  // betting number
-    private  int winningNumber;  //dealer announce number
+//    private  Map<RoulettePlayer,Integer> bets;  //Map<playerType,howMuch>
+//
+//    private Map<RoulettePlayer, Integer>  betOddEven;  // betting number
+//    private  int winningNumber;  //dealer announce number
    private int  maxPlayers;
 
+  private SpinWheel myWheel=new SpinWheel();
+    private static Scanner scan = new Scanner(System.in);
     @Override
     public void setBets () {
         //ask for betting money?
@@ -45,9 +50,9 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
       }
 
     @Override
-    public void distributeWinningsToWinners () {
+    public void distributeWinningsToWinners (RoulettePlayer winner) {
 
-
+        System.out.println("distribute");
     }
 
     @Override
@@ -57,6 +62,27 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 
     @Override
     public void play () {
+
+        OddEven OddEven1 = new OddEven("Odd or Even", 1);
+        System.out.println("Enter amount");
+        int betAmount = scan.nextInt();
+        OddEven1.place();
+        System.out.println("Spinning...");
+
+        SpinWheelResult spinwheelResult = myWheel.spin();
+
+        System.out.println(String.format("Dropped into %s",spinwheelResult));
+
+        if(OddEven1.isWinning(spinwheelResult))
+        {
+            System.out.println("****Congratulations : you win***");
+            OddEven1.pay(betAmount);
+        }
+        else
+        {
+            System.out.println("***Sorry: you lose ****");
+
+        }
 
     }
 
