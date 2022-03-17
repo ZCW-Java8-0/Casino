@@ -14,6 +14,14 @@ public class Cards {
         this.suit = suit;
         this.tier = tier;
     }
+
+    public int getTier() {
+        return tier;
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
+    }
 }
 
 
