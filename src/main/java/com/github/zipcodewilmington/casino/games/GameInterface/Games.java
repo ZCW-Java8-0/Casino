@@ -10,6 +10,5 @@ public interface Games<PlayerType extends Player> {
     void addPlayer(PlayerType player);
     void removePlayer(PlayerType player);
     void winConditionCheck(PlayerType player);
-    PlayerType[] getWinner();
     void exit();
 }
