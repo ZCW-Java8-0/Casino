@@ -24,6 +24,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         int cardValue = 0;
         Card temp;
         Map <BlackJackPlayer, Boolean> AceFlag = null;
+        boolean dealerAceFlag = false;
         while(exitFlag==false) {
             Deck deck = new Deck();
             for (int i=0; i<2;i++) {
@@ -37,7 +38,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                 temp = deck.getTopCard();
                 dealerHand.add(deck.getTopCard());
                 if(temp.getCardFace().equals(CardFace.Ace))
-                    AceFlag.put(dealer,true);
+                    dealerAceFlag=true;
             }
             System.out.println("Dealer got a " + dealerHand.get(0).toString());
             for (BlackJackPlayer s : bets.keySet()){
