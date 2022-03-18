@@ -29,16 +29,18 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             blackJackCheck();
             if (dealerBlackJack) {
                 System.out.println("Dealer Blackjack!");
-            } else {
                 System.out.println(displayCard(dealerHand, "Dealer"));
+            } else {
                 for (BlackJackPlayer s : bets.keySet()) {
                     playerOption(s);
                 }
             }
             postPlayerTurn();
             exit();
-            if (deck.getSize()<25)
-                deck=new Deck();
+            if (deck.getSize()<25) {
+                System.out.println("Reshuffling cards.. please wait");
+                deck = new Deck();
+            }
         }
     }
 
@@ -67,8 +69,11 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                 if (temp.getCardFace().equals(CardFace.Ace))
                     AceFlag.put(s, true);
             }
+
             dealerHand.add(deck.getTopCard());
             dealerHandSum+=cardValue(dealerHand.get(dealerHand.size()-1));
+            if (i==1)
+                System.out.println(displayCard(dealerHand, "Dealer"));
         }
         blackJackCheck();
     }
@@ -127,7 +132,9 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             } else if (input.equalsIgnoreCase("stay"))
                 break;
             else if (input.equalsIgnoreCase("double")) {
-                playerHand.get(player).add(deck.getTopCard());
+                temp = deck.getTopCard();
+                playerHand.get(player).add(temp);
+                playerHandSum.put(player, playerHandSum.get(player)+cardValue(temp));
                 displayCard(playerHand.get(player), player.getPerson().getName());
                 bets.put(player, bets.get(player) * 2);
                 break;
@@ -234,6 +241,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             System.out.println("Dealing new hands");
             dealerHandSum=0;
             dealerHand.clear();
+            dealerBlackJack=false;
         }
     }
 
@@ -243,9 +251,10 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         for (BlackJackPlayer s: bets.keySet()){
             walletBalance = s.getBalance();
             bet = console.getIntegerInput(
-                    "Hello" +s.getPerson().getName() + ", how much would you like to bet?");
-            while (bet>walletBalance){
-                bet= console.getIntegerInput("Bet exceeds what you have, try again");
+                    "Hello" +s.getPerson().getName() + ", how much would you like to bet?" +
+                            " Your current balance is " + s.getBalance());
+            while (bet>walletBalance || bet<=0){
+                bet= console.getIntegerInput("Bet note valid, try again");
             }
             bets.put(s, bet);
             s.applyBet(bet);
@@ -253,6 +262,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             playerHandSum.put(s, 0);
             AceFlag.put(s,false);
             winLose.put(s, null);
+            blackJackFlag.put(s,false);
         }
     }
 
