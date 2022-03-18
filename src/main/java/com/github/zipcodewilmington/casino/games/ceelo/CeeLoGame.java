@@ -55,11 +55,6 @@ public class CeeLoGame implements GamblingGame<CeeLoPlayer> {
     @Override
     public void distributeWinningsToWinners(CeeLoPlayer winner) {winner.addWinning(bets.get(winner));}
 
-    @Override
-    public Map<Player, Boolean> winCondition () {
-        return null;
-    }
-
 
     @Override
     public void play() {
