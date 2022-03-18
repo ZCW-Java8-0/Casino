@@ -1,5 +1,7 @@
 package com.github.zipcodewilmington.casino;
 
+import com.github.zipcodewilmington.casino.games.Person.Person;
+
 /**
  * Created by leon on 7/21/2020.
  * `ArcadeAccount` is registered for each user of the `Arcade`.
@@ -8,12 +10,11 @@ package com.github.zipcodewilmington.casino;
 public class CasinoAccount {
     private final String accountName;
     private String accountPassword;
-    private Integer accountBalance;
+    private Person profile;
 
     public CasinoAccount(String accountName, String accountPassword) {
         this.accountName = accountName;
         this.accountPassword = accountPassword;
-        this.accountBalance = 0;
     }
 
     public String getAccountName(){
@@ -24,15 +25,16 @@ public class CasinoAccount {
         return accountPassword;
     }
 
+    public void createProfile(String name, Integer funds) {
+        this.profile = new Person(name, funds);
+    }
+
+    public Person getProfile() {
+        return profile;
+    }
+
     public void setAccountPassword(String accountPassword) {
         this.accountPassword = accountPassword;
     }
 
-    public Integer getAccountBalance() {
-        return accountBalance;
-    }
-
-    public void setAccountBalance(Integer accountBalance) {
-        this.accountBalance = accountBalance;
-    }
 }
