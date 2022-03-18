@@ -88,10 +88,6 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
         winner.addWinning(bets.get(winner)*2);
     }
 
-    @Override
-    public Map<Player, Boolean> winCondition () {
-        return null;
-    }
 
 
     @Override
