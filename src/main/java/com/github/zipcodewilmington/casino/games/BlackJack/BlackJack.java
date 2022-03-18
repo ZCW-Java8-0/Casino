@@ -228,8 +228,11 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         String input = console.getStringInput("Do you want to exit the game?");
         if (input.equalsIgnoreCase("Yes"))
             this.exitFlag=true;
-        else
+        else {
             System.out.println("Dealing new hands");
+            dealerHandSum=0;
+            dealerHand.clear();
+        }
     }
 
     @Override
