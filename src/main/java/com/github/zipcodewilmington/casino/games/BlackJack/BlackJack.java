@@ -121,6 +121,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                 break;
             else if (input.equalsIgnoreCase("double")) {
                 draw(player);
+                bustCheck(player);
                 player.applyBet(bets.get(player));
                 bets.put(player, bets.get(player) * 2);
                 break;
