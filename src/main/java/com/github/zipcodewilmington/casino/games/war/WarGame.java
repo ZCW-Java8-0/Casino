@@ -1,14 +1,14 @@
 package com.github.zipcodewilmington.casino.games.war;
 
-import com.github.zipcodewilmington.casino.GameInterface;
+import com.github.zipcodewilmington.interfaces.GameInterface;
+import com.github.zipcodewilmington.abstractclasses.WagingPlayer;
 import com.github.zipcodewilmington.casino.cards.Cards;
 import com.github.zipcodewilmington.casino.cards.Deck;
-import com.github.zipcodewilmington.casino.games.war.WarPlayer;
 
 import java.util.Collections;
 import java.util.*;
 
-public class WarGame implements GameInterface<WarPlayer> { // NON-GAMBLING // ROUGH DRAFT
+public class WarGame implements GameInterface<WagingPlayer> { // NON-GAMBLING // ROUGH DRAFT
 
     Boolean isCardGame = true;
 
@@ -154,28 +154,29 @@ public class WarGame implements GameInterface<WarPlayer> { // NON-GAMBLING // RO
         }
     }
 
+
     @Override
     public Boolean isOver() {
         return null;
     }
 
     @Override
-    public void addPlayer(WarPlayer player) {
+    public void addPlayer(WagingPlayer player) {
 
     }
 
     @Override
-    public void addPlayers(List<? extends WarPlayer> player) {
+    public void addPlayers(List<? extends WagingPlayer> player) {
 
     }
 
     @Override
-    public void evaluateTurn(WarPlayer player) {
+    public void evaluateTurn(WagingPlayer player) {
 
     }
 
     @Override
-    public void remove(WarPlayer player) {
+    public void remove(WagingPlayer player) {
 
     }
 

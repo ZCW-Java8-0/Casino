@@ -1,6 +1,6 @@
 package com.github.zipcodewilmington.casino.games.slots;
 
-import com.github.zipcodewilmington.casino.GameInterface;
+import com.github.zipcodewilmington.interfaces.GameInterface;
 
 import java.util.List;
 
@@ -39,3 +39,4 @@ public class SlotsGame implements GameInterface<SlotsPlayer> {
 
     }
 }
+

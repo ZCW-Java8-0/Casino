@@ -1,7 +1,7 @@
 package com.github.zipcodewilmington.casino.games.blackjack;
 
 
-import com.github.zipcodewilmington.casino.GameInterface;
+import com.github.zipcodewilmington.interfaces.GameInterface;
 
 import java.util.List;
 

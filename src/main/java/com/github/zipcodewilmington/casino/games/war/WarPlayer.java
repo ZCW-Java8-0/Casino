@@ -1,16 +1,18 @@
 package com.github.zipcodewilmington.casino.games.war;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
-import com.github.zipcodewilmington.casino.Player;
+import com.github.zipcodewilmington.abstractclasses.Player;
 
 public class WarPlayer extends Player {
+
+
     @Override
-    public CasinoAccount getCasinoAccount() {
+    public WarGame play() {
         return null;
     }
 
     @Override
-    public <SomeReturnType> SomeReturnType play() {
-        return null;
+    public CasinoAccount getCasinoAccount() {
+        return this.casinoAccount;
     }
 }

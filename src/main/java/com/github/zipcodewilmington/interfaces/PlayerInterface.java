@@ -1,4 +1,6 @@
-package com.github.zipcodewilmington.casino;
+package com.github.zipcodewilmington.interfaces;
+
+import com.github.zipcodewilmington.casino.CasinoAccount;
 
 /**
  * Created by leon on 7/21/2020.

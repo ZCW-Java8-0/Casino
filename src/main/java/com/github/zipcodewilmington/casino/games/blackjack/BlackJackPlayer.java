@@ -1,12 +1,13 @@
 package com.github.zipcodewilmington.casino.games.blackjack;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
-import com.github.zipcodewilmington.casino.Player;
+import com.github.zipcodewilmington.abstractclasses.WagingPlayer;
 
-public class BlackJackPlayer extends Player {
+public class BlackJackPlayer extends WagingPlayer {
+
     @Override
     public CasinoAccount getCasinoAccount() {
-        return null;
+        return this.casinoAccount;
     }
 
     @Override

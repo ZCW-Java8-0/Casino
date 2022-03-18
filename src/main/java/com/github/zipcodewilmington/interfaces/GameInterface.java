@@ -1,4 +1,4 @@
-package com.github.zipcodewilmington.casino;
+package com.github.zipcodewilmington.interfaces;
 
 import java.util.List;
 

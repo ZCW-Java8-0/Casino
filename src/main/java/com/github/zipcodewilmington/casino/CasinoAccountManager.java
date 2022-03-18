@@ -50,7 +50,7 @@ public class CasinoAccountManager {
 //
         CasinoAccount newAccount = new CasinoAccount (accountName, accountPassword);
         registerAccount(newAccount);
-//        System.out.println("Your account has been created.");
+//      System.out.println("Your account has been created.");
 
         return newAccount;
 
@@ -76,7 +76,7 @@ public class CasinoAccountManager {
         return null;
     }
 
-    public List getCasinoAccount(){
+    public List getCasinoAccountList(){
         return casinoAccountList;
     }
 }

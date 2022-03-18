@@ -1,16 +1,18 @@
 package com.github.zipcodewilmington.casino.games.klondike;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
-import com.github.zipcodewilmington.casino.Player;
+import com.github.zipcodewilmington.abstractclasses.WagingPlayer;
 
-public class KlondikePlayer extends Player {
+public class KlondikePlayer extends WagingPlayer {
+
+
     @Override
-    public CasinoAccount getCasinoAccount() {
+    public KlondikeGame play() {
         return null;
     }
 
     @Override
-    public <SomeReturnType> SomeReturnType play() {
-        return null;
+    public CasinoAccount getCasinoAccount() {
+        return this.casinoAccount;
     }
 }

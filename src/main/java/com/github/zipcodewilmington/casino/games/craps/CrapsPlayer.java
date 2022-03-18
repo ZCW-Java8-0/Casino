@@ -1,16 +1,17 @@
 package com.github.zipcodewilmington.casino.games.craps;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
-import com.github.zipcodewilmington.casino.Player;
+import com.github.zipcodewilmington.abstractclasses.WagingPlayer;
 
-public class CrapsPlayer extends Player {
+public class CrapsPlayer extends WagingPlayer {
+
     @Override
-    public CasinoAccount getCasinoAccount() {
+    public CrapsGame play() {
         return null;
     }
 
     @Override
-    public <SomeReturnType> SomeReturnType play() {
-        return null;
+    public CasinoAccount getCasinoAccount() {
+        return this.casinoAccount;
     }
 }

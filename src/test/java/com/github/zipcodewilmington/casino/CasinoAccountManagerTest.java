@@ -1,6 +1,5 @@
 package com.github.zipcodewilmington.casino;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -68,7 +67,7 @@ class CasinoAccountManagerTest {
 
         // When
         testAccount = testManager.createAccount(accountName,accountPassword);
-        boolean expected = testManager.getCasinoAccount().contains(testAccount);
+        boolean expected = testManager.getCasinoAccountList().contains(testAccount);
         // Then
         assertTrue(expected);
     }
@@ -81,7 +80,7 @@ class CasinoAccountManagerTest {
         CasinoAccount testAccount = new CasinoAccount(accountName, accountPassword);
         CasinoAccountManager testManager = new CasinoAccountManager();
         // When
-        boolean expected = testManager.getCasinoAccount().contains(testAccount);
+        boolean expected = testManager.getCasinoAccountList().contains(testAccount);
         // Then
         assertFalse(expected);
     }
@@ -95,7 +94,7 @@ class CasinoAccountManagerTest {
         CasinoAccountManager testManager = new CasinoAccountManager();
         // When
         testManager.registerAccount(testAccount);
-        boolean expected = testManager.getCasinoAccount().contains(testAccount);
+        boolean expected = testManager.getCasinoAccountList().contains(testAccount);
         // Then
         assertTrue(expected);
     }
@@ -111,7 +110,7 @@ class CasinoAccountManagerTest {
         // When
         testManager.registerAccount(testAccount);
 
-        System.out.println(testManager.getCasinoAccount());
+        System.out.println(testManager.getCasinoAccountList());
     }
 
     @Test

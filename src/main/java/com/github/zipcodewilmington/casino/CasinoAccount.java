@@ -8,7 +8,7 @@ import java.util.HashSet;
  * `CasinoAccount` is registered for each user of the `Casino`.
  * The `CasinoAccount` is used to log into the system to select a `Game` to play.
  */
-public class CasinoAccount{
+public class CasinoAccount {
     private final String accountName;
     private String accountPassword;
     private Integer accountBalance;
@@ -18,13 +18,15 @@ public class CasinoAccount{
         this.accountPassword = accountPassword;
         this.accountBalance = 50000;
     }
+    public CasinoAccount getSelf(String accountName, String accountPassword) {
+        return this;
+    }
 
 
 
     public String getAccountName() {
         return accountName;
     }
-
 
     public String getAccountPassword() {
         return accountPassword;
@@ -46,4 +48,6 @@ public class CasinoAccount{
     public String toString() {
         return "'" + accountName + "'";
     }
+
+
 }
