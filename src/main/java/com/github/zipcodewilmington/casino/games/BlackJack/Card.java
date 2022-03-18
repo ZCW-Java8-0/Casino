@@ -13,16 +13,8 @@ public class Card {
         return this.suit;
     }
 
-    public void setSuit(Suit suit) {
-        this.suit = suit;
-    }
-
     public CardFace getCardFace() {
         return cardFace;
-    }
-
-    public void setCardFace(CardFace cardFace) {
-        this.cardFace = cardFace;
     }
 
     public String toString(){

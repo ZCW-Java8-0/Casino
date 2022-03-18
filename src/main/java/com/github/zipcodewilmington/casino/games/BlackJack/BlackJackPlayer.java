@@ -12,6 +12,7 @@ public class BlackJackPlayer extends Player implements Gambler {
 
     @Override
     public void addWinning(int winning) {
+        this.getPerson().setWallet(this.getBalance() + winning);
     }
 
     @Override

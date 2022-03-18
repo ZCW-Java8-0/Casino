@@ -111,35 +111,43 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         while (true) {
             if(blackJackFlag.get(player))
                 break;
-            if (playerHandSum.get(player) > 21) {
-                if (AceFlag.get(player)) {
-                    cardValue -= 10;
-                    AceFlag.put(player, false);
-                } else {
-                    System.out.println("Busted!");
-                    winLose.put(player, false);
-                    break;
-                }
-            }
-            displayCard(playerHand.get(player),player.getPerson().getName());
+            if (bustCheck(player).equals("Busted!"))
+                break;
+            System.out.println(displayCard(playerHand.get(player),player.getPerson().getName()));
             input = console.getStringInput(player.getPerson().getName() + ", do you want to hit, double, or stay?");
             if (input.equalsIgnoreCase("hit")) {
-                temp = deck.getTopCard();
-                playerHand.get(player).add(temp);
-                playerHandSum.put(player, playerHandSum.get(player)+cardValue(temp));
-                if (temp.getCardFace().equals(CardFace.Ace))
-                    AceFlag.put(player, true);
+                draw(player);
             } else if (input.equalsIgnoreCase("stay"))
                 break;
             else if (input.equalsIgnoreCase("double")) {
-                temp = deck.getTopCard();
-                playerHand.get(player).add(temp);
-                playerHandSum.put(player, playerHandSum.get(player)+cardValue(temp));
-                displayCard(playerHand.get(player), player.getPerson().getName());
+                draw(player);
+                player.applyBet(bets.get(player));
                 bets.put(player, bets.get(player) * 2);
                 break;
             }
         }
+    }
+
+    private String bustCheck(BlackJackPlayer player) {
+        if (playerHandSum.get(player) > 21) {
+            if (AceFlag.get(player)) {
+                playerHandSum.put(player, playerHandSum.get(player)-10);
+                AceFlag.put(player, false);
+            } else {
+                winLose.put(player, false);
+                return "Busted!";
+            }
+        }
+        return "";
+    }
+
+    public void draw(BlackJackPlayer player){
+        Card temp;
+        temp = deck.getTopCard();
+        playerHand.get(player).add(temp);
+        playerHandSum.put(player, playerHandSum.get(player)+cardValue(temp));
+        if (temp.getCardFace().equals(CardFace.Ace))
+            AceFlag.put(player, true);
     }
 
     private int cardValue(Card card){
