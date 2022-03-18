@@ -6,6 +6,10 @@ import com.github.zipcodewilmington.casino.games.BlackJack.BlackJack;
 import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackPlayer;
 import com.github.zipcodewilmington.casino.games.GameInterface.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.casino.games.Roulette.RouletteGame;
+import com.github.zipcodewilmington.casino.games.Roulette.RoulettePlayer;
+import com.github.zipcodewilmington.casino.games.ceelo.CeeLoGame;
+import com.github.zipcodewilmington.casino.games.ceelo.CeeLoPlayer;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
@@ -43,7 +47,13 @@ public class Casino implements Runnable {
                         blackJackPlayerList.add(new BlackJackPlayer(casinoAccount.getProfile()));
                         new BlackJack(blackJackPlayerList).play();
                     } else if (gameSelectionInput.equals("CEELO")) {
+                        List<CeeLoPlayer> ceeLoPlayerList = new ArrayList<>();
+                        ceeLoPlayerList.add(new CeeLoPlayer(casinoAccount.getProfile()));
+                        new CeeLoGame(ceeLoPlayerList).play();
                     } else if (gameSelectionInput.equals("ROUTLETTE")) {
+                        List<RoulettePlayer> roulettePlayerList = new ArrayList<>();
+                        roulettePlayerList.add(new RoulettePlayer(casinoAccount.getProfile()));
+                        //roulette play call here
                     } else if (gameSelectionInput.equals("TICTACTOE")) {
                     } else if (gameSelectionInput.equals("ROCKPAPERSCISSOR")) {
                     } else {

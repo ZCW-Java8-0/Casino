@@ -1,11 +1,13 @@
 package com.github.zipcodewilmington.casino.games.BlackJack;
 
 import com.github.zipcodewilmington.casino.games.GameInterface.GamblingGame;
+import com.github.zipcodewilmington.utils.AnsiColor;
+import com.github.zipcodewilmington.utils.IOConsole;
 
 import java.util.*;
 
 public class BlackJack implements GamblingGame<BlackJackPlayer> {
-    Scanner scanner = new Scanner(System.in);
+    private final IOConsole console = new IOConsole(AnsiColor.BLUE);
     private Map<BlackJackPlayer, Integer> bets = new HashMap<>();
     private Map<BlackJackPlayer, List<Card>> playerHand = new HashMap<>();
     private Map<BlackJackPlayer, Integer> playerHandSum = new HashMap<>();
@@ -21,6 +23,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
     @Override
     public void play() {
         while(exitFlag) {
+            System.out.println("Welcome to Blackjack!");
             setBets();
             dealFirst2Cards();
             blackJackCheck();
@@ -103,8 +106,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                     break;
                 }
             }
-            System.out.println(player.getPerson().getName() + ", do you want to hit, double, or stay?");
-            input = scanner.nextLine();
+            input = console.getStringInput(player.getPerson().getName() + ", do you want to hit, double, or stay?");
             //need to display current hand
             if (input.equalsIgnoreCase("hit")) {
                 temp = deck.getTopCard();
@@ -214,8 +216,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
     @Override
     public void exit() {
-        System.out.println("Do you want to exit the game?");
-        String input = scanner.nextLine();
+        String input = console.getStringInput("Do you want to exit the game?");
         if (input.equalsIgnoreCase("Yes"))
             this.exitFlag=true;
         else
@@ -227,16 +228,10 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         Integer bet = 0, walletBalance;
         for (BlackJackPlayer s: bets.keySet()){
             walletBalance = s.getBalance();
-            try {
-                System.out.println("Hello" +s.getPerson().getName() + ", how much would you like to bet?");
-                bet=scanner.nextInt();
-                while (bet>walletBalance){
-                    System.out.println("Bet exceeds what you have, try again");
-                    bet=scanner.nextInt();
-                }
-            } catch (InputMismatchException e){
-                System.out.println("Not a number, try again");
-                bet=scanner.nextInt();
+            bet = console.getIntegerInput(
+                    "Hello" +s.getPerson().getName() + ", how much would you like to bet?");
+            while (bet>walletBalance){
+                bet= console.getIntegerInput("Bet exceeds what you have, try again");
             }
             bets.put(s, bet);
             s.applyBet(bet);
