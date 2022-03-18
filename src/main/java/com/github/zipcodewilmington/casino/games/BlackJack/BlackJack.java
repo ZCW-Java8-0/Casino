@@ -46,10 +46,14 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         dealerPlays();
         for (BlackJackPlayer s: bets.keySet()){
             winConditionCheck(s);
-            if (winLose.get(s))
-                distributeWinningsToWinners(s);
-            //display win or lose and ending hand and total
             System.out.println(displayCard(playerHand.get(s),s.getPerson().getName()));
+            System.out.println(s.getPerson().getName()+" got a total of "+playerHandSum.get(s));
+            if (winLose.get(s)) {
+                distributeWinningsToWinners(s);
+                System.out.println(s.getPerson().getName()+" wins!");
+            } else{
+                System.out.println(s.getPerson().getName()+" loses!");
+            }
         }
     }
 
@@ -83,10 +87,8 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                 dealerHandSum += cardValue(dealerHand.get(dealerHand.size() - 1));
             }
         }
-        System.out.println("Dealer got:");
-        for (Card s: dealerHand){
-            System.out.println(s.toString());
-        }
+        System.out.println(displayCard(dealerHand,"Dealer"));
+        System.out.println("For a total of "+dealerHandSum);
     }
 
     public String displayCard(List<Card> hand, String name){
@@ -249,6 +251,8 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             s.applyBet(bet);
             playerHand.put(s, new ArrayList<>());
             playerHandSum.put(s, 0);
+            AceFlag.put(s,false);
+            winLose.put(s, null);
         }
     }
 
