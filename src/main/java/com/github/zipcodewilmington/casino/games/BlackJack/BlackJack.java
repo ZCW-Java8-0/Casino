@@ -30,7 +30,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             if (dealerBlackJack) {
                 System.out.println("Dealer Blackjack!");
             } else {
-                //display dealer and play cards here
+                System.out.println(displayCard(dealerHand, "Dealer"));
                 for (BlackJackPlayer s : bets.keySet()) {
                     playerOption(s);
                 }
@@ -47,6 +47,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             if (winLose.get(s))
                 distributeWinningsToWinners(s);
             //display win or lose and ending hand and total
+            System.out.println(displayCard(playerHand.get(s),s.getPerson().getName()));
         }
     }
 
@@ -88,6 +89,14 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         for (Card s: dealerHand){
             System.out.println(s.toString());
         }
+    }
+
+    public String displayCard(List<Card> hand, String name){
+        String cards= name+" has:";
+        for (Card s: hand){
+            cards+="\n"+s.toString();
+        }
+        return cards;
     }
 
     public void playerOption(BlackJackPlayer player) {
