@@ -33,7 +33,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                 }
             }
             postPlayerTurn();
-            //exit method here
+            exit();
         }
     }
 
@@ -106,17 +106,15 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             System.out.println(player.getPerson().getName() + ", do you want to hit, double, or stay?");
             input = scanner.nextLine();
             //need to display current hand
-
-            //.equalsignorecase need to change
-            if (input == "hit") {
+            if (input.equalsIgnoreCase("hit")) {
                 temp = deck.getTopCard();
                 playerHand.get(player).add(temp);
                 cardValue += this.cardValue(temp);
                 if (temp.getCardFace().equals(CardFace.Ace))
                     AceFlag.put(player, true);
-            } else if (input == "stay")
+            } else if (input.equalsIgnoreCase("stay"))
                 break;
-            else if (input == "double") {
+            else if (input.equalsIgnoreCase("double")) {
                 playerHand.get(player).add(deck.getTopCard());
                 bets.put(player, bets.get(player) * 2);
                 break;
@@ -216,7 +214,12 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
     @Override
     public void exit() {
-        this.exitFlag=true;
+        System.out.println("Do you want to exit the game?");
+        String input = scanner.nextLine();
+        if (input.equalsIgnoreCase("Yes"))
+            this.exitFlag=true;
+        else
+            System.out.println("Dealing new hands");
     }
 
     @Override
@@ -226,15 +229,14 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             walletBalance = s.getBalance();
             try {
                 System.out.println("Hello" +s.getPerson().getName() + ", how much would you like to bet?");
-                System.out.println();
                 bet=scanner.nextInt();
-                if (bet<walletBalance){
+                while (bet>walletBalance){
                     System.out.println("Bet exceeds what you have, try again");
-                    continue;
+                    bet=scanner.nextInt();
                 }
             } catch (InputMismatchException e){
                 System.out.println("Not a number, try again");
-                continue;
+                bet=scanner.nextInt();
             }
             bets.put(s, bet);
             s.applyBet(bet);
