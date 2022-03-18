@@ -22,7 +22,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
     @Override
     public void play() {
-        while(exitFlag) {
+        while(!exitFlag) {
             System.out.println("Welcome to Blackjack!");
             setBets();
             dealFirst2Cards();
@@ -37,6 +37,8 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             }
             postPlayerTurn();
             exit();
+            if (deck.getSize()<25)
+                deck=new Deck();
         }
     }
 
@@ -61,8 +63,8 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                 if (temp.getCardFace().equals(CardFace.Ace))
                     AceFlag.put(s, true);
             }
-            //dealer need value add to hand
             dealerHand.add(deck.getTopCard());
+            dealerHandSum+=cardValue(dealerHand.get(dealerHand.size()-1));
         }
         blackJackCheck();
     }
@@ -71,10 +73,6 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         for (BlackJackPlayer s: players){
             this.bets.put(s,null);
             this.playerHand.put(s,null);
-            if (bets.size()>maxPartySize){
-                System.out.println("Only 4 players are allowed to play!");
-                break;
-            }
         }
     }
 
@@ -109,24 +107,26 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             if (playerHandSum.get(player) > 21) {
                 if (AceFlag.get(player)) {
                     cardValue -= 10;
+                    AceFlag.put(player, false);
                 } else {
                     System.out.println("Busted!");
                     winLose.put(player, false);
                     break;
                 }
             }
+            displayCard(playerHand.get(player),player.getPerson().getName());
             input = console.getStringInput(player.getPerson().getName() + ", do you want to hit, double, or stay?");
-            //need to display current hand
             if (input.equalsIgnoreCase("hit")) {
                 temp = deck.getTopCard();
                 playerHand.get(player).add(temp);
-                cardValue += this.cardValue(temp);
+                playerHandSum.put(player, playerHandSum.get(player)+cardValue(temp));
                 if (temp.getCardFace().equals(CardFace.Ace))
                     AceFlag.put(player, true);
             } else if (input.equalsIgnoreCase("stay"))
                 break;
             else if (input.equalsIgnoreCase("double")) {
                 playerHand.get(player).add(deck.getTopCard());
+                displayCard(playerHand.get(player), player.getPerson().getName());
                 bets.put(player, bets.get(player) * 2);
                 break;
             }
