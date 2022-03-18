@@ -1,12 +1,10 @@
 package com.github.zipcodewilmington.casino.games.Roulette;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class OddEven extends BetAttempt{
   //  private String myBetChoice;
-    private Map<RoulettePlayer, Integer> myBetChoice = new HashMap<>();
+  private Map<RoulettePlayer, Integer> bets = new HashMap<>();
+    private Map<RoulettePlayer, String> myBetChoice = new HashMap<>();
     private static Scanner scan = new Scanner(System.in);
     public OddEven ( String mySelection, int odds, List<RoulettePlayer> players) {
         super(mySelection, odds);
@@ -20,9 +18,46 @@ public class OddEven extends BetAttempt{
 
     public void place()
     {
-        System.out.println("Select your bet: Even or Odd");
 
-        myBetChoice = scan.next();//even or odd input from player
+       // System.out.println("Select your bet: Even or Odd");
+       // myBetChoice = scan.next();//even or odd input from player
+
+        Integer bet = 0, walletBalance;
+        for (RoulettePlayer s: bets.keySet()){
+            walletBalance = s.getBalance();
+            try {
+                System.out.println("Hello" +s.getPerson().getName() + ", how much would you like to bet?");
+                System.out.println();
+                bet=scan.nextInt();
+                if (bet<walletBalance){
+                    System.out.println("Bet exceeds what you have, try again");
+                    continue;
+                }
+            } catch (InputMismatchException e){
+                System.out.println("Not a number, try again");
+                continue;
+            }
+            bets.put(s, bet);
+            s.applyBet(bet);
+        }
+        String betchoice;
+        //set player choice
+        for (RoulettePlayer s: myBetChoice.keySet()){
+
+            try {
+                System.out.println("Hello" +s.getPerson().getName() + ", what is your bet choice?odd or even?");
+                System.out.println();
+                betchoice=scan.next();
+                if (betchoice.equals("odd") || betchoice.equals("even")){
+                    System.out.println("choice entered");
+
+                }
+            } catch (InputMismatchException e){
+                System.out.println("Not a correct choice, try again");
+                continue;
+            }
+            myBetChoice.put(s,betchoice);
+        }
     }
 
     public boolean isWinning (SpinWheelResult wheel)

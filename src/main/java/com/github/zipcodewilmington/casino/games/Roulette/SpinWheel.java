@@ -71,15 +71,15 @@ public class SpinWheel {
         return new SpinWheelResult(WHEEL_SPOTS[myValue],myValue);
     }
 
-//    private String getColor()
-//    {
-//        return WHEEL_SPOTS[myValue];
-//    }
-//
-//    private int getNumber()
-//    {
-//       return myValue;
-//    }
+    public String getColor()
+    {
+        return WHEEL_SPOTS[myValue];
+    }
+
+    public int getNumber()
+    {
+       return myValue;
+    }
 
 
 }
