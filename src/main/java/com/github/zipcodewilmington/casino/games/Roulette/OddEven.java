@@ -18,10 +18,6 @@ public class OddEven extends BetAttempt{
 
     public void place()
     {
-
-       // System.out.println("Select your bet: Even or Odd");
-       // myBetChoice = scan.next();//even or odd input from player
-
         Integer bet = 0, walletBalance;
         for (RoulettePlayer s: bets.keySet()){
             walletBalance = s.getBalance();

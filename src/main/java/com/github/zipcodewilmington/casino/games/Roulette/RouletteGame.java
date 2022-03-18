@@ -1,6 +1,5 @@
 package com.github.zipcodewilmington.casino.games.Roulette;
 
-import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackPlayer;
 import com.github.zipcodewilmington.casino.games.GameInterface.GamblingGame;
 import com.github.zipcodewilmington.casino.games.Person.Player;
 
@@ -12,16 +11,37 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 //    private Map<RoulettePlayer, Integer>  betOddEven;  // betting number
 //    private  int winningNumber;  //dealer announce number
    private int  maxPlayers;
-    private Map<RoulettePlayer, Integer> bets = new HashMap<>();
-    private Map<RoulettePlayer, String> myBetChoice = new HashMap<>();
+    private Map<RoulettePlayer, Integer> bets = new HashMap<>();  // betting amount for each player
+    private Map<RoulettePlayer, String> myBetChoice = new HashMap<>();   //each player choice for Even/odd gto place
     private Map<RoulettePlayer, Boolean> winLose = new HashMap<>();
   private SpinWheel myWheel=new SpinWheel();
     private static Scanner scan = new Scanner(System.in);
+
+    public RouletteGame(List<RoulettePlayer> players) {
+        for ( RoulettePlayer s: players){
+            this.bets.put(s,null);
+            this.myBetChoice.put(s,null);
+            if (bets.size()>this.maxPlayers){
+                System.out.println("Only 4 players are allowed to play!");
+                break;
+            }
+        }
+
+    }
+
+
+    /**
+     * Looping through all players to setBet
+     * check if bet< walletBalance
+     *  adding in bets object
+     *  applying bets
+     *
+     *  2nd  for loop  --> even/odd player choice to keep
+     *  add myBetChoice.
+     */
     @Override
     public void setBets () {
-        //ask for betting money?
-        //check for bet within available balance
-        //ask for no which is odd/even
+
         Integer bet = 0, walletBalance;
         for (RoulettePlayer s: bets.keySet()){
             walletBalance = s.getBalance();
@@ -76,28 +96,19 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 
     @Override
     public void play () {
-
-        //Odd Even game
-
-      setBets();//how much and even or odd?
-
-        //Odd Even game
-
-        //OddEven OddEven1 = new OddEven("Odd or Even", 2, bets.keySet().stream().toList());
-
+        setBets();//how much and even or odd?
         System.out.println("Spinning...");
 
         SpinWheelResult spinwheelResult = myWheel.spin();
 
         System.out.println(String.format("Dropped into %s",spinwheelResult));
 
-
         //check for win condition
         for ( RoulettePlayer s: myBetChoice.keySet()){
 
            winConditionCheck(s);
             if (winLose.get(s))
-                distributeWinningsToWinners(s);
+                distributeWinningsToWinners(s); //
             System.out.println("Dropped into %s"+spinwheelResult+"Winner name"+s.getPerson().getName());
         }
 
@@ -134,18 +145,7 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 //    }
 
 
-    public RouletteGame(List<RoulettePlayer> players) {
-        for ( RoulettePlayer s: players){
-            this.bets.put(s,null);
-            this.myBetChoice.put(s,null);
-           // this.playerHand.put(s,null);
-            if (bets.size()>this.maxPlayers){
-                System.out.println("Only 4 players are allowed to play!");
-                break;
-            }
-        }
 
-    }
 
     @Override
     public void setPlayerMax () {
@@ -183,10 +183,6 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
     }
 
 
-    //@Override
-    public void setWinCondition () {
-
-    }
 
 
 
