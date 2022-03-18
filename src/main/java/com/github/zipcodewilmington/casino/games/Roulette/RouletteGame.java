@@ -1,6 +1,5 @@
 package com.github.zipcodewilmington.casino.games.Roulette;
 
-import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackPlayer;
 import com.github.zipcodewilmington.casino.games.GameInterface.GamblingGame;
 import com.github.zipcodewilmington.casino.games.Person.Player;
 
@@ -53,8 +52,25 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
         return null;
     }
 
+
     @Override
     public void play () {
+
+        //Odd Even game
+
+      setBets();
+        //Odd Even game
+
+        OddEven OddEven1 = new OddEven("Odd or Even", 2, bets.keySet().stream().toList());
+        OddEven1.place();// ask player for Odd or Even?
+
+
+    }
+
+  //  @Override
+    public void play1 () {
+
+        //Odd Even game
 
         OddEven OddEven1 = new OddEven("Odd or Even", 2);
         //odd/even:2, red/black:2 dozen:5 ind slots:35
