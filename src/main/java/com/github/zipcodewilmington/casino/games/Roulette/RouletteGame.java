@@ -1,11 +1,10 @@
 package com.github.zipcodewilmington.casino.games.Roulette;
 
+import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackPlayer;
 import com.github.zipcodewilmington.casino.games.GameInterface.GamblingGame;
 import com.github.zipcodewilmington.casino.games.Person.Player;
 
-import java.util.Map;
-import java.util.Scanner;
-import java.util.SortedMap;
+import java.util.*;
 
 public class RouletteGame implements GamblingGame<RoulettePlayer> {
 //    private  Map<RoulettePlayer,Integer> bets;  //Map<playerType,howMuch>
@@ -13,7 +12,7 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 //    private Map<RoulettePlayer, Integer>  betOddEven;  // betting number
 //    private  int winningNumber;  //dealer announce number
    private int  maxPlayers;
-
+    private Map<RoulettePlayer, Integer> bets = new HashMap<>();
   private SpinWheel myWheel=new SpinWheel();
     private static Scanner scan = new Scanner(System.in);
     @Override
@@ -21,33 +20,27 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
         //ask for betting money?
         //check for bet within available balance
         //ask for no which is odd/even
+        Integer bet = 0, walletBalance;
+        for (RoulettePlayer s: bets.keySet()){
+            walletBalance = s.getBalance();
+            try {
+                System.out.println("Hello" +s.getPerson().getName() + ", how much would you like to bet?");
+                System.out.println();
+                bet=scan.nextInt();
+                if (bet<walletBalance){
+                    System.out.println("Bet exceeds what you have, try again");
+                    continue;
+                }
+            } catch (InputMismatchException e){
+                System.out.println("Not a number, try again");
+                continue;
+            }
+            bets.put(s, bet);
+            s.applyBet(bet);
+        }
     }
 
-    /**
-     *
-     * @param low
-     * @param high
-     * @return   --> random number  0 to 36
-     */
-      int random (int low, int high){
-        return (int)  (Math.floor(Math.random() *(high-low+1)+low));
-      }
 
-    /**
-     * Validate spinned number is Even/Odd
-     */
-    public  int rouletteSpinWheel(){   //determine spinned nUmber is  Odd/even
-          int result=random(0,36); //10
-
-          if(result %2==0){
-              return result;
-              //System.out.println("Winner is Even");
-          }
-          else {
-              return result;
-              //System.out.println("Winner is Odd");
-          }
-      }
 
     @Override
     public void distributeWinningsToWinners (RoulettePlayer winner) {
@@ -63,10 +56,11 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
     @Override
     public void play () {
 
-        OddEven OddEven1 = new OddEven("Odd or Even", 1);
+        OddEven OddEven1 = new OddEven("Odd or Even", 2);
+        //odd/even:2, red/black:2 dozen:5 ind slots:35
         System.out.println("Enter amount");
         int betAmount = scan.nextInt();
-        OddEven1.place();
+        OddEven1.place();// ask player for Odd or Even?
         System.out.println("Spinning...");
 
         SpinWheelResult spinwheelResult = myWheel.spin();
@@ -82,6 +76,19 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
         {
             System.out.println("***Sorry: you lose ****");
 
+        }
+
+    }
+
+
+    public RouletteGame(List<RoulettePlayer> players) {
+        for ( RoulettePlayer s: players){
+            this.bets.put(s,null);
+           // this.playerHand.put(s,null);
+            if (bets.size()>this.maxPlayers){
+                System.out.println("Only 4 players are allowed to play!");
+                break;
+            }
         }
 
     }
@@ -102,8 +109,13 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 
     }
 
-
     @Override
+    public void winConditionCheck ( RoulettePlayer player ) {
+
+    }
+
+
+    //@Override
     public void setWinCondition () {
 
     }
@@ -112,7 +124,7 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 
 
 
-    @Override
+   // @Override
     public Player[] getWinner () {
         return new Player[0];
     }

@@ -15,12 +15,14 @@ public class RoulettePlayer extends Player implements Gambler {
     }
 
     @Override
-    public void applyBet ( int bet ) {
-
+    public void applyBet(int bet)
+    {
+        this.getPerson().setWallet(this.getBalance()-bet);
     }
 
+
     @Override
-    public int getBalance () {
-        return 0;
+    public int getBalance() {
+        return this.getPerson().getWallet();
     }
 }

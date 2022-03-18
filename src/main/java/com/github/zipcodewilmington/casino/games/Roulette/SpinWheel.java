@@ -7,7 +7,7 @@ public class SpinWheel {
 
     private static final String[] WHEEL_SPOTS = {
      GREEN,
-     RED,
+     RED,//1
      BLACK,
      RED,
      BLACK,
@@ -42,8 +42,8 @@ public class SpinWheel {
      RED,
      BLACK,
      RED,
-     BLACK,
-            GREEN
+     BLACK,//36
+        //    GREEN
     };
 
     public static final int NUM_SPOTS = WHEEL_SPOTS.length;
@@ -67,18 +67,19 @@ public class SpinWheel {
        //result.getColor(myValue);
        //result.getNumber(myValue);
        //return result;
-        return new SpinWheelResult(getColor(),getNumber());
+       // return new SpinWheelResult(getColor(),getNumber());
+        return new SpinWheelResult(WHEEL_SPOTS[myValue],myValue);
     }
 
-    private String getColor()
-    {
-        return WHEEL_SPOTS[myValue];
-    }
-
-    private int getNumber()
-    {
-       return myValue;
-    }
+//    private String getColor()
+//    {
+//        return WHEEL_SPOTS[myValue];
+//    }
+//
+//    private int getNumber()
+//    {
+//       return myValue;
+//    }
 
 
 }
