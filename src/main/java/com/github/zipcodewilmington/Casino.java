@@ -54,6 +54,7 @@ public class Casino implements Runnable {
                         List<RoulettePlayer> roulettePlayerList = new ArrayList<>();
                         roulettePlayerList.add(new RoulettePlayer(casinoAccount.getProfile()));
                         //roulette play call here
+                        new RouletteGame(roulettePlayerList).play();
                     } else if (gameSelectionInput.equals("TICTACTOE")) {
                     } else if (gameSelectionInput.equals("ROCKPAPERSCISSOR")) {
                     } else {

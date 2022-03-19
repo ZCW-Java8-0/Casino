@@ -2,6 +2,8 @@ package com.github.zipcodewilmington.casino.games.Roulette;
 
 import com.github.zipcodewilmington.casino.games.GameInterface.GamblingGame;
 import com.github.zipcodewilmington.casino.games.Person.Player;
+import com.github.zipcodewilmington.utils.AnsiColor;
+import com.github.zipcodewilmington.utils.IOConsole;
 
 import java.util.*;
 
@@ -16,7 +18,8 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
     private Map<RoulettePlayer, Boolean> winLose = new HashMap<>();
   private SpinWheel myWheel=new SpinWheel();
     private static Scanner scan = new Scanner(System.in);
-
+    private boolean exitFlag = false;
+    private final IOConsole console = new IOConsole(AnsiColor.BLUE);
     public RouletteGame(List<RoulettePlayer> players) {
         for ( RoulettePlayer s: players){
             this.bets.put(s,null);
@@ -45,11 +48,14 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
         Integer bet = 0, walletBalance;
         for (RoulettePlayer s: bets.keySet()){
             walletBalance = s.getBalance();
+            System.out.println("printing balance for:"+s.getPerson().getName()+"balance:"+walletBalance);
             try {
                 System.out.println("Hello" +s.getPerson().getName() + ", how much would you like to bet?");
                 System.out.println();
                 bet=scan.nextInt();
-                if (bet<walletBalance){
+                System.out.println("you entered bet amount of:"+bet);
+                //bet=console.getIntegerInput("Enter your bet");
+                if (bet>walletBalance){
                     System.out.println("Bet exceeds what you have, try again");
                     continue;
                 }
@@ -67,7 +73,8 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
             try {
                 System.out.println("Hello" +s.getPerson().getName() + ", what is your bet choice?odd or even?");
                 System.out.println();
-                betchoice=scan.next();
+                //betchoice=scan.next();
+                betchoice=console.getStringInput("Enter your bet choice");
                 if (betchoice.equals("odd") || betchoice.equals("even")){
                     System.out.println("choice entered");
 
@@ -76,6 +83,7 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
                 System.out.println("Not a correct choice, try again");
                 continue;
             }
+            System.out.println("adding betchoice for :"+s.getPerson().getName()+"choice:"+betchoice);
             myBetChoice.put(s,betchoice);
         }
     }
@@ -85,29 +93,41 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
     @Override
     public void distributeWinningsToWinners (RoulettePlayer winner) {
 
-        winner.addWinning(bets.get(winner)*2);
+        winner.addWinning(bets.get(winner)*3);
     }
 
 
 
     @Override
     public void play () {
-        setBets();//how much and even or odd?
+        while (!exitFlag)
+        {
+            setBets();//how much and even or odd?
         System.out.println("Spinning...");
 
         SpinWheelResult spinwheelResult = myWheel.spin();
 
-        System.out.println(String.format("Dropped into %s",spinwheelResult));
+        System.out.println(String.format("Dropped into %s", spinwheelResult));
 
         //check for win condition
-        for ( RoulettePlayer s: myBetChoice.keySet()){
+        for (RoulettePlayer s : myBetChoice.keySet()) {
+            System.out.println("check for win condition:"+s.getPerson().getName()+"choice"+myBetChoice.get(s));
 
-           winConditionCheck(s);
-            if (winLose.get(s))
+            winConditionCheck(s);
+            if (winLose.get(s)) {
+
                 distributeWinningsToWinners(s); //
-            System.out.println("Dropped into %s"+spinwheelResult+"Winner name"+s.getPerson().getName());
-        }
+                System.out.println("winner:"+s.getPerson().getName()+"balance"+s.getBalance());
 
+            }
+            else
+            {
+                System.out.println("You lost this time");
+            }
+         //   System.out.println("Dropped into %s" + spinwheelResult + "Winner name" + s.getPerson().getName());
+        }
+        exit();
+       }
 
     }
 
@@ -191,6 +211,13 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 
     @Override
     public void exit () {
+        String input = console.getStringInput("Do you want to exit the game?");
+        if (input.equalsIgnoreCase("Yes"))
+            this.exitFlag=true;
+        else {
+            System.out.println("Let's continue");
+
+        }
 
     }
 }
