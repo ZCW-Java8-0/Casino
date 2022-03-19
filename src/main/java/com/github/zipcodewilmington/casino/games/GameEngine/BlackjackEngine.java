@@ -12,7 +12,7 @@ public class BlackjackEngine extends GameEngine<BlackJackPlayer, BlackJack> {
 
     @Override
     public void start() {
-        for (BlackJackPlayer s: this.getPlayers()){
+        for (BlackJackPlayer s: getPlayers()){
             getGame().addPlayer(s);
         }
         getGame().play();

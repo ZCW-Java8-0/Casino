@@ -13,7 +13,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
     private Map<BlackJackPlayer, Integer> playerHandSum = new HashMap<>();
     private Map<BlackJackPlayer, Boolean> winLose = new HashMap<>();
     private Map<BlackJackPlayer, Boolean> blackJackFlag = new HashMap<>();
-    private Map <BlackJackPlayer, Boolean> AceFlag = new HashMap<>();
+    private Map<BlackJackPlayer, Boolean> AceFlag = new HashMap<>();
     private int dealerHandSum;
     private List<Card> dealerHand = new ArrayList<>();
     private int maxPartySize;
@@ -59,7 +59,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         }
     }
 
-    private void dealFirst2Cards() {
+    public void dealFirst2Cards() {
         Card temp;
         for (int i = 0; i < 2; i++) {
             for (BlackJackPlayer s : bets.keySet()) {
@@ -69,7 +69,6 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
                 if (temp.getCardFace().equals(CardFace.Ace))
                     AceFlag.put(s, true);
             }
-
             dealerHand.add(deck.getTopCard());
             dealerHandSum+=cardValue(dealerHand.get(dealerHand.size()-1));
             if (i==1)
@@ -124,7 +123,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         }
     }
 
-    private String bustCheck(BlackJackPlayer player) {
+    public String bustCheck(BlackJackPlayer player) {
         if (playerHandSum.get(player) > 21) {
             if (AceFlag.get(player)) {
                 playerHandSum.put(player, playerHandSum.get(player)-10);
@@ -146,7 +145,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             AceFlag.put(player, true);
     }
 
-    private int cardValue(Card card){
+    public int cardValue(Card card){
         int value = 0;
         CardFace cardFace = card.getCardFace();
         switch (cardFace){
@@ -202,7 +201,17 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
 
     @Override
     public void addPlayer(BlackJackPlayer player) {
-        this.bets.put(player,0);
+        setBet(player,0);
+    }
+
+    public void setBet(BlackJackPlayer player, int bet) {
+        bets.put(player, bet);
+        player.applyBet(bet);
+        playerHand.put(player, new ArrayList<>());
+        playerHandSum.put(player, 0);
+        AceFlag.put(player,false);
+        winLose.put(player, null);
+        blackJackFlag.put(player,false);
     }
 
     @Override
@@ -260,13 +269,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
             while (bet>walletBalance || bet<=0){
                 bet= console.getIntegerInput("Bet note valid, try again");
             }
-            bets.put(s, bet);
-            s.applyBet(bet);
-            playerHand.put(s, new ArrayList<>());
-            playerHandSum.put(s, 0);
-            AceFlag.put(s,false);
-            winLose.put(s, null);
-            blackJackFlag.put(s,false);
+            setBet(s, bet);
         }
     }
 
