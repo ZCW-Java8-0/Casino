@@ -12,11 +12,9 @@ public class BlackjackEngine extends GameEngine<BlackJackPlayer, BlackJack> {
 
     @Override
     public void start() {
+        for (BlackJackPlayer s: this.getPlayers()){
+            getGame().addPlayer(s);
+        }
         getGame().play();
-    }
-
-    @Override
-    public BlackJack getGame() {
-        return new BlackJack(this.getPlayers());
     }
 }

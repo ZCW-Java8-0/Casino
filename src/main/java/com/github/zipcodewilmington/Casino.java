@@ -4,6 +4,7 @@ import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.games.BlackJack.BlackJack;
 import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackPlayer;
+import com.github.zipcodewilmington.casino.games.GameEngine.BlackjackEngine;
 import com.github.zipcodewilmington.casino.games.GameInterface.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.Roulette.RouletteGame;
@@ -39,13 +40,11 @@ public class Casino implements Runnable {
                 boolean isValidLogin = casinoAccount != null;
                 if (isValidLogin) {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
-                    // [ BLACKJACK ], [SLOTS], [CEELO], [ROULETTE], [TICTACTOE]" +
-                    //                        ", [ROCKPAPERSCISSOR]")
                     if (gameSelectionInput.equals("SLOTS")) {
                     } else if (gameSelectionInput.equals("BLACKJACK")) {
                         List<BlackJackPlayer> blackJackPlayerList = new ArrayList<>();
                         blackJackPlayerList.add(new BlackJackPlayer(casinoAccount.getProfile()));
-                        new BlackJack(blackJackPlayerList).play();
+                        new BlackjackEngine( new BlackJack(), blackJackPlayerList).start();
                     } else if (gameSelectionInput.equals("CEELO")) {
                         List<CeeLoPlayer> ceeLoPlayerList = new ArrayList<>();
                         ceeLoPlayerList.add(new CeeLoPlayer(casinoAccount.getProfile()));

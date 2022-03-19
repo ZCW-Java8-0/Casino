@@ -78,12 +78,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         blackJackCheck();
     }
 
-    public BlackJack(List<BlackJackPlayer> players) {
-        for (BlackJackPlayer s: players){
-            this.bets.put(s,null);
-            this.playerHand.put(s,null);
-        }
-    }
+    public BlackJack() {}
 
     public void dealerPlays(){
         if (winLose.containsValue(null)) {

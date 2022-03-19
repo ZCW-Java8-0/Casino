@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.GameEngine;
 
+import com.github.zipcodewilmington.casino.games.BlackJack.BlackJack;
 import com.github.zipcodewilmington.casino.games.GameInterface.GameEngineInterface;
 import com.github.zipcodewilmington.casino.games.Person.Player;
 
@@ -16,5 +17,9 @@ abstract class GameEngine <PlayerType extends Player, GameType>
 
     public List<PlayerType> getPlayers() {
         return players;
+    }
+
+    public GameType getGame() {
+        return this.game;
     }
 }
