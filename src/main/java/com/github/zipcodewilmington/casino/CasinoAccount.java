@@ -2,15 +2,18 @@ package com.github.zipcodewilmington.casino;
 
 import com.github.zipcodewilmington.casino.games.Person.Person;
 
+import java.io.Serializable;
+
 /**
  * Created by leon on 7/21/2020.
  * `ArcadeAccount` is registered for each user of the `Arcade`.
  * The `ArcadeAccount` is used to log into the system to select a `Game` to play.
  */
-public class CasinoAccount {
+public class CasinoAccount implements Serializable {
     private final String accountName;
     private String accountPassword;
     private Person profile;
+    private static final long serialVersionUID= 2L;
 
     public CasinoAccount(String accountName, String accountPassword) {
         this.accountName = accountName;

@@ -14,7 +14,8 @@ import java.util.Map;
  * `ArcadeAccountManager` stores, manages, and retrieves `ArcadeAccount` objects
  * it is advised that every instruction in this class is logged
  */
-public class CasinoAccountManager {
+public class CasinoAccountManager implements Serializable {
+    private static final long serialVersionUID= 1L;
     Map<String, CasinoAccount> casinoAccounts = new HashMap<>();
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
     /**
@@ -96,7 +97,7 @@ public class CasinoAccountManager {
 
     public boolean saveAccounts(){
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("accounts"));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("accounts.db"));
             oos.writeObject(casinoAccounts);
             oos.close();
             return true;

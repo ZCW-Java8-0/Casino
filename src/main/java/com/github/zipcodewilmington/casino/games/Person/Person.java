@@ -1,6 +1,9 @@
 package com.github.zipcodewilmington.casino.games.Person;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
+    private static final long serialVersionUID= 3L;
     private String name;
     private int wallet;
     public Person(String name, int funds){
