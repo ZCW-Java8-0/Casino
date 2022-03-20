@@ -34,16 +34,25 @@ public class Casino implements Runnable {
         do {
             arcadeDashBoardInput = getArcadeDashboardInput();
             if ("select-game".equals(arcadeDashBoardInput)) {
-                String accountName = console.getStringInput("Enter your account name:");
-                String accountPassword = console.getStringInput("Enter your account password:");
-                CasinoAccount casinoAccount = casinoAccountManager.getAccount(accountName, accountPassword);
-                boolean isValidLogin = casinoAccount != null;
+                boolean isValidLogin;
+                CasinoAccount casinoAccount;
+                do {
+                    String accountName = console.getStringInput("Enter your account name:");
+                    String accountPassword = console.getStringInput("Enter your account password:");
+                    casinoAccount = casinoAccountManager.getAccount(accountName, accountPassword);
+                    isValidLogin = casinoAccount != null;
+                } while (!isValidLogin);
                 if (isValidLogin) {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
                     if (gameSelectionInput.equals("SLOTS")) {
                     } else if (gameSelectionInput.equals("BLACKJACK")) {
                         List<BlackJackPlayer> blackJackPlayerList = new ArrayList<>();
                         blackJackPlayerList.add(new BlackJackPlayer(casinoAccount.getProfile()));
+                        String input = console.getStringInput("Do you want to add more players to the game? (Yes/no)");
+                        while(input.equalsIgnoreCase("yes") && blackJackPlayerList.size()<4){
+                            blackJackPlayerList.add(new BlackJackPlayer(casinoAccountManager.accountLogin()));
+                            input=console.getStringInput("More players? (Yes/No)");
+                        }
                         new BlackjackEngine( new BlackJack(), blackJackPlayerList).start();
                     } else if (gameSelectionInput.equals("CEELO")) {
                         List<CeeLoPlayer> ceeLoPlayerList = new ArrayList<>();
@@ -63,8 +72,8 @@ public class Casino implements Runnable {
                     }
                 } else {
                     // TODO - implement better exception handling
-                    String errorMessage = "No account found with name of [ %s ] and password of [ %s ]";
-                    throw new RuntimeException(String.format(errorMessage, accountPassword, accountName));
+                    String errorMessage = "No account found.";
+                    throw new RuntimeException(String.format(errorMessage));
                 }
             } else if ("create-account".equals(arcadeDashBoardInput)) {
                 console.println("Welcome to the account-creation screen.");
@@ -92,7 +101,7 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Arcade Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ create-account ], [change-password], [ select-game ]")
+                .append("\n\t[ create-account ], [ change-password ], [ select-game ] [ logout ]")
                 .toString());
     }
 
@@ -100,8 +109,8 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Game Selection Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ SLOTS ], [ BLACKJACK ], [CEELO], [ROULETTE], [TICTACTOE]" +
-                        ", [ROCKPAPERSCISSOR]")
+                .append("\n\t[ SLOTS ], [ BLACKJACK ], [ CEELO ], [ ROULETTE ], [ TICTACTOE ]" +
+                        ", [ ROCKPAPERSCISSOR ]")
                 .toString());
     }
 
