@@ -46,6 +46,7 @@ public class CasinoAccountManager implements Serializable {
     public CasinoAccount createAccount(String accountName, String accountPassword) {
         CasinoAccount newAccount = new CasinoAccount(accountName, accountPassword);
         registerAccount(newAccount);
+        saveAccounts();
         return newAccount;
     }
 

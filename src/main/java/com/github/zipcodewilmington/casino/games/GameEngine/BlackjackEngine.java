@@ -19,6 +19,7 @@ public class BlackjackEngine extends GameEngine<BlackJackPlayer, BlackJack> {
     public void start() {
         getGame().setPlayerMax();
         CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
+        casinoAccountManager.loadAccounts();
         String input = console.getStringInput("Do you want to add more players to the game? (Yes/no)");
         while(input.equalsIgnoreCase("yes") && getPlayers().size() < getGame().getMaxPartySize()){
             getPlayers().add(new BlackJackPlayer(casinoAccountManager.accountLogin().getProfile()));

@@ -19,6 +19,7 @@ public class RouletteEngine extends GameEngine<RoulettePlayer, RouletteGame> {
     public void start() {
         getGame().setPlayerMax();
         CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
+        casinoAccountManager.loadAccounts();
         String input = console.getStringInput("Do you want to add more players to the game? (Yes/no)");
         while(input.equalsIgnoreCase("yes") && getPlayers().size() < getGame().getMaxPartySize()){
             getPlayers().add(new RoulettePlayer(casinoAccountManager.accountLogin().getProfile()));
