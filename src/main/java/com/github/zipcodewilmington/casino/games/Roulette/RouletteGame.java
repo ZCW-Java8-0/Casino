@@ -63,7 +63,7 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
         for (RoulettePlayer s: myBetChoice.keySet()){
 
             try {
-                System.out.println("Hello" +s.getPerson().getName() + ", what is your bet choice?odd or even?");
+                System.out.println("Hello " +s.getPerson().getName() + ", what is your bet choice?odd or even?");
                 System.out.println();
                 //betchoice=scan.next();
                 betchoice=console.getStringInput("Enter your bet choice");
@@ -98,7 +98,7 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 
         SpinWheelResult spinwheelResult = myWheel.spin();
 
-        System.out.println(String.format("Dropped into %s", spinwheelResult));
+        System.out.println(String.format("Dropped into %s", spinwheelResult.toString()));
 
         //check for win condition
         for (RoulettePlayer s : myBetChoice.keySet()) {
@@ -174,7 +174,6 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 
     @Override
     public void winConditionCheck ( RoulettePlayer player ) {
-
         for ( RoulettePlayer s: myBetChoice.keySet()){
             if(  (myWheel.getNumber()%2 == 0 && myBetChoice.get(s).equals("even")) ||
                     (myWheel.getNumber()%2 == 1 && myBetChoice.get(s).equals(("odd"))))

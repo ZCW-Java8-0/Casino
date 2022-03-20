@@ -15,6 +15,8 @@ public class SpinWheelResult {
         return this.myColor;
     }
 
+    public String toString(){ return myColor+" "+myNumber;}
+
     public int getNumber()
     {
         return this.myNumber;

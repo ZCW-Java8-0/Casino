@@ -55,8 +55,8 @@ public class Casino implements Runnable {
                     } else if (gameSelectionInput.equals("CEELO")) {
                         List<CeeLoPlayer> ceeLoPlayerList = new ArrayList<>();
                         ceeLoPlayerList.add(new CeeLoPlayer(casinoAccount.getProfile()));
-                        new CeeLoEngine(new CeeLoGame(), ceeLoPlayerList).start();
-                    } else if (gameSelectionInput.equals("ROUTLETTE")) {
+//                        new CeeLoEngine(new CeeLoGame(), ceeLoPlayerList).start();
+                    } else if (gameSelectionInput.equals("ROULETTE")) {
                         List<RoulettePlayer> roulettePlayerList = new ArrayList<>();
                         roulettePlayerList.add(new RoulettePlayer(casinoAccount.getProfile()));
                         new RouletteEngine(new RouletteGame(), roulettePlayerList).start();
