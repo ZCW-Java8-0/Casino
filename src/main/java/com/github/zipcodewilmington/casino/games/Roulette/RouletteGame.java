@@ -20,16 +20,7 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
     private static Scanner scan = new Scanner(System.in);
     private boolean exitFlag = false;
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
-    public RouletteGame(List<RoulettePlayer> players) {
-        for ( RoulettePlayer s: players){
-            this.bets.put(s,null);
-            this.myBetChoice.put(s,null);
-            if (bets.size()>this.maxPlayers){
-                System.out.println("Only 4 players are allowed to play!");
-                break;
-            }
-        }
-
+    public RouletteGame() {
     }
 
 
@@ -55,13 +46,14 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
                 bet=scan.nextInt();
                 System.out.println("you entered bet amount of:"+bet);
                 //bet=console.getIntegerInput("Enter your bet");
-                if (bet>walletBalance){
-                    System.out.println("Bet exceeds what you have, try again");
-                    continue;
+                if (bet>walletBalance || bet<0){
+                    bet=console.getIntegerInput("Invalid bet, try again");
+                    System.out.println("you entered bet amount of:"+bet);
                 }
             } catch (InputMismatchException e){
                 System.out.println("Not a number, try again");
-                continue;
+                bet=scan.nextInt();
+                System.out.println("you entered bet amount of:"+bet);
             }
             bets.put(s, bet);
             s.applyBet(bet);
@@ -92,7 +84,6 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 
     @Override
     public void distributeWinningsToWinners (RoulettePlayer winner) {
-
         winner.addWinning(bets.get(winner)*3);
     }
 
@@ -198,17 +189,6 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 
     }
 
-
-
-
-
-
-
-   // @Override
-    public Player[] getWinner () {
-        return new Player[0];
-    }
-
     @Override
     public void exit () {
         String input = console.getStringInput("Do you want to exit the game?");
@@ -220,4 +200,8 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
         }
 
     }
+    public int getMaxPartySize() {
+        return maxPlayers;
+    }
+
 }

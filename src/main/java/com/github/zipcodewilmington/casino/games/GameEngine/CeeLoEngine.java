@@ -1,8 +1,6 @@
 package com.github.zipcodewilmington.casino.games.GameEngine;
 
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
-import com.github.zipcodewilmington.casino.games.BlackJack.BlackJack;
-import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackPlayer;
 import com.github.zipcodewilmington.casino.games.ceelo.CeeLoGame;
 import com.github.zipcodewilmington.casino.games.ceelo.CeeLoPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
