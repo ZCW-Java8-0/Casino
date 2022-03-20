@@ -5,6 +5,7 @@ import com.github.zipcodewilmington.casino.games.Person.Player;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,5 +73,38 @@ public class CasinoAccountManager {
         CasinoAccount adminAccount = new CasinoAccount("admin", "admin");
         adminAccount.getProfile().setWallet(Integer.MAX_VALUE);
         casinoAccounts.put("admin",adminAccount);
+    }
+
+    public boolean loadAccounts(){
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("accounts"));
+            Map<String, CasinoAccount> temp = (Map<String,CasinoAccount>) ois.readObject();
+            if (temp !=null){
+                casinoAccounts = temp;
+            }
+            ois.close();
+            return true;
+        } catch (FileNotFoundException e) {
+            loadAdminAccount();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean saveAccounts(){
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("accounts"));
+            oos.writeObject(casinoAccounts);
+            oos.close();
+            return true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
