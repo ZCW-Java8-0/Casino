@@ -40,4 +40,7 @@ public class CasinoAccount implements Serializable {
         this.accountPassword = accountPassword;
     }
 
+    public void addFunds(Integer funds) {
+        profile.setWallet(profile.getWallet()+funds);
+    }
 }

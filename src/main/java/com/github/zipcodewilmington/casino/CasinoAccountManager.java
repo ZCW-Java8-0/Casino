@@ -58,7 +58,7 @@ public class CasinoAccountManager implements Serializable {
         casinoAccounts.put(casinoAccount.getAccountName(), casinoAccount);
     }
 
-    public Person accountLogin() {
+    public CasinoAccount accountLogin() {
         boolean isValidLogin;
         CasinoAccount casinoAccount;
         do {
@@ -67,7 +67,7 @@ public class CasinoAccountManager implements Serializable {
             casinoAccount = getAccount(accountName, accountPassword);
             isValidLogin = casinoAccount != null;
         } while (!isValidLogin);
-        return casinoAccount.getProfile();
+        return casinoAccount;
     }
 
     public void loadAdminAccount(){
@@ -107,5 +107,9 @@ public class CasinoAccountManager implements Serializable {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void deleteAccount(CasinoAccount casinoAccount) {
+        casinoAccounts.remove(casinoAccount.getAccountName());
     }
 }
