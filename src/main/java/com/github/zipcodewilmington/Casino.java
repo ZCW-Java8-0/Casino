@@ -31,6 +31,7 @@ public class Casino implements Runnable {
     public void run() {
         String arcadeDashBoardInput;
         CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
+        casinoAccountManager.loadAccounts();
         do {
             arcadeDashBoardInput = getArcadeDashboardInput();
             if ("select-game".equals(arcadeDashBoardInput)) {
@@ -48,11 +49,6 @@ public class Casino implements Runnable {
                     } else if (gameSelectionInput.equals("BLACKJACK")) {
                         List<BlackJackPlayer> blackJackPlayerList = new ArrayList<>();
                         blackJackPlayerList.add(new BlackJackPlayer(casinoAccount.getProfile()));
-                        String input = console.getStringInput("Do you want to add more players to the game? (Yes/no)");
-                        while(input.equalsIgnoreCase("yes") && blackJackPlayerList.size()<4){
-                            blackJackPlayerList.add(new BlackJackPlayer(casinoAccountManager.accountLogin()));
-                            input=console.getStringInput("More players? (Yes/No)");
-                        }
                         new BlackjackEngine( new BlackJack(), blackJackPlayerList).start();
                     } else if (gameSelectionInput.equals("CEELO")) {
                         List<CeeLoPlayer> ceeLoPlayerList = new ArrayList<>();
@@ -95,6 +91,7 @@ public class Casino implements Runnable {
                 }
             }
         } while (!"logout".equals(arcadeDashBoardInput));
+        casinoAccountManager.saveAccounts();
     }
 
     private String getArcadeDashboardInput() {

@@ -71,13 +71,13 @@ public class CasinoAccountManager {
 
     public void loadAdminAccount(){
         CasinoAccount adminAccount = new CasinoAccount("admin", "admin");
-        adminAccount.getProfile().setWallet(Integer.MAX_VALUE);
+        adminAccount.createProfile("admin",Integer.MAX_VALUE);
         casinoAccounts.put("admin",adminAccount);
     }
 
     public boolean loadAccounts(){
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("accounts"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("accounts.db"));
             Map<String, CasinoAccount> temp = (Map<String,CasinoAccount>) ois.readObject();
             if (temp !=null){
                 casinoAccounts = temp;

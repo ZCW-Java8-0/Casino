@@ -264,7 +264,7 @@ public class BlackJack implements GamblingGame<BlackJackPlayer> {
         for (BlackJackPlayer s: bets.keySet()){
             walletBalance = s.getBalance();
             bet = console.getIntegerInput(
-                    "Hello" +s.getPerson().getName() + ", how much would you like to bet?" +
+                    "Hello " +s.getPerson().getName() + ", how much would you like to bet?" +
                             " Your current balance is " + s.getBalance());
             while (bet>walletBalance || bet<=0){
                 bet= console.getIntegerInput("Bet note valid, try again");
