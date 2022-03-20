@@ -67,4 +67,10 @@ public class CasinoAccountManager {
         } while (!isValidLogin);
         return casinoAccount.getProfile();
     }
+
+    public void loadAdminAccount(){
+        CasinoAccount adminAccount = new CasinoAccount("admin", "admin");
+        adminAccount.getProfile().setWallet(Integer.MAX_VALUE);
+        casinoAccounts.put("admin",adminAccount);
+    }
 }
