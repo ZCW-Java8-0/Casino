@@ -126,18 +126,53 @@ class BlackJackTest {
     }
 
     @Test
-    void bustCheckTest() {
+    void bustCheckTest() throws NoSuchFieldException, IllegalAccessException {
+        //Given
+        BlackJackPlayer bjp = new BlackJackPlayer(person);
+        bj.addPlayer(bjp);
+        bj.setBet(bjp,0);
+        //When
+        for (int i = 0; i<15;i++){
+            bj.draw(bjp);
+        }
+        String bust = bj.bustCheck(bjp);
+        //Then
+        Assertions.assertEquals("Busted!", bust);
     }
 
     @Test
     void setPlayerMaxTest() {
+        //When
+        bj.setPlayerMax();
+        int max = bj.getMaxPartySize();
+        //Then
+        Assertions.assertEquals(4, max);
     }
 
     @Test
     void cardValueTest(){
+        //When
+        Card card = new Card(CardFace.Jack, Suit.Diamonds);
+        int value = bj.cardValue(card);
+        //Then
+        Assertions.assertEquals(10, value);
     }
 
     @Test
-    void winConditionCheckTest() {
+    void winConditionCheckTest() throws NoSuchFieldException, IllegalAccessException {
+        //Given
+        BlackJackPlayer bjp = new BlackJackPlayer(person);
+        bj.addPlayer(bjp);
+        bj.setBet(bjp,0);
+
+        //When
+        bj.draw(bjp);
+        bj.winConditionCheck(bjp);
+        Field field = bj.getClass().getDeclaredField("winLose");
+        field.setAccessible(true);
+        Map<BlackJackPlayer, Boolean> test = (Map<BlackJackPlayer, Boolean>) field.get(bj);
+
+        //Then
+        Assertions.assertTrue(test.get(bjp));
     }
 }
