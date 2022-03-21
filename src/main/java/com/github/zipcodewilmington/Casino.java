@@ -64,13 +64,15 @@ public class Casino implements Runnable {
                     } else if (gameSelectionInput.equals("ROCKPAPERSCISSOR")) {
                     } else {
                         // TODO - implement better exception handling
-                        String errorMessage = "[ %s ] is an invalid game selection";
-                        throw new RuntimeException(String.format(errorMessage, gameSelectionInput));
+//                        String errorMessage = "[ %s ] is an invalid game selection";
+//                        throw new RuntimeException(String.format(errorMessage, gameSelectionInput));
+                        System.out.println("Invalid entry");
                     }
                 } else {
-                    // TODO - implement better exception handling
-                    String errorMessage = "No account found.";
-                    throw new RuntimeException(String.format(errorMessage));
+//                    // TODO - implement better exception handling
+//                    String errorMessage = "No account found.";
+//                    throw new RuntimeException(String.format(errorMessage));
+                    System.out.println("Invalid entry");
                 }
             } else if ("create-account".equals(arcadeDashBoardInput)) {
                 console.println("Welcome to the account-creation screen.");
@@ -137,10 +139,10 @@ public class Casino implements Runnable {
                 .toString());
     }
 
-    private void play(Object gameObject, Object playerObject) {
-        GameInterface game = (GameInterface)gameObject;
-        PlayerInterface player = (PlayerInterface)playerObject;
-        game.add(player);
-        game.run();
-    }
+//    private void play(Object gameObject, Object playerObject) {
+//        GameInterface game = (GameInterface)gameObject;
+//        PlayerInterface player = (PlayerInterface)playerObject;
+//        game.add(player);
+//        game.run();
+//    }
 }
