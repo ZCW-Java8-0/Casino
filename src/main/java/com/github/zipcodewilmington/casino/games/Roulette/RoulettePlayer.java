@@ -11,7 +11,7 @@ public class RoulettePlayer extends Player implements Gambler {
 
     @Override
     public void addWinning ( int winning ) {
-        System.out.println("winning amount"+winning);
+        System.out.println("winning amount "+winning);
         this.getPerson().setWallet(this.getBalance() + winning);
     }
 

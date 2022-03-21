@@ -50,7 +50,7 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 //                System.out.println("Hello" +s.getPerson().getName() + ", how much would you like to bet?");
 //                System.out.println();
 //                bet=scan.nextInt();
-                System.out.println("you entered bet amount of:"+bet);
+                System.out.println("you entered bet amount of: "+bet);
 //                //bet=console.getIntegerInput("Enter your bet");
 //                if (bet>walletBalance || bet<0){
 //                    bet=console.getIntegerInput("Invalid bet, try again");
@@ -108,13 +108,13 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
 
         //check for win condition
         for (RoulettePlayer s : myBetChoice.keySet()) {
-            System.out.println("check for win condition:"+s.getPerson().getName()+"choice"+myBetChoice.get(s));
+            System.out.println("check for win condition: "+s.getPerson().getName()+" choice "+myBetChoice.get(s));
 
             winConditionCheck(s);
             if (winLose.get(s)) {
 
                 distributeWinningsToWinners(s); //
-                System.out.println("winner:"+s.getPerson().getName()+"balance"+s.getBalance());
+                System.out.println("winner: "+s.getPerson().getName()+" balance "+s.getBalance());
 
             }
             else
