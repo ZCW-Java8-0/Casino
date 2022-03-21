@@ -39,22 +39,28 @@ public class RouletteGame implements GamblingGame<RoulettePlayer> {
         Integer bet = 0, walletBalance;
         for (RoulettePlayer s: bets.keySet()){
             walletBalance = s.getBalance();
-            System.out.println("printing balance for:"+s.getPerson().getName()+"balance:"+walletBalance);
-            try {
-                System.out.println("Hello" +s.getPerson().getName() + ", how much would you like to bet?");
-                System.out.println();
-                bet=scan.nextInt();
-                System.out.println("you entered bet amount of:"+bet);
-                //bet=console.getIntegerInput("Enter your bet");
-                if (bet>walletBalance || bet<0){
-                    bet=console.getIntegerInput("Invalid bet, try again");
-                    System.out.println("you entered bet amount of:"+bet);
-                }
-            } catch (InputMismatchException e){
-                System.out.println("Not a number, try again");
-                bet=scan.nextInt();
-                System.out.println("you entered bet amount of:"+bet);
+            bet = console.getIntegerInput(
+                    "Hello " +s.getPerson().getName() + ", how much would you like to bet?" +
+                            " Your current balance is " + s.getBalance());
+            while (bet>walletBalance || bet<=0){
+                bet= console.getIntegerInput("Bet note valid, try again");
             }
+//            System.out.println("printing balance for:"+s.getPerson().getName()+"balance:"+walletBalance);
+//            try {
+//                System.out.println("Hello" +s.getPerson().getName() + ", how much would you like to bet?");
+//                System.out.println();
+//                bet=scan.nextInt();
+                System.out.println("you entered bet amount of:"+bet);
+//                //bet=console.getIntegerInput("Enter your bet");
+//                if (bet>walletBalance || bet<0){
+//                    bet=console.getIntegerInput("Invalid bet, try again");
+//                    System.out.println("you entered bet amount of:"+bet);
+//                }
+//            } catch (InputMismatchException e){
+//                System.out.println("Not a number, try again");
+//                bet=scan.nextInt();
+//                System.out.println("you entered bet amount of:"+bet);
+//            }
             bets.put(s, bet);
             s.applyBet(bet);
         }
