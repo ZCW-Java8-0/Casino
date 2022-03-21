@@ -19,10 +19,9 @@ public class RockPaperScissorEngine extends GameEngine<RockPaperScissorPlayer, R
     public void start() {
         CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
         casinoAccountManager.loadAccounts();
-        String input = console.getStringInput("Player 2 please login");
+        System.out.println("Player 2 please enter login information");
         while(getPlayers().size() != 2){
             getPlayers().add(new RockPaperScissorPlayer(casinoAccountManager.accountLogin().getProfile()));
-            input=console.getStringInput("More players? (Yes/No)");
         }
         for (RockPaperScissorPlayer s: getPlayers()){
             getGame().addPlayer(s);

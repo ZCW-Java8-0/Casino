@@ -20,10 +20,9 @@ public class TicTacToeEngine extends GameEngine<TicTacToePlayer, TicTacToeGame> 
     public void start() {
         CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
         casinoAccountManager.loadAccounts();
-        String input = console.getStringInput("Player 2 please login");
+        System.out.println("Player 2 please login");
         while(getPlayers().size() != 2){
             getPlayers().add(new TicTacToePlayer(casinoAccountManager.accountLogin().getProfile()));
-            input=console.getStringInput("More players? (Yes/No)");
         }
         for (TicTacToePlayer s: getPlayers()){
             getGame().addPlayer(s);

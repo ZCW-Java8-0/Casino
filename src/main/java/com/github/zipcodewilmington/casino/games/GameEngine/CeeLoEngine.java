@@ -19,6 +19,7 @@ public class CeeLoEngine extends GameEngine<CeeLoPlayer, CeeLoGame> {
     public void start() {
         CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
         casinoAccountManager.loadAccounts();
+        System.out.println("Player 2 please enter login information");
         while(getPlayers().size() < 2){
             getPlayers().add(new CeeLoPlayer(casinoAccountManager.accountLogin().getProfile()));
         }
