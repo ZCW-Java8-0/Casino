@@ -11,8 +11,8 @@ import java.util.List;
 public class BlackjackEngine extends GameEngine<BlackJackPlayer, BlackJack> {
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
-    public BlackjackEngine(BlackJack game, List<BlackJackPlayer> players){
-        super(game, players);
+    public BlackjackEngine(BlackJack game, BlackJackPlayer player){
+        super(game, player);
     }
 
     @Override

@@ -12,8 +12,8 @@ import java.util.List;
 public class TicTacToeEngine extends GameEngine<TicTacToePlayer, TicTacToeGame> {
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
-    public TicTacToeEngine(TicTacToeGame game, List<TicTacToePlayer> players){
-        super(game, players);
+    public TicTacToeEngine(TicTacToeGame game, TicTacToePlayer player){
+        super(game, player);
     }
 
     @Override

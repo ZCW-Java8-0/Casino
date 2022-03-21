@@ -11,8 +11,8 @@ import java.util.List;
 public class RouletteEngine extends GameEngine<RoulettePlayer, RouletteGame> {
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
-    public RouletteEngine(RouletteGame game, List<RoulettePlayer> players){
-        super(game, players);
+    public RouletteEngine(RouletteGame game, RoulettePlayer player){
+        super(game, player);
     }
 
     @Override

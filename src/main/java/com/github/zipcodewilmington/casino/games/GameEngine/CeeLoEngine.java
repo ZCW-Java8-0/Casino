@@ -11,8 +11,8 @@ import java.util.List;
 public class CeeLoEngine extends GameEngine<CeeLoPlayer, CeeLoGame> {
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
-    public CeeLoEngine(CeeLoGame game, List<CeeLoPlayer> players){
-        super(game, players);
+    public CeeLoEngine(CeeLoGame game, CeeLoPlayer player){
+        super(game, player);
     }
 
     @Override

@@ -5,8 +5,6 @@ import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.games.BlackJack.BlackJack;
 import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackPlayer;
 import com.github.zipcodewilmington.casino.games.GameEngine.*;
-import com.github.zipcodewilmington.casino.games.GameInterface.GameInterface;
-import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.RockPaperScissor.RockPaperScissorGame;
 import com.github.zipcodewilmington.casino.games.RockPaperScissor.RockPaperScissorPlayer;
 import com.github.zipcodewilmington.casino.games.Roulette.RouletteGame;
@@ -15,8 +13,6 @@ import com.github.zipcodewilmington.casino.games.TicTacToe.TicTacToeGame;
 import com.github.zipcodewilmington.casino.games.TicTacToe.TicTacToePlayer;
 import com.github.zipcodewilmington.casino.games.ceelo.CeeLoGame;
 import com.github.zipcodewilmington.casino.games.ceelo.CeeLoPlayer;
-import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
-import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
@@ -50,26 +46,24 @@ public class Casino implements Runnable {
                 if (isValidLogin) {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
                     if (gameSelectionInput.equals("SLOTS")) {
+//                        new SlotsEngine( new SlotsGame(),
+//                                new SlotsPlayer(casinoAccount.getProfile())).start();
                     } else if (gameSelectionInput.equals("BLACKJACK")) {
-                        List<BlackJackPlayer> blackJackPlayerList = new ArrayList<>();
-                        blackJackPlayerList.add(new BlackJackPlayer(casinoAccount.getProfile()));
-                        new BlackjackEngine( new BlackJack(), blackJackPlayerList).start();
+                        new BlackjackEngine( new BlackJack(),
+                                new BlackJackPlayer(casinoAccount.getProfile())).start();
                     } else if (gameSelectionInput.equals("CEELO")) {
                         List<CeeLoPlayer> ceeLoPlayerList = new ArrayList<>();
                         ceeLoPlayerList.add(new CeeLoPlayer(casinoAccount.getProfile()));
 //                        new CeeLoEngine(new CeeLoGame(), ceeLoPlayerList).start();
                     } else if (gameSelectionInput.equals("ROULETTE")) {
-                        List<RoulettePlayer> roulettePlayerList = new ArrayList<>();
-                        roulettePlayerList.add(new RoulettePlayer(casinoAccount.getProfile()));
-                        new RouletteEngine(new RouletteGame(), roulettePlayerList).start();
+                        new RouletteEngine(new RouletteGame(),
+                                new RoulettePlayer(casinoAccount.getProfile())).start();
                     } else if (gameSelectionInput.equals("TICTACTOE")) {
-                        List<TicTacToePlayer> ticTacToePlayerList = new ArrayList<>();
-                        ticTacToePlayerList.add(new TicTacToePlayer(casinoAccount.getProfile()));
-                        new TicTacToeEngine(new TicTacToeGame(), ticTacToePlayerList).start();
+                        new TicTacToeEngine(new TicTacToeGame(),
+                                new TicTacToePlayer(casinoAccount.getProfile())).start();
                     } else if (gameSelectionInput.equals("ROCKPAPERSCISSOR")) {
-                        List<RockPaperScissorPlayer> rockPaperScissorPlayersList = new ArrayList<>();
-                        rockPaperScissorPlayersList.add(new RockPaperScissorPlayer(casinoAccount.getProfile()));
-                        new RockPaperScissorEngine(new RockPaperScissorGame(), rockPaperScissorPlayersList).start();
+                        new RockPaperScissorEngine(new RockPaperScissorGame(),
+                                new RockPaperScissorPlayer(casinoAccount.getProfile())).start();
                     } else {
                         // TODO - implement better exception handling
 //                        String errorMessage = "[ %s ] is an invalid game selection";

@@ -11,8 +11,8 @@ import java.util.List;
 public class RockPaperScissorEngine extends GameEngine<RockPaperScissorPlayer, RockPaperScissorGame> {
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
-    public RockPaperScissorEngine(RockPaperScissorGame game, List<RockPaperScissorPlayer> players){
-        super(game, players);
+    public RockPaperScissorEngine(RockPaperScissorGame game, RockPaperScissorPlayer player){
+        super(game, player);
     }
 
     @Override
