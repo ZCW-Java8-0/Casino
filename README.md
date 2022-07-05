@@ -4,7 +4,7 @@
 * **Purpose** - To gain familiarity with general object orientation and design principles
 
 * **Description**
-    * View the [javadocs](https://zipcodecore.github.io/casino.maven/docs/index.html) for the program to become better oriented with its design
+    * View the [javadocs](./docs/index.html) for the program to become better oriented with its design
       * `https://zipcoder.github.io/casino.maven/docs/index.html`
     * Create a casino simulation by extending or removing the pre-built implementations.
     * It is advised that you create additional methods and classes to mediate any foreseen shortcomings of the prebuilt assets. 
