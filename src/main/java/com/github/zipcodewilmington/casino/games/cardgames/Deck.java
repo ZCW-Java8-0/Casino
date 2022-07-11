@@ -8,6 +8,9 @@ public interface Deck {
 
     int getDeckSize();
 
+    // reset Deck to a new shuffled state
+    void reset();
+
     void printCards();
 
 }

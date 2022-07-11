@@ -36,7 +36,7 @@ public class TestStandardDeck {
     }
 
     @Test
-    public void dealCard() {
+    public void testDealCard() {
         PlayingCard card = deck.dealCard();
         Integer expectedSize = 51;
 
@@ -47,7 +47,7 @@ public class TestStandardDeck {
     }
 
     @Test
-    public void insertCardFromBottom() {
+    public void testInsertCardFromBottom() {
         PlayingCard expectedCard = deck.dealCard();
 
         deck.insertCardFromBottom(expectedCard);
@@ -55,6 +55,25 @@ public class TestStandardDeck {
         PlayingCard actualCard = deck.getCards().removeLast();
 
         Assert.assertEquals(expectedCard, actualCard);
+    }
+
+    @Test
+    public void testReset() {
+        Deque<PlayingCard> expectedOriginal = deck.getCards();
+        for (int i = 0; i < 10; i++) {
+            expectedOriginal.poll();
+        }
+        Integer expectedSize = 42;
+        Integer actualSize = deck.getDeckSize();
+        Assert.assertEquals(expectedSize, actualSize);
+
+        deck.reset();
+        Integer expectedSizeAfterReset = 52;
+        Integer sizeAfterReset = deck.getDeckSize();
+        Assert.assertEquals(expectedSizeAfterReset, sizeAfterReset);
+
+
+
     }
 
     @Test

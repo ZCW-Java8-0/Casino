@@ -32,6 +32,13 @@ public class StandardDeck implements Deck {
         cards.offerLast(card);
     }
 
+    // reset cards to a new shuffled state
+    public void reset() {
+        List<PlayingCard> newCards = initCards();
+        shuffle(newCards);
+        this.cards = new ArrayDeque<>(newCards);
+    }
+
     public int getDeckSize() {
         return cards.size();
     }
