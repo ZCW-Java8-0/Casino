@@ -17,5 +17,8 @@ public class PlayingCard {
         return RANK;
     }
 
+    // TODO: Add console graphic representation of card
+    public void printCard() {}
+
 }
 
