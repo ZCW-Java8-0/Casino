@@ -15,6 +15,7 @@ int playerChips = 5;
 int playerBet = 0;
 
     public static void main(String[] args) {
+        System.out.println("Welcome to the Bobby's Brutal Blackjack. Name's Bobby, nice to meet cha.");
         BlackjackGame bj = new BlackjackGame();
         bj.playGame();
     }
@@ -42,8 +43,7 @@ if (playerAmount <= 21 && playerAmount > dealerAmount){
 
 
 private void welcomeStatement(){
-    System.out.println("Welcome to the Bobby's Brutal Blackjack. Name's Bobby, nice to meet cha.\n" +
-            "Let's jack it up!.\n");
+    System.out.println("Let's jack it up!.\n");
 }
 
 public int getDealerAmount(){
