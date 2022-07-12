@@ -48,8 +48,8 @@ private void welcomeStatement(){
 
 public int getDealerAmount(){
         Random random = new Random();
-        int min = 19;
-        int max = 1;
+        int min = 17;
+        int max = 3;
     int dealerNum = min + random.nextInt(max);
     dealerAmount = dealerNum;
     return dealerAmount;
@@ -76,7 +76,7 @@ public int getDealerAmount(){
     public void playerWins(){
             Scanner scan = new Scanner(System.in);
             playerChips += playerBet;
-            System.out.println("Wowzers, you got " + playerAmount + " and won " + playerBet + "! You now have " + playerChips + "!");
+            System.out.println("Wowzers, you got " + playerAmount + " and won " + playerBet + " chips! You now have " + playerChips + " chips!");
             playerAmount = 0;
             scan.nextLine();
             playGame();
@@ -85,7 +85,7 @@ public int getDealerAmount(){
     public void dealerWins(){
         Scanner scan = new Scanner(System.in);
         playerChips-=playerBet;
-        System.out.println(playerAmount + "! Welp, them's the breaks, kid. You lost " + playerBet + " and now have " + playerChips + ".");
+        System.out.println(playerAmount + "! Welp, them's the breaks, kid. You lost " + playerBet + " chips and now have " + playerChips + " chips.");
         playerAmount = 0;
         scan.nextLine();
         playGame();
@@ -107,6 +107,16 @@ public int getDealerAmount(){
         return playerBet;
         }
 
+//    int getNumb(String message) {
+//
+//    Scanner scan = new Scanner(System.in);
+//        while (true) {
+//            System.out.print(message);
+//            try {
+//                return scan.nextInt();
+//            }
+//            catch (InputMismatchException e) {
+//                System.out.println("\"" + scan.next() + "\" isn't a number!");
 
     }
 
