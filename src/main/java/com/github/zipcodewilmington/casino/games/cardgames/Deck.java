@@ -4,7 +4,7 @@ import java.util.*;
 
 public abstract class Deck<E> {
     protected Deque<E> cards;
-    <E> void shuffle(List<E> cards) {
+    public void shuffle(List<E> cards) {
         Collections.shuffle(cards);
     }
 
@@ -14,21 +14,28 @@ public abstract class Deck<E> {
         this.cards = new ArrayDeque<>(tmp);
     }
 
-    abstract E dealCard();
+    protected E dealCard() {
+        return cards.pop();
+    }
+
+    // insert a card to the bottom of deck
+    protected void insertCardFromBottom(E card) {
+        cards.offerLast(card);
+    }
 
     public Deque<E> getCards() {
         return this.cards;
     }
 
-    int getDeckSize() {
+    public int getDeckSize() {
         return cards.size();
     }
 
-    abstract List<E> initCards();
+    protected abstract List<E> initCards();
 
     // reset Deck to a new shuffled state
-    abstract void reset();
+    protected abstract void reset();
 
-    abstract void printCards();
+    public abstract void printCards();
 
 }

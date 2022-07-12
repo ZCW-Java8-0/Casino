@@ -11,16 +11,6 @@ public class StandardDeck extends Deck<PlayingCard> {
         super.cards = new ArrayDeque<>(newCards);
     }
 
-    // pop card from top of deck
-    public PlayingCard dealCard() {
-        return super.cards.pop();
-    }
-
-    // insert a card to the bottom of deck
-    public void insertCardFromBottom(PlayingCard card) {
-        super.cards.offerLast(card);
-    }
-
     // reset cards to a new shuffled state
     public void reset() {
         List<PlayingCard> newCards = initCards();
