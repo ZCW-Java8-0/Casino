@@ -3,49 +3,31 @@ package com.github.zipcodewilmington.casino.games.cardgames;
 
 import java.util.*;
 
-public class StandardDeck implements Deck {
-    Deque<PlayingCard> cards;
+public class StandardDeck extends Deck<PlayingCard> {
 
     public StandardDeck() {
         List<PlayingCard> newCards = initCards();
         shuffle(newCards);
-        this.cards = new ArrayDeque<>(newCards);
-    }
-
-    public void shuffle(List<PlayingCard> cards) {
-        Collections.shuffle(cards);
-    }
-
-    public void shuffle() {
-        List<PlayingCard> tmp = new ArrayList<>(cards);
-        Collections.shuffle(tmp);
-        cards = new ArrayDeque<>(tmp);
+        super.cards = new ArrayDeque<>(newCards);
     }
 
     // pop card from top of deck
     public PlayingCard dealCard() {
-        return cards.pop();
+        return super.cards.pop();
     }
 
     // insert a card to the bottom of deck
     public void insertCardFromBottom(PlayingCard card) {
-        cards.offerLast(card);
+        super.cards.offerLast(card);
     }
 
     // reset cards to a new shuffled state
     public void reset() {
         List<PlayingCard> newCards = initCards();
         shuffle(newCards);
-        this.cards = new ArrayDeque<>(newCards);
+        super.cards = new ArrayDeque<>(newCards);
     }
 
-    public int getDeckSize() {
-        return cards.size();
-    }
-
-    public Deque<PlayingCard> getCards() {
-        return cards;
-    }
     protected List<PlayingCard> initCards() {
         List<PlayingCard> newCards = new ArrayList<>();
         for (CardRank r : CardRank.values()) {

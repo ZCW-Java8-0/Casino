@@ -1,16 +1,34 @@
 package com.github.zipcodewilmington.casino.games.cardgames;
 
-public interface Deck {
-    void shuffle();
+import java.util.*;
 
-    PlayingCard dealCard();
+public abstract class Deck<E> {
+    protected Deque<E> cards;
+    <E> void shuffle(List<E> cards) {
+        Collections.shuffle(cards);
+    }
 
+    void shuffle() {
+        List<E> tmp = new ArrayList<>(this.cards);
+        Collections.shuffle(tmp);
+        this.cards = new ArrayDeque<>(tmp);
+    }
 
-    int getDeckSize();
+    abstract E dealCard();
+
+    public Deque<E> getCards() {
+        return this.cards;
+    }
+
+    int getDeckSize() {
+        return cards.size();
+    }
+
+    abstract List<E> initCards();
 
     // reset Deck to a new shuffled state
-    void reset();
+    abstract void reset();
 
-    void printCards();
+    abstract void printCards();
 
 }
