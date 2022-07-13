@@ -35,14 +35,14 @@ public class Account {
     public void setAccountName(String acctName){this.accountName = acctName;}
     public void setName(String name){this.name = name;}
 
-    public void setAccountPassword(String password){this.password = password;}
-    public void setAccountBalance(int balance){this.balance = balance;}
+    public void setPassword(String password){this.password = password;}
+    public void setBalance(int balance){this.balance = balance;}
 
     //GETTERS
     public String getAccountName(){return this.accountName;}
     public String getName(){return this.name;}
-    public String getpassword(){return this.password;}
-    public Integer getbalance(){return this.balance;}
+    public String getPassword(){return this.password;}
+    public Integer getBalance(){return this.balance;}
 
     //METHODS
 

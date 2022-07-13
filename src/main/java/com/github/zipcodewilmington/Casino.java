@@ -1,6 +1,6 @@
 package com.github.zipcodewilmington;
 
-import com.github.zipcodewilmington.casino.CasinoAccount;
+import com.github.zipcodewilmington.casino.Account;
 import com.github.zipcodewilmington.casino.PlayerSetup;
 import com.github.zipcodewilmington.utils.TheScanner;
 
@@ -93,7 +93,7 @@ public class Casino implements Runnable {
         String acctName;
         while(true) {
             acctName = scan.nextLine();
-            if (CasinoAccount.checkForDupes(acctName) == true){break;}
+            if (Account.checkForDupes(acctName) == true){break;}
             else System.out.println("An account by that name already exists, please choose another name\n");
         }
         System.out.println("Welcome to the STARDUST VIP Club " + acctName + "! Just a few more questions\n" +
@@ -128,7 +128,7 @@ public class Casino implements Runnable {
 //        scan.nextLine();
         System.out.println("Thank you! Your account is prepared and has been automatically logged in.\n" +
                 "Enjoy your time at the STARDUST VIP Casino!!!!");
-        CasinoAccount.createAccount(acctName);
+        Account.createAccount(acctName);
         PlayerSetup.addActivePlayer(acctName, 20000);
         mainMenu();
     }
