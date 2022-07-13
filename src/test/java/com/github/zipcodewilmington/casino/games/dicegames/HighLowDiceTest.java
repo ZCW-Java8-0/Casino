@@ -14,13 +14,21 @@ public class HighLowDiceTest {
         int results = dice.tossAndSum(2);
         HighLowDiceMain mainGame = new HighLowDiceMain();
 
-        int expected = mainGame.checkHighOrLow(results);
-        int actual = 1;
+        boolean actual = false;
+        if(mainGame.checkHighOrLow(results) == 0 || mainGame.checkHighOrLow(results) == 1 || mainGame.checkHighOrLow(results) == 2){
+            actual = true;
+        }
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(actual);
 
     }
+    @Test
+    public void placeBetTest(){
 
+    }
+    @Test
+    public void resolveBetTest(){
 
+    }
 
 }
