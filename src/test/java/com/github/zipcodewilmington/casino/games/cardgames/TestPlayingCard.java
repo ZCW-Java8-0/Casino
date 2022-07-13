@@ -30,4 +30,14 @@ public class TestPlayingCard {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testEquals() {
+        PlayingCard newCard = new PlayingCard(CardSuit.DIAMONDS, CardRank.JACK);
+        Boolean expected = true;
+
+        Boolean actual = newCard.equals(card);
+
+        Assert.assertEquals(expected, actual);
+    }
 }

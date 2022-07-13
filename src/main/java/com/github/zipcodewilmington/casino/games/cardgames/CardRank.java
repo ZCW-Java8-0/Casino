@@ -1,7 +1,7 @@
 package com.github.zipcodewilmington.casino.games.cardgames;
 
 public enum CardRank {
-    ONE(1),
+    ACE(1),
     TWO(2),
     THREE(3),
     FOUR(4),

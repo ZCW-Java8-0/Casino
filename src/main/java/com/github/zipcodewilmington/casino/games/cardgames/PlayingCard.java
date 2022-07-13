@@ -17,6 +17,13 @@ public class PlayingCard {
         return RANK;
     }
 
+    public boolean equals(PlayingCard card) {
+        if (this.SUIT == card.SUIT && this.RANK == card.RANK) {
+            return true;
+        }
+        return false;
+    }
+
     // TODO: Add console graphic representation of card
     public void printCard() {}
 
