@@ -1,8 +1,8 @@
-package com.github.zipcodewilmington.casino.games.highlowdice;
+package com.github.zipcodewilmington.casino.games.dicegames.highlowdice;
 
 import java.util.Scanner;
 
-public class HighLowDice {
+public class HighLowDiceMain {
     Scanner scanner = new Scanner(System.in);
     Integer results;
     int[] high = new int[]{2, 3, 4, 5, 6};
