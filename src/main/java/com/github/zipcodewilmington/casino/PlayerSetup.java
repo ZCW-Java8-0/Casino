@@ -3,28 +3,34 @@ package com.github.zipcodewilmington.casino;
 import com.github.zipcodewilmington.Casino;
 import com.github.zipcodewilmington.utils.TheScanner;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerSetup {
-    public static Map<String, Integer> activePlayers = new HashMap<>();
-    // ^^ Hashmap of active players.  <Name, Balance>
+    public static ArrayList<String> activePlayers = new ArrayList<>();
 
 
-    public static boolean addActivePlayer(String account, Integer balance){
-        activePlayers.put(account, balance);
-        if (activePlayers.containsKey(account) == true){return false;}
-        else return true;
+    public static void addActivePlayer(String account){
+        if (activePlayers.contains(account)){
+            System.out.println("This player is already logged in, please choose another account.");
+        }
+        else {activePlayers.add(account);
+            System.out.println("Added " + account + " as Player" + activePlayers.size());}
     }
 
     public static void removeActivePlayer(String account) {
-        for (int i = 0; i < activePlayers.size(); i++) ;
-        if (activePlayers.containsKey(account)) {activePlayers.remove(account);}
-        else if (!activePlayers.containsKey(account)) {
-            System.out.println("Could not find account in active player list.\n" +
-                    "Here is the list of active players and their balances:\n ");
+        if (activePlayers.contains(account)){
+            for (int i = 0 ; i < activePlayers.size() ; i++) {
+                if (activePlayers.get(i).equals(account)){
+                    activePlayers.remove(i);
+                    break;}
+            }
+            System.out.println("Removed " + account + " from active player list.\n" +
+                    "Remaining active players:\n");
             showActivePlayers();
         }
+        else {System.out.println("That player is not currently active.");}
     }
 
 

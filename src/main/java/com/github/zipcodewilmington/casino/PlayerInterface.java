@@ -10,7 +10,7 @@ public interface PlayerInterface {
     /**
      * @return the `ArcadeAccount` used to log into the `Arcade` system to play this game
      */
-    CasinoAccount getArcadeAccount();
+    Account getArcadeAccount();
 
     /**
      * Defines how a specific implementation of `PlayerInterface` plays their respective game.

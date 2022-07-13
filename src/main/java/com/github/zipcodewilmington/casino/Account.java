@@ -14,7 +14,6 @@ public class Account {
     static List<Account> allAccounts = new ArrayList<>();
 
 
-
     //CONSTRUCTORS
     public Account() {
         this.accountName = "";
