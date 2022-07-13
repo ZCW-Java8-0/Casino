@@ -9,10 +9,10 @@ public class HighLowDiceMain {
 
     public Integer checkHighOrLow(int diceResult) {
         if (diceResult > 7) {
-            return 0;
+            return 0; //High
         } else if (diceResult < 7){
-            return 1;
+            return 1; //Low
         }
-        return 2;
+        return 2; //7 is middle
     }
 }

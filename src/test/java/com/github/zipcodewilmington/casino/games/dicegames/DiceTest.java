@@ -40,7 +40,15 @@ class DiceTest {
         int actual = dice.getNumber();
 
         Assert.assertEquals(expected, actual);
+    }
 
+    @Test
+    void getResultTest() {
+        Dice dice = new Dice();
+        int expected = dice.tossAndSum(2);
 
+        int actual = dice.getResults();
+
+        Assert.assertEquals(expected, actual);
     }
 }

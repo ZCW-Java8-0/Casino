@@ -20,8 +20,11 @@ public class HighLowDiceEngine extends Dice {
         while(true) {
             //prompt();
             //System.out.println("Place your bets");
-            int results = dice.tossAndSum(2);
-            int highOrLow = mainGame.checkHighOrLow(results);
+            dice.tossAndSum(2);
+            int highOrLow = mainGame.checkHighOrLow(dice.getResults());
+//            if (highOrLow == input) {
+//
+//            }
         }
     }
     public static void prompt() {

@@ -5,6 +5,7 @@ import java.util.Random;
 public class Dice {
     private Random random = new Random();
     private Integer number;
+    private Integer results;
 
     public Dice() {
 
@@ -24,10 +25,14 @@ public class Dice {
     }
 
     public int tossAndSum(int numOfDice) {
-        int results = 0;
+        this.results = 0;
         for (int i = 0; i < numOfDice; i++) {
-            results += rollDice();
+            this.results += rollDice();
         }
+        return this.results;
+    }
+
+    public Integer getResults() {
         return results;
     }
 }
