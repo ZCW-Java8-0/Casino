@@ -5,10 +5,14 @@ import java.util.Scanner;
 public class HighLowDiceMain {
     Scanner scanner = new Scanner(System.in);
     Integer results;
-    int[] high = new int[]{2, 3, 4, 5, 6};
-    int[] low = new int[]{8,9,10,11,12};
 
-    public Integer checkHighOrLow() {
-        return 0;
+
+    public Integer checkHighOrLow(int diceResult) {
+        if (diceResult > 7) {
+            return 0;
+        } else if (diceResult < 7){
+            return 1;
+        }
+        return 2;
     }
 }

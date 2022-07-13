@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.dicegames;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -29,5 +30,17 @@ class DiceTest {
         Integer actual = dice.tossAndSum(2);
 
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void getNumberTest() {
+        Dice dice = new Dice();
+        int expected = dice.rollDice();
+
+        int actual = dice.getNumber();
+
+        Assert.assertEquals(expected, actual);
+
+
     }
 }
