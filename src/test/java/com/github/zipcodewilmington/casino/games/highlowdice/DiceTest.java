@@ -1,36 +1,33 @@
 package com.github.zipcodewilmington.casino.games.highlowdice;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Random;
 
 class DiceTest {
-
     @Test
-    void rollDice() {
+    void rollDiceTest() {
         Dice dice = new Dice();
-        boolean isTrue = false;
-        dice.rollDice();
+        Random random = new Random(1);
+        dice.setRandom(random);
 
-        if(dice.rollDice() == 1 || dice.rollDice() == 2 || dice.rollDice() == 3 || dice.rollDice() == 4 || dice.rollDice() == 5  || dice.rollDice() == 6){
-            isTrue = true;
-        }
+        Integer expected = 4;
+        Integer actual = dice.rollDice();
 
-        Assertions.assertEquals(true, isTrue);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     void tossAndSum() {
         Dice dice = new Dice();
-        dice.tossAndSum(2);
-        boolean isTrue = false;
+        Random random = new Random(2);
+        dice.setRandom(random);
 
-        if(dice.tossAndSum(2) == 2 || dice.tossAndSum(2) == 3 || dice.tossAndSum(2) == 4 || dice.tossAndSum(2) == 5 || dice.tossAndSum(2) == 6 || dice.tossAndSum(2) == 7 || dice.tossAndSum(2) == 8  || dice.tossAndSum(2) == 9  || dice.tossAndSum(2) == 10  || dice.tossAndSum(2) == 11  || dice.tossAndSum(2) == 12){
-            isTrue = true;
-        }
+        Integer expected = 6;
+        Integer actual = dice.tossAndSum(2);
 
-
-        Assertions.assertEquals(true, isTrue);
+        Assertions.assertEquals(expected, actual);
     }
 }

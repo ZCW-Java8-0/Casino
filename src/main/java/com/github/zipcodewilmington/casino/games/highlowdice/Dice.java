@@ -1,14 +1,21 @@
 package com.github.zipcodewilmington.casino.games.highlowdice;
 
+import java.util.Random;
+
 public class Dice {
+    Random random = new Random();
+    Integer number;
 
-    public void Dice(){
-
+    public Dice() {
     }
 
-    public int rollDice() {
-        int roll = (int) (Math.random() * 6 + 1);
-        return roll;
+    public void setRandom(Random random) {
+        this.random = random;
+    }
+
+    public Integer rollDice() {
+        number = random.nextInt(6) + 1;
+        return number;
     }
     public int tossAndSum(int numOfDice) {
         int results = 0;
