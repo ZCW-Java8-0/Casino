@@ -1,4 +1,4 @@
-package com.github.zipcodewilmington.casino.games.highlowdice;
+package com.github.zipcodewilmington.casino.games.dicegames;
 
 import java.util.Random;
 
