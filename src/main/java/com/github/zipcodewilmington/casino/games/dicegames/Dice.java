@@ -3,10 +3,12 @@ package com.github.zipcodewilmington.casino.games.dicegames;
 import java.util.Random;
 
 public class Dice {
-    Random random = new Random();
-    Integer number;
+    private Random random = new Random();
+    private Integer number;
+    private Integer results;
 
     public Dice() {
+
     }
 
     public void setRandom(Random random) {
@@ -14,14 +16,23 @@ public class Dice {
     }
 
     public Integer rollDice() {
-        number = random.nextInt(6) + 1;
-        return number;
+        this.number = random.nextInt(6) + 1;
+        return this.number;
     }
+
+    public Integer getNumber() {
+        return this.number;
+    }
+
     public int tossAndSum(int numOfDice) {
-        int results = 0;
+        this.results = 0;
         for (int i = 0; i < numOfDice; i++) {
-            results += rollDice();
+            this.results += rollDice();
         }
+        return this.results;
+    }
+
+    public Integer getResults() {
         return results;
     }
 }
