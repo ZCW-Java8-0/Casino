@@ -2,6 +2,7 @@ package com.github.zipcodewilmington;
 
 import com.github.zipcodewilmington.casino.Account;
 import com.github.zipcodewilmington.casino.PlayerSetup;
+import com.github.zipcodewilmington.casino.games.dicegames.highlowdice.HighLowDiceMain;
 import com.github.zipcodewilmington.utils.TheScanner;
 
 import java.util.Scanner;
@@ -65,22 +66,21 @@ public class Casino implements Runnable {
             menuChoice = TheScanner.getNumber("Please choose one of the following options by entering it's number: \n" +
                     "1) Create new STARDUST VIP Account\n" +
                     "2) Play Games\n" +
-                    "2) Go to the Lounge\n" +
-                    "3) Leave Casino\n");
+                    "3) Go to the Lounge\n" +
+                    "4) Leave Casino\n");
             if (menuChoice >= 1 && menuChoice <= 5) {
                 break;
             } else System.out.println("That is not a valid choice, please choose a valid menu choice.\n");
         }
         if (menuChoice == 1) {
-//            PlayerSetup.addActivePlayer();
-        } else if (menuChoice == 2) {
-            //load manage active players method
-        } else if (menuChoice == 3) {
             createAccount();
-        } else if (menuChoice == 4) {
+        } else if (menuChoice == 2) {
+            pickGame();
+        } else if (menuChoice == 3) {
             lounge();
-        } else if (menuChoice == 5) {
-            quit();}
+        } else if (menuChoice == 4) {
+            quit();
+        }
     }
 
     public static void createAccount(){
@@ -121,7 +121,7 @@ public class Casino implements Runnable {
         int menuChoice;
         while (true) {
             menuChoice = TheScanner.getNumber("Enter a number for the game you would like to play below:\n" +
-                    "1) LIST\n" +
+                    "1) High-Low Dice\n" +
                     "2) OF\n" +
                     "3) GAMES\n" +
                     "4) GOES\n" +
@@ -134,7 +134,7 @@ public class Casino implements Runnable {
             } else System.out.println("That is not a valid choice, please choose a number from the menu.\n");
         }
         if (menuChoice == 1) {
-            //load game 1
+            HighLowDiceMain.playGame();
         } else if (menuChoice == 2) {
             //load game 2
         }else if (menuChoice == 3) {
