@@ -79,9 +79,11 @@ public class Account {
         while(true) {
             System.out.println("Please enter your account name, or type \"exit\" to return to main menu.");
             acctName = scan.nextLine();
-            if (accountExists(acctName) == true) {
+            if (accountExists(acctName) == true && !activePlayers.contains(acctName)) {
                 break;
-            } else if (acctName.equals("exit")) {
+            } else if (accountExists(acctName) == true && activePlayers.contains(acctName)) {
+                System.out.println("That account is already logged in, please log into a different account.");
+            }else if (acctName.equals("exit")) {
                 Casino.splashScreen();
             } else if (accountExists(acctName) == false) {
                 System.out.println("There is no record of an account with that name, please re-enter\n" +
@@ -97,7 +99,7 @@ public class Account {
                 break;
             } else System.out.println("Password does not match account " + acctName + ".");
         }
-        activePlayers.put(acctName, tempAccount);
+        activePlayers.add(tempAccount);
     }
 
     public static boolean accountExists(String acctName){

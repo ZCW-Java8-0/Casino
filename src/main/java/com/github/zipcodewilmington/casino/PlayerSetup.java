@@ -8,22 +8,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerSetup {
-//    public static ArrayList<String> activePlayers = new ArrayList<>();
+    public static ArrayList<Account> activePlayers = new ArrayList<>();
+//    static Map<String, Account> activePlayers = new HashMap<>();
 
-    static Map<String, Account> activePlayers = new HashMap<>();
-
-    public static void addActivePlayer(String accountName, Account account){
-        if (activePlayers.containsKey(accountName)){
+    public static void addActivePlayer(Account account){
+        if (activePlayers.contains(account)){
             System.out.println("This player is already logged in, please choose another account.");
         }
-        else {activePlayers.put(accountName, account);
-            System.out.println("Added " + accountName + " as Player" + activePlayers.size());}
+        else {activePlayers.add(account);
+            System.out.println("Added " + account.getAccountName() + " as Player" + activePlayers.size());}
     }
 
-    public static void removeActivePlayer(String accountName) {
-        if (activePlayers.containsKey(accountName)){
-            activePlayers.remove(accountName);
-            System.out.println("Removed " + accountName + " from active player list.\n" +
+    public static void removeActivePlayer(Account account) {
+        if (activePlayers.contains(account)){
+            activePlayers.remove(account);
+            System.out.println("Removed " + account + " from active player list.\n" +
                     "Remaining active players:\n");
             showActivePlayers();
         }
@@ -31,10 +30,8 @@ public class PlayerSetup {
     }
 
     public static void showActivePlayers(){
-        for (Map.Entry<String, Account> pair : activePlayers.entrySet()){
-            int i = 1;
-            System.out.println(String.format("Player " + i + "is  %s", pair.getKey()));
-            i++;
+        for (int i = 0 ; i < activePlayers.size() ; i++) {
+            System.out.println("Player " + (i+1) + ": " + activePlayers.get(i).getAccountName());
         }
     }
 
@@ -49,7 +46,7 @@ public class PlayerSetup {
             } else System.out.println("That is not a valid number of players.\n" +
                     "Please enter a number between 1 and " + maxPlayers + ".");
         }
-        for (int i = 0 ; i <= numPlayers; i++) {
+        for (int i = 0 ; i < numPlayers; i++) {
             Account.login();
         }
     }
