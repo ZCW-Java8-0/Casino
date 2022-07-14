@@ -8,40 +8,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerSetup {
-    public static ArrayList<String> activePlayers = new ArrayList<>();
+//    public static ArrayList<String> activePlayers = new ArrayList<>();
+    static Map<String, Account> activePlayers = new HashMap<>();
 
-
-    public static void addActivePlayer(String account){
-        if (activePlayers.contains(account)){
+    public static void addActivePlayer(String accountName, Account account){
+        if (activePlayers.containsKey(accountName)){
             System.out.println("This player is already logged in, please choose another account.");
         }
-        else {activePlayers.add(account);
-            System.out.println("Added " + account + " as Player" + activePlayers.size());}
+        else {activePlayers.put(accountName, account);
+            System.out.println("Added " + accountName + " as Player" + activePlayers.size());}
     }
 
-    public static void removeActivePlayer(String account) {
-        if (activePlayers.contains(account)){
-            for (int i = 0 ; i < activePlayers.size() ; i++) {
-                if (activePlayers.get(i).equals(account)){
-                    activePlayers.remove(i);
-                    break;}
-            }
-            System.out.println("Removed " + account + " from active player list.\n" +
+    public static void removeActivePlayer(String accountName) {
+        if (activePlayers.containsKey(accountName)){
+            activePlayers.remove(accountName);
+            System.out.println("Removed " + accountName + " from active player list.\n" +
                     "Remaining active players:\n");
             showActivePlayers();
         }
-        else {System.out.println("That player is not currently active.");}
+        else {System.out.println("That player is not currently logged in.");}
     }
 
 
     public static void showActivePlayers(){
-        System.out.println(activePlayers);
+        System.out.println(activePlayers.keySet());
     }
 
     public static void playerSetup(int maxPlayers){
         while(true) {
             int numPlayers = TheScanner.getNumber("How many players are going to be playing in this game?\n");
-            if (numPlayers >= 1 && numPlayers <= maxPlayers && numPlayers == activePlayers.size()) {
+            if (numPlayers >= 1 && numPlayers <= maxPlayers) {
                 break;
             } else if (numPlayers != activePlayers.size()) {
                 System.out.println("The number of players you entered does not match the number\n" +
@@ -53,42 +49,3 @@ public class PlayerSetup {
         }
     }
 }
-
-
-//    /**
-//     * @param accountName     name of account to be returned
-//     * @param accountPassword password of account to be returned
-//     * @return `ArcadeAccount` with specified `accountName` and `accountPassword`
-//     */
-//    public CasinoAccount getAccount(String accountName, String accountPassword) {
-//        String currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
-//        String currentClassName = getClass().getName();
-//        String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
-//        throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
-//    }
-//
-//    /**
-//     * logs & creates a new `ArcadeAccount`
-//     *
-//     * @param accountName     name of account to be created
-//     * @param accountPassword password of account to be created
-//     * @return new instance of `ArcadeAccount` with specified `accountName` and `accountPassword`
-//     */
-//    public CasinoAccount createAccount(String accountName, String accountPassword) {
-//        String currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
-//        String currentClassName = getClass().getName();
-//        String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
-//        throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
-//    }
-//
-//    /**
-//     * logs & registers a new `ArcadeAccount` to `this.getArcadeAccountList()`
-//     *
-//     * @param casinoAccount the arcadeAccount to be added to `this.getArcadeAccountList()`
-//     */
-//    public void registerAccount(CasinoAccount casinoAccount) {
-//        String currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
-//        String currentClassName = getClass().getName();
-//        String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
-//        throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
-//    }

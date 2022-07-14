@@ -94,39 +94,27 @@ public class Casino implements Runnable {
             if (Account.checkForDupes(acctName) == true){break;}
             else System.out.println("An account by that name already exists, please choose another name\n");
         }
-        System.out.println("Welcome to the STARDUST VIP Club " + acctName + "! Just a few more questions\n" +
+        System.out.println("Excellent Choice!\n" +
+                "In order to confirm your identity and age and sell your information to our sponsors, please enter your real name.\n");
+        String name = scan.nextLine();
+        System.out.println("Welcome to the STARDUST VIP Club " + name + "! Just a few more questions\n" +
                 "and we'll be ready to start GAMBLING!\n" +
-                "Please enter a password for your account.\n");
-        scan.nextLine();
-//        System.out.println("Please confirm your password\n");
-//        scan.nextLine();
-//        System.out.println("Your entries do not match, please confirm your password.\n");
-//        scan.nextLine();
-//        System.out.println("Thank you. Now for the security questions!\n" +
-//                "What is your favorite soup?\n");
-//        scan.nextLine();
-//        System.out.println("Gross! What is your favorite color?\n");
-//        scan.nextLine();
-//        System.out.println("Weird. What is your favorite football team?\n");
-//        while(true){
-//            String football = scan.nextLine().toLowerCase();
-//            if (football.equals("cowboys") || football.equals("dallas cowboys")) {
-//                System.out.println("You have bad taste, pick a different team.\n");
-//            } else if (football.equals("eagles") || football.equals("philadelphia eagles")) {
-//                System.out.println("GO BIRDS!\nGO BIRDS!\nGO BIRDS!\nGO BIRDS!\nGO BIRDS!\n");
-//                break;
-//            }else break;
-//        }
-//        System.out.println("Almost there.\n" +
-//                "If you had to choose one smell to smell for the rest of your life, what would it be?\n");
-//        scan.nextLine();
-//        System.out.println("Ok, last one.\n" +
-//                "If you were had to choose between everyone else being able to read your thoughts,\n" +
-//                "or everyone you know having access to your internet history, which would you choose?\n");
-//        scan.nextLine();
-        System.out.println("Thank you! Your account is prepared and has been automatically logged in.\n" +
-                "Enjoy your time at the STARDUST VIP Casino!!!!");
-        Account.createAccount(acctName);
+                "Please enter a password for your account.\n\n");
+        String password = scan.nextLine();
+        System.out.println("Your password is safe with us, " + name + ". You can count on us keeping your password (" + password + ") safe.\n\n");
+        int balance;
+        while(true) {
+            balance = TheScanner.getNumber("Finally, please tell us how much you would like to deposit in your account.");
+            if (balance > 10000000){
+                System.out.println("Whoa there moneybags, we can't be responsible for THAT much money. Pick something lower.");
+            }else break;
+        }
+
+
+        System.out.println("Thank you! Your account is now prepared!\n" +
+                "When you approach one of our game tables you and everyone you are with will be prompted to log in.\n" +
+                "Enjoy your time at the STARDUST VIP Casino and Lounge!!!!");
+        Account account = new Account(acctName, name, password, balance);
         mainMenu();
     }
 
@@ -206,6 +194,32 @@ public class Casino implements Runnable {
         }
         mainMenu();
     }
-
-
 }
+
+
+//        System.out.println("Please confirm your password\n");
+//        scan.nextLine();
+//        System.out.println("Your entries do not match, please confirm your password.\n");
+//        scan.nextLine();
+//        System.out.println("Thank you. Now for the security questions!\n" +
+//                "What is your favorite soup?\n");
+//        scan.nextLine();
+//        System.out.println("Gross! What is your favorite color?\n");
+//        scan.nextLine();
+//        System.out.println("Weird. What is your favorite football team?\n");
+//        while(true){
+//            String football = scan.nextLine().toLowerCase();
+//            if (football.equals("cowboys") || football.equals("dallas cowboys")) {
+//                System.out.println("You have bad taste, pick a different team.\n");
+//            } else if (football.equals("eagles") || football.equals("philadelphia eagles")) {
+//                System.out.println("GO BIRDS!\nGO BIRDS!\nGO BIRDS!\nGO BIRDS!\nGO BIRDS!\n");
+//                break;
+//            }else break;
+//        }
+//        System.out.println("Almost there.\n" +
+//                "If you had to choose one smell to smell for the rest of your life, what would it be?\n");
+//        scan.nextLine();
+//        System.out.println("Ok, last one.\n" +
+//                "If you were had to choose between everyone else being able to read your thoughts,\n" +
+//                "or everyone you know having access to your internet history, which would you choose?\n");
+//        scan.nextLine();

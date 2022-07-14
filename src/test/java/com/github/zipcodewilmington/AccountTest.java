@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class AccountTest {
-
     @Test
     public void testSetAccountName(){
         Account account = new Account();
@@ -14,7 +13,6 @@ public class AccountTest {
         String actual = account.getAccountName();
         Assert.assertEquals(expected, actual);
     }
-
     @Test
     public void testSetName(){
         Account account = new Account();
@@ -23,7 +21,6 @@ public class AccountTest {
         String actual = account.getName();
         Assert.assertEquals(expected, actual);
     }
-
     @Test
     public void testSetPassword(){
         Account account = new Account();
@@ -32,7 +29,6 @@ public class AccountTest {
         String actual = account.getPassword();
         Assert.assertEquals(expected, actual);
     }
-
     @Test
     public void testSetBalance(){
         Account account = new Account();
@@ -41,7 +37,6 @@ public class AccountTest {
         int actual = account.getBalance();
         Assert.assertEquals(expected, actual);
     }
-
     @Test
     //Constructor Test
     public void testAcctConstructor() {
@@ -57,5 +52,17 @@ public class AccountTest {
         Assert.assertEquals(account.getName(), expName);
         Assert.assertEquals(account.getPassword(), expPass);
         Assert.assertEquals(actBal, expBal);
+    }
+    @Test
+    public void testCheckDupes(){
+
+    }
+    @Test
+    public void testMakeBet(){
+
+    }
+    @Test
+    public void testDeposit(){
+
     }
 }

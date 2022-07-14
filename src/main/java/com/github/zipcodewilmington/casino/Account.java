@@ -1,8 +1,12 @@
 package com.github.zipcodewilmington.casino;
 
 
+import com.github.zipcodewilmington.utils.TheScanner;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Account {
 
@@ -11,7 +15,8 @@ public class Account {
     private String name;
     private String password;
     private int balance;
-    static List<Account> allAccounts = new ArrayList<>();
+//    static List<Account> allAccounts = new ArrayList<>();
+    static Map<String, Account> allAccounts = new HashMap<>();
 
 
     //CONSTRUCTORS
@@ -19,21 +24,20 @@ public class Account {
         this.accountName = "";
         this.name = "";
         this.password = "";
-        this.balance = 2000;
-        allAccounts.add(this);
+        this.balance = 0;
+        allAccounts.put(accountName, this);
     }
     public Account(String acctName, String name, String password, int balance){
         this.accountName = acctName;
         this.name = name;
         this.password = password;
         this.balance = balance;
-        allAccounts.add(this);
+        allAccounts.put(accountName, this);
     }
 
     //SETTERS
     public void setAccountName(String acctName){this.accountName = acctName;}
     public void setName(String name){this.name = name;}
-
     public void setPassword(String password){this.password = password;}
     public void setBalance(int balance){this.balance = balance;}
 
@@ -45,17 +49,26 @@ public class Account {
 
     //METHODS
 
-    public void withdraw(int amount){
-        if (amount > this.balance){System.out.println("You don't have that much!");}
-        else this.balance -= amount;
-    }
-    public void deposit(int amount){
-        this.balance += amount;
+    public int makeBet(Account account){
+        int amount;
+        while(true) {
+           amount = TheScanner.getNumber("How much do you want to bet?");
+            if (allAccounts.containsKey(account) && account.balance >= amount) {
+                account.balance -= amount;
+                break;
+            } else if (allAccounts.containsKey(account) && account.balance < amount) {
+                System.out.println("You don't have that much in your account.\n" +
+                        "Current account balance is: " + account.getBalance() + "Please enter a valid amount.\n");
+            }
+        }
+        return amount;
     }
 
-    public static void createAccount(String name){
-        Account account = new Account();
+
+    public void deposit(Account account, int amount){
+        account.balance += amount;
     }
+
 
     public static boolean checkForDupes(String name){
         //false means there are dupes, true means there are not
@@ -65,7 +78,3 @@ public class Account {
         return true;
     }
 }
-
-
-//    store everything in hashmap
-//    make method to check number of players matches the number of players in hashmap

@@ -16,7 +16,7 @@ public class TheScanner {
                 return scanner.nextInt();
             }
             catch (InputMismatchException e) {
-                System.out.println("\"" + scanner.next() + "\" is not a number. Please enter a number.");
+                System.out.println("\"" + scanner.next() + "\" is not a number dumdum. Please enter a number.");
             }
         }
     }
