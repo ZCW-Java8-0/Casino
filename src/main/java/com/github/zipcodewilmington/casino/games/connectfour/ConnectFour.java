@@ -29,14 +29,14 @@ public class ConnectFour {
 
     public static void main(String[] args) {
         Character[][] board = {
-                {'-', '-', '-', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '-'},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
                 {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
                 {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
                 {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
                 {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
                 {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
                 {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
-                {'-', '-', '-', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '-'},
+                {'|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|'},
         };
 
         gameBoard = new Board(board);
@@ -58,7 +58,7 @@ public class ConnectFour {
         int rowNums = 1;
         for (Character[] row : board) {
             for (Character ch : row) {
-                System.out.print(ANSI_YELLOW+ch);
+                System.out.print(ANSI_YELLOW + ch);
                 System.out.print("\t");
             }
             System.out.println("");
@@ -75,7 +75,7 @@ public class ConnectFour {
         switch (pos) {
             //y then x
             case 1:
-                board[6][1] = symbol; //column 1
+                board[6][1] = symbol; //column1
                 break;
             case 2:
                 board[6][3] = symbol; //column2
