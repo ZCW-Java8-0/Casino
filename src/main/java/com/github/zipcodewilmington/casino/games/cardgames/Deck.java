@@ -14,12 +14,12 @@ public abstract class Deck<E> {
         this.cards = new ArrayDeque<>(tmp);
     }
 
-    protected E dealCard() {
+    public E dealCard() {
         return cards.pop();
     }
 
     // insert a card to the bottom of deck
-    protected void insertCardFromBottom(E card) {
+    public void insertCardFromBottom(E card) {
         cards.offerLast(card);
     }
 
@@ -34,7 +34,7 @@ public abstract class Deck<E> {
     protected abstract List<E> initCards();
 
     // reset Deck to a new shuffled state
-    protected abstract void reset();
+    public abstract void reset();
 
     public abstract void printCards();
 
