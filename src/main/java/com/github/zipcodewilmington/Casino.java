@@ -21,46 +21,56 @@ public class Casino implements Runnable {
     public void run() {
         String arcadeDashBoardInput;
         CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
+        try{
         do {
             arcadeDashBoardInput = getArcadeDashboardInput();
+
             if ("select-game".equals(arcadeDashBoardInput)) {
                 String accountName = console.getStringInput("Enter your account name:");
                 String accountPassword = console.getStringInput("Enter your account password:");
                 CasinoAccount casinoAccount = casinoAccountManager.getAccount(accountName, accountPassword);
                 boolean isValidLogin = casinoAccount != null;
                 if (isValidLogin) {
-                    String gameSelectionInput = getGameSelectionInput().toUpperCase();
-                    if (gameSelectionInput.equals("SLOTS")) {
-                        play(new SlotsGame(), new SlotsPlayer());
-                    } else if (gameSelectionInput.equals("CEE-LO")) {
-                        play(new CeeloGame(), new CeeloPlayer());
-                    } else if (gameSelectionInput.equals("CHUCK A LUCK")) {
-                        play(new ChuckALuckGame(), new ChuckALuckPlayer());
-                    } else if (gameSelectionInput.equals("CONNECT 4")) {
-                        play(new Connect4Game(), new Connect4Player());
-                    } else if (gameSelectionInput.equals("BLACKJACK")) {
-                        play(new BlackjackGame(), new BlackjackPlayer());
-                    }else if (gameSelectionInput.equals("WAR")) {
-                        play(new WarGame(), new WarPlayer());
-                    } else {
+
+                        String gameSelectionInput = getGameSelectionInput().toUpperCase();
+                        if (gameSelectionInput.equals("SLOTS")) {
+                            play(new SlotsGame(), new SlotsPlayer());
+//                    } else if (gameSelectionInput.equals("CEE-LO")) {
+//                        play(new CeeloGame(), new CeeloPlayer());
+//                    } else if (gameSelectionInput.equals("CHUCK A LUCK")) {
+//                        play(new ChuckALuckGame(), new ChuckALuckPlayer());
+//                    } else if (gameSelectionInput.equals("CONNECT 4")) {
+//                        play(new Connect4Game(), new Connect4Player());
+//                    } else if (gameSelectionInput.equals("BLACKJACK")) {
+//                        play(new BlackjackGame(), new BlackjackPlayer());
+//                    }else if (gameSelectionInput.equals("WAR")) {
+//                        play(new WarGame(), new WarPlayer());
+                        } else {
+                            // TODO - implement better exception handling
+                            String errorMessage = "[ %s ] is an invalid game selection";
+                            throw new RuntimeException(String.format(errorMessage, gameSelectionInput));
+                        }
+                    } else{
                         // TODO - implement better exception handling
-                        String errorMessage = "[ %s ] is an invalid game selection";
-                        throw new RuntimeException(String.format(errorMessage, gameSelectionInput));
+                        String errorMessage = "No account found with name of [ %s ] and password of [ %s ]";
+                        throw new RuntimeException(String.format(errorMessage, accountPassword, accountName));
                     }
-                } else {
-                    // TODO - implement better exception handling
-                    String errorMessage = "No account found with name of [ %s ] and password of [ %s ]";
-                    throw new RuntimeException(String.format(errorMessage, accountPassword, accountName));
-                }
-            } else if ("create-account".equals(arcadeDashBoardInput)) {
-                console.println("Welcome to the account-creation screen.");
-                String accountName = console.getStringInput("Enter your account name:");
-                String accountPassword = console.getStringInput("Enter your account password:");
-                CasinoAccount newAccount = casinoAccountManager.createAccount(accountName, accountPassword);
-                casinoAccountManager.registerAccount(newAccount);
-            }
-        } while (!"logout".equals(arcadeDashBoardInput));
-    }
+
+
+        } else if ("create-account".equals(arcadeDashBoardInput)) {
+            console.println("Welcome to the account-creation screen.");
+            String accountName = console.getStringInput("Enter your account name:");
+            String accountPassword = console.getStringInput("Enter your account password:");
+            CasinoAccount newAccount = casinoAccountManager.createAccount(accountName, accountPassword);
+            casinoAccountManager.registerAccount(newAccount);
+        }
+
+    } while(!"logout".equals(arcadeDashBoardInput));
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
+}
+
 
     private String getArcadeDashboardInput() {
         return console.getStringInput(new StringBuilder()
@@ -79,8 +89,8 @@ public class Casino implements Runnable {
     }
 
     private void play(Object gameObject, Object playerObject) {
-        GameInterface game = (GameInterface)gameObject;
-        PlayerInterface player = (PlayerInterface)playerObject;
+        GameInterface game = (GameInterface) gameObject;
+        PlayerInterface player = (PlayerInterface) playerObject;
         game.add(player);
         game.run();
     }
