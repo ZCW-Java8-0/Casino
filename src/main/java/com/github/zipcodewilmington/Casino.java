@@ -63,11 +63,10 @@ public class Casino implements Runnable {
 
         while (true) {
             menuChoice = TheScanner.getNumber("Please choose one of the following options by entering it's number: \n" +
-                    "1) Log in to STARDUST VIP Account\n" +
-                    "2) Manage active players\n" +
-                    "3) Create new STARDUST VIP Account\n" +
-                    "4) Go to the Lounge\n" +
-                    "5) Leave Casino\n");
+                    "1) Create new STARDUST VIP Account\n" +
+                    "2) Play Games\n" +
+                    "2) Go to the Lounge\n" +
+                    "3) Leave Casino\n");
             if (menuChoice >= 1 && menuChoice <= 5) {
                 break;
             } else System.out.println("That is not a valid choice, please choose a valid menu choice.\n");
@@ -95,7 +94,7 @@ public class Casino implements Runnable {
             else System.out.println("An account by that name already exists, please choose another name\n");
         }
         System.out.println("Excellent Choice!\n" +
-                "In order to confirm your identity and age and sell your information to our sponsors, please enter your real name.\n");
+                "In order to confirm your identity, age, and sell your information to our sponsors, please enter your real name.\n");
         String name = scan.nextLine();
         System.out.println("Welcome to the STARDUST VIP Club " + name + "! Just a few more questions\n" +
                 "and we'll be ready to start GAMBLING!\n" +
@@ -109,7 +108,6 @@ public class Casino implements Runnable {
                 System.out.println("Whoa there moneybags, we can't be responsible for THAT much money. Pick something lower.");
             }else break;
         }
-
 
         System.out.println("Thank you! Your account is now prepared!\n" +
                 "When you approach one of our game tables you and everyone you are with will be prompted to log in.\n" +

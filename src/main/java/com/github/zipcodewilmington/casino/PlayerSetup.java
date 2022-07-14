@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class PlayerSetup {
 //    public static ArrayList<String> activePlayers = new ArrayList<>();
+
     static Map<String, Account> activePlayers = new HashMap<>();
 
     public static void addActivePlayer(String accountName, Account account){
@@ -37,18 +38,15 @@ public class PlayerSetup {
         }
     }
 
-    public static void playerSetup(int maxPlayers){
-        while(true) {
+    public static void playerSetup(int maxPlayers) {
+        while (true) {
             int numPlayers = TheScanner.getNumber("How many players are going to be playing in this game?\n");
             if (numPlayers >= 1 && numPlayers <= maxPlayers) {
                 break;
-            } else if (numPlayers != activePlayers.size()) {
-                System.out.println("The number of players you entered does not match the number\n" +
-                        "of accounts that are logged in. Sending you back to the\n" +
-                        "main menu to fix your number of logged in accounts.");
-                Casino.mainMenu();
-            } else System.out.println("That is not a valid number of players, " +
-                        "please enter a number that is " + maxPlayers + " or less\n");
+            } else System.out.println("That is not a valid number of players.\n" +
+                    "Please enter a number between 1 and " + maxPlayers + ".");
         }
+
+
     }
 }

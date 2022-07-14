@@ -1,12 +1,12 @@
 package com.github.zipcodewilmington.casino;
 
 
+import com.github.zipcodewilmington.Casino;
 import com.github.zipcodewilmington.utils.TheScanner;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+import static com.github.zipcodewilmington.casino.PlayerSetup.activePlayers;
 
 public class Account {
 
@@ -68,6 +68,45 @@ public class Account {
     public void deposit(Account account, int amount){
         account.balance += amount;
     }
+
+
+    public static void login(){
+        Account tempAccount;
+        Scanner scan = new Scanner(System.in);
+        String acctName;
+        String pw;
+
+        while(true) {
+            System.out.println("Please enter your account name, or type \"exit\" to return to main menu.");
+            acctName = scan.nextLine();
+            if (accountExists(acctName) == true) {
+                break;
+            } else if (acctName.equals("exit")) {
+                Casino.splashScreen();
+            } else if (accountExists(acctName) == false) {
+                System.out.println("There is no record of an account with that name, please re-enter\n" +
+                        "your account name, or return to the main menu and create an account.");
+            }
+        }
+        tempAccount = allAccounts.get(acctName);
+        while(true) {
+            System.out.println("Please enter your password.");
+            pw = scan.nextLine();
+            if (tempAccount.getPassword().equals(pw)) {
+                System.out.println("Password accepted.");
+                break;
+            } else System.out.println("Password does not match account " + acctName + ".");
+        }
+        activePlayers.put(acctName, tempAccount);
+    }
+
+    public static boolean accountExists(String acctName){
+            if (allAccounts.containsKey(acctName)) {
+                return true;
+            }else return false;
+        }
+
+
 
 
     public static boolean checkForDupes(String name){
