@@ -46,7 +46,7 @@ public class PlayerSetup {
             } else System.out.println("That is not a valid number of players.\n" +
                     "Please enter a number between 1 and " + maxPlayers + ".");
         }
-        for (int i = 0 ; i <= numPlayers; i++) {
+        for (int i = 0 ; i < numPlayers; i++) {
             Account.login();
         }
     }
