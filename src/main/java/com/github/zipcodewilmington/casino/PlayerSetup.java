@@ -29,9 +29,12 @@ public class PlayerSetup {
         else {System.out.println("That player is not currently logged in.");}
     }
 
-
     public static void showActivePlayers(){
-        System.out.println(activePlayers.keySet());
+        for (Map.Entry<String, Account> pair : activePlayers.entrySet()){
+            int i = 1;
+            System.out.println(String.format("Player " + i + "is  %s", pair.getKey()));
+            i++;
+        }
     }
 
     public static void playerSetup(int maxPlayers){
