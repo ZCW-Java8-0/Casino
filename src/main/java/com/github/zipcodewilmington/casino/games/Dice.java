@@ -6,14 +6,14 @@ import java.util.List;
 public class Dice {
     static List<Integer> bins;
     private Integer numOfDice;
-    private Integer maxRoll = numOfDice * 6;
-    private Integer sum;
+    private Integer maxRoll;
 
-    public Dice(Integer dice) {
-        this.numOfDice = dice;
+    public Dice(Integer numOfDice) {
+        this.numOfDice = numOfDice;
+        this.maxRoll = numOfDice * 6;
     }
 
-    public int tossAndSum(){
+    public Integer tossAndSum(){
 
         // Roll n amount of times and return the sum of the rolls.
 
