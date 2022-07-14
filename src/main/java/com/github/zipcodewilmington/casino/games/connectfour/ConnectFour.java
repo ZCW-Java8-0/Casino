@@ -1,13 +1,8 @@
 package com.github.zipcodewilmington.casino.games.connectfour;
 
 import com.github.zipcodewilmington.utils.AnsiColor;
-import com.github.zipcodewilmington.utils.IOConsole;
-
-import java.io.Console;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import static com.github.zipcodewilmington.casino.games.connectfour.Board.*;
 
 
 public class ConnectFour {
@@ -15,6 +10,8 @@ public class ConnectFour {
     static ArrayList<Integer> cpuPositions = new ArrayList<Integer>();
     List<Token> userTokens = new ArrayList<>();
     List<Token> cpuTokens = new ArrayList<>();
+
+    static Map<Character[][], Boolean> indexTracker = new HashMap<Character[][], Boolean>();
 
     public static final String ANSI_YELLOW = "\u001B[33m"; //replace with AnsiColor enums
     static AnsiColor color;
@@ -27,22 +24,27 @@ public class ConnectFour {
     static Token userToken = new Token(AnsiColor.RED);
     static Token opponentToken = new Token(AnsiColor.BLACK);
 
+    static boolean winner = false;
+
     public static void main(String[] args) {
-        Character[][] board = {
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
-                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
-                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
-                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
-                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
-                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
-                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
-                {'|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|'},
-        };
+//        Character[][] board = {
+//                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+//                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
+//                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
+//                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
+//                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
+//                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
+//                {'|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|', 'O', '|'},
+//                {'|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|', '-', '|'},
+//        };
+//        placeUserPosition(board, "user");
+//        System.out.print(userToken);
 
         gameBoard = new Board(board);
-        displayGameBoard(board);
-        placeUserPosition(board, cfPlayer.getPositionPlacement(), "user");
+        createGameBoard();
 
+        displayGameBoard();
+        placeUserPosition(board, "user");
     }
 
 
@@ -53,63 +55,70 @@ public class ConnectFour {
     ConnectFour() {
     }
 
-    static void displayGameBoard(Character[][] board) {
-        //TODO number rows to better user's understanding
-        int rowNums = 1;
-        for (Character[] row : board) {
-            for (Character ch : row) {
-                System.out.print(ANSI_YELLOW + ch);
-                System.out.print("\t");
-            }
-            System.out.println("");
-        }
-    }
-
-    static void placeUserPosition(Character[][] board, int position, String user) {
-        int pos;
+    static void placeUserPosition(Character[][] board, String user) {
         char symbol = 'X';
-        System.out.println("Enter a position to place your token: ");
-        cfPlayer.setPositionPlacement(sc.nextInt());
-        pos = cfPlayer.getPositionPlacement();
+        boolean emptyPosition = true;
+        int roundCounter = 1;
 
-        switch (pos) {
-            //y then x
-            case 1:
-                board[6][1] = symbol; //column1
-                break;
-            case 2:
-                board[6][3] = symbol; //column2
-                break;
-            case 3:
-                board[6][5] = symbol; //column3
-                break;
-            case 4:
-                board[6][7] = symbol; //column4
-                break;
-            case 5:
-                board[6][9] = symbol; //column5
-                break;
-            case 6:
-                board[6][11] = symbol; //column6
-                break;
-            case 7:
-                board[6][13] = symbol; //column7
-                break;
-            default:
-                break;
+        while (emptyPosition) { //replace w try, catch block
+            System.out.println("Round " +roundCounter +"\n"+
+                    "Enter a position to place your token: ");
+            cfPlayer.setPositionPlacement(sc.nextInt()); // setting player position based on user input
+            int pos = cfPlayer.getPositionPlacement(); //return player's position
+
+            if(pos>8 || pos<1) {
+                System.out.print("ERROR: invalid number");
+            }
+            else {
+                emptyPosition = false;
+            }
+
+            switch (pos) {
+                //y then x
+                case 1:
+                    board[6][1] = symbol;//column1
+                    userPositions.add(pos);
+                    indexTracker.put(board, emptyPosition);
+                    break;
+                case 2:
+                    board[6][3] = symbol; //column2
+                    break;
+                case 3:
+                    board[6][5] = symbol; //column3
+                    break;
+                case 4:
+                    board[6][7] = symbol; //column4
+                    break;
+                case 5:
+                    board[6][9] = symbol; //column5
+                    break;
+                case 6:
+                    board[6][11] = symbol; //column6
+                    break;
+                case 7:
+                    board[6][13] = symbol; //column7
+                    break;
+                default:
+                    System.out.print("ERROR: invalid number");
+                    break;
+            }
+            roundCounter++;
+            System.out.println("\n\n");
+
+            System.out.print(userPositions);
+            displayGameBoard();
+
         }
-        System.out.println("\n\n");
-        displayGameBoard(board);
 
-
-/*
-    static void placePosition(Character[][] board, int position, String user) {
-        char symbol;
-        if (user.equals("user")) {
-            symbol = AnsiColor.RED;
-        }
-    }
-*/
+//        while (winner==false) {
+//
+//            if (position>7 || position<0) {
+//                System.out.print("ERROR: invalid number");
+//            }
+//            else {
+//                board[6][position] = symbol;
+//            }
+//        }
 
 
     }
