@@ -90,7 +90,7 @@ public class Casino implements Runnable {
         String acctName;
         while(true) {
             acctName = scan.nextLine();
-            if (Account.checkForDupes(acctName)){break;}
+            if (Account.accountExists(acctName)){break;}
             else System.out.println("An account by that name already exists, please choose another name\n");
         }
         System.out.println("Excellent Choice!\n" +
