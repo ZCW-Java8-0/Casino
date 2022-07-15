@@ -36,11 +36,9 @@ public class PlayerSetup {
     }
 
     public static void playerSetup(int maxPlayers) {
-
         int numPlayers;
         while (true) {
             numPlayers = TheScanner.getNumber("How many players are going to be playing in this game?\n");
-
             if (numPlayers >= 1 && numPlayers <= maxPlayers) {
                 break;
             } else System.out.println("That is not a valid number of players.\n" +

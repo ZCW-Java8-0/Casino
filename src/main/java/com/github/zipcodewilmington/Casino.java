@@ -47,7 +47,7 @@ public class Casino implements Runnable {
                                     | '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |                   \s
                                      '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'                   \s
                 
-                Press Enter to GAMBLE!""");
+                Press Enter to GAMBLE!\n""");
 
 
 
@@ -68,7 +68,7 @@ public class Casino implements Runnable {
                     "2) Play Games\n" +
                     "3) Go to the Lounge\n" +
                     "4) Leave Casino\n");
-            if (menuChoice >= 1 && menuChoice <= 5) {
+            if (menuChoice >= 1 && menuChoice <= 4) {
                 break;
             } else System.out.println("That is not a valid choice, please choose a valid menu choice.\n");
         }
@@ -90,7 +90,7 @@ public class Casino implements Runnable {
         String acctName;
         while(true) {
             acctName = scan.nextLine();
-            if (Account.checkForDupes(acctName) == true){break;}
+            if (Account.checkForDupes(acctName)){break;}
             else System.out.println("An account by that name already exists, please choose another name\n");
         }
         System.out.println("Excellent Choice!\n" +
@@ -103,9 +103,9 @@ public class Casino implements Runnable {
         System.out.println("Your password is safe with us, " + name + ". You can count on us keeping your password (" + password + ") safe.\n\n");
         int balance;
         while(true) {
-            balance = TheScanner.getNumber("Finally, please tell us how much you would like to deposit in your account.");
+            balance = TheScanner.getNumber("Finally, please tell us how much you would like to deposit in your account.\n\n");
             if (balance > 10000000){
-                System.out.println("Whoa there moneybags, we can't be responsible for THAT much money. Pick something lower.");
+                System.out.println("Whoa there moneybags, we can't be responsible for THAT much money. Pick something lower.\n");
             }else break;
         }
 

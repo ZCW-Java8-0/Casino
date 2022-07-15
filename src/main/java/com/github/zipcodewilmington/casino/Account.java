@@ -75,17 +75,16 @@ public class Account {
         Scanner scan = new Scanner(System.in);
         String acctName;
         String pw;
-
         while(true) {
             System.out.println("Please enter your account name, or type \"exit\" to return to main menu.");
             acctName = scan.nextLine();
-            if (accountExists(acctName) == true && !activePlayers.contains(acctName)) {
+            if (accountExists(acctName) && !activePlayers.contains(acctName)) {
                 break;
-            } else if (accountExists(acctName) == true && activePlayers.contains(acctName)) {
+            } else if (accountExists(acctName) && activePlayers.contains(acctName)) {
                 System.out.println("That account is already logged in, please log into a different account.");
-            }else if (acctName.equals("exit")) {
+            } else if (acctName.equals("exit")) {
                 Casino.splashScreen();
-            } else if (accountExists(acctName) == false) {
+            } else if (!accountExists(acctName)) {
                 System.out.println("There is no record of an account with that name, please re-enter\n" +
                         "your account name, or return to the main menu and create an account.");
             }
