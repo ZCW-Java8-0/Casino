@@ -14,6 +14,7 @@ public class ConnectFour {
     static Map<Character[][], Boolean> indexTracker = new HashMap<Character[][], Boolean>();
 
     public static final String ANSI_YELLOW = "\u001B[33m"; //replace with AnsiColor enums
+    private static final String ANSI_RED = "\u001B[31m";
     static AnsiColor color;
 
 
@@ -21,8 +22,8 @@ public class ConnectFour {
     static ConnectFourPlayer cfPlayer = new ConnectFourPlayer();
     static Board gameBoard;
 
-    static Token userToken = new Token(AnsiColor.RED);
-    static Token opponentToken = new Token(AnsiColor.BLACK);
+    static Token userToken = new Token();
+//    static Token opponentToken = new Token(AnsiColor.BLACK);
 
     static boolean winner = false;
 
@@ -58,6 +59,8 @@ public class ConnectFour {
     static void placeUserPosition(Character[][] board, String user) {
         char symbol = 'X';
         boolean emptyPosition = true;
+        boolean emptyColumn = true;
+        boolean emptyRow = true;
         int roundCounter = 1;
 
         while (emptyPosition) { //replace w try, catch block
@@ -65,6 +68,9 @@ public class ConnectFour {
                     "Enter a position to place your token: ");
             cfPlayer.setPositionPlacement(sc.nextInt()); // setting player position based on user input
             int pos = cfPlayer.getPositionPlacement(); //return player's position
+
+            userToken.setSymbol(symbol);
+            Character tok = userToken.getSymbol();
 
             if(pos>8 || pos<1) {
                 System.out.print("ERROR: invalid number");
@@ -81,7 +87,7 @@ public class ConnectFour {
                     indexTracker.put(board, emptyPosition);
                     break;
                 case 2:
-                    board[6][3] = symbol; //column2
+                    board[6][3] = tok; //column2
                     break;
                 case 3:
                     board[6][5] = symbol; //column3
@@ -106,6 +112,7 @@ public class ConnectFour {
             System.out.println("\n\n");
 
             System.out.print(userPositions);
+//            System.out.println(indexTracker.);
             displayGameBoard();
 
         }
