@@ -1,9 +1,10 @@
 package com.github.zipcodewilmington.casino.games;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DeckOfCards extends ArrayList {
+public class DeckOfCards  {
     private ArrayList<Card> deck;
 
 
@@ -12,18 +13,37 @@ public class DeckOfCards extends ArrayList {
         this.deck = deck;
     }
 
-    public ArrayList<Card> shuffle(){
-            Collections.shuffle(deck);
+    public ArrayList<Card> getDeck() {
         return deck;
     }
 
+    public void setDeck(ArrayList<Card> deck) {
+        this.deck = deck;
+    }
+
+    public ArrayList<Card> shuffle(){
+        Collections.shuffle(deck);
+        return deck;
+    }
+
+    public int size(){
+        return deck.size();
+    }
+
+    public Card get(int i){
+        return deck.get(i);
+    }
+
+    public Card draw(){
+        return deck.remove(0);
+    }
 
     public DeckOfCards(){
         List<String> suits = Card.getValidSuits();
 
         List<String> faceNames = Card.getValidFaceNames();
 
-        deck = new ArrayList<Card>();
+        deck = new ArrayList<>();
 
         for (String suit: suits){
             for (String faceName: faceNames){
