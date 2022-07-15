@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington;
 
 import com.github.zipcodewilmington.casino.Account;
+import com.github.zipcodewilmington.casino.PlayerSetup;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,16 +55,41 @@ public class AccountTest {
         Assert.assertEquals(actBal, expBal);
     }
     @Test
-    public void testCheckDupes(){
-
-
+    public void testAccountExists(){
+        Account account1 = new Account("kyle", "kyle", "kyle", 100);
+        boolean actual = Account.accountExists("kyle");
+        boolean expected = true;
+        Assert.assertEquals(actual, expected);
     }
     @Test
     public void testMakeBet(){
-
+        Account account = new Account("acctName", "name", "pass", 500);
+        int actual = Account.makeBetTest(account, 200);
+        int expected = 300;
+        Assert.assertEquals(expected, actual);
     }
     @Test
     public void testDeposit(){
-
+        Account account = new Account("troy", "troy", "troy", 100);
+        Account.deposit(account, 100);
+        int expected = 200;
+        int actual = account.getBalance();
+        Assert.assertEquals(actual, expected);
     }
+
+    @Test
+    public void testLogin() {
+        PlayerSetup.activePlayers.clear();
+        Account account = new Account("test", "test", "test", 100);
+        Account.loginTest();
+
+        int actual = PlayerSetup.activePlayers.size();
+        int expected = 1;
+
+        Assert.assertEquals(actual, expected);
+    }
+
+
+
+
 }

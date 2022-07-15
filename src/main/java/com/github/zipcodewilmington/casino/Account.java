@@ -48,15 +48,45 @@ public class Account {
     public Integer getBalance(){return this.balance;}
 
     //METHODS
+    public static void login(){
+        Account tempAccount;
+        Scanner scan = new Scanner(System.in);
+        String acctName;
+        String pw;
+        while(true) {
+            System.out.println("Please enter your account name, or type \"exit\" to return to main menu.\n");
+            acctName = scan.nextLine();
+            tempAccount = allAccounts.get(acctName);
+            if (accountExists(acctName) && !activePlayers.contains(tempAccount)) {
+                break;
+            } else if (accountExists(acctName) && activePlayers.contains(tempAccount)) {
+                System.out.println("That account is already logged in, please log into a different account.\n");
+            } else if (acctName.equals("exit")) {
+                Casino.splashScreen();
+            } else if (!accountExists(acctName)) {
+                System.out.println("There is no record of an account with that name, please re-enter\n" +
+                        "your account name, or return to the main menu and create an account.\n");
+            }
+        }
+        while(true) {
+            System.out.println("Please enter your password.\n");
+            pw = scan.nextLine();
+            if (tempAccount.getPassword().equals(pw)) {
+                System.out.println("Password accepted.\n");
+                break;
+            } else System.out.println("Password does not match account " + acctName + ".\n");
+        }
+        activePlayers.add(tempAccount);
+    }
 
-    public int makeBet(Account account){
+    public static int makeBet(Account account){
         int amount;
         while(true) {
            amount = TheScanner.getNumber("How much do you want to bet?");
-            if (allAccounts.containsKey(account) && account.balance >= amount) {
+            if (allAccounts.containsValue(account) && account.balance >= amount) {
                 account.balance -= amount;
                 break;
-            } else if (allAccounts.containsKey(account) && account.balance < amount) {
+            } else if (allAccounts.containsValue(account) && account.balance < amount) {
                 System.out.println("You don't have that much in your account.\n" +
                         "Current account balance is: " + account.getBalance() + "Please enter a valid amount.\n");
             }
@@ -65,57 +95,56 @@ public class Account {
     }
 
 
-    public void deposit(Account account, int amount){
+    public static void deposit(Account account, int amount){
         account.balance += amount;
-    }
-
-
-    public static void login(){
-        Account tempAccount;
-        Scanner scan = new Scanner(System.in);
-        String acctName;
-        String pw;
-
-        while(true) {
-            System.out.println("Please enter your account name, or type \"exit\" to return to main menu.");
-            acctName = scan.nextLine();
-            if (accountExists(acctName) == true && !activePlayers.contains(acctName)) {
-                break;
-            } else if (accountExists(acctName) == true && activePlayers.contains(acctName)) {
-                System.out.println("That account is already logged in, please log into a different account.");
-            }else if (acctName.equals("exit")) {
-                Casino.splashScreen();
-            } else if (accountExists(acctName) == false) {
-                System.out.println("There is no record of an account with that name, please re-enter\n" +
-                        "your account name, or return to the main menu and create an account.");
-            }
-        }
-        tempAccount = allAccounts.get(acctName);
-        while(true) {
-            System.out.println("Please enter your password.");
-            pw = scan.nextLine();
-            if (tempAccount.getPassword().equals(pw)) {
-                System.out.println("Password accepted.");
-                break;
-            } else System.out.println("Password does not match account " + acctName + ".");
-        }
-        activePlayers.add(tempAccount);
     }
 
     public static boolean accountExists(String acctName){
             if (allAccounts.containsKey(acctName)) {
                 return true;
-            }else return false;
+            } else return false;
         }
 
-
-
-
-    public static boolean checkForDupes(String name){
-        //false means there are dupes, true means there are not
-        for (int i = 0 ; i < allAccounts.size() ; i++) {
-            if (name.equals(allAccounts.get(i))) return false;
+    public static void loginTest(){
+        Account tempAccount;
+        Scanner scan = new Scanner(System.in);
+        String acctName;
+        String pw;
+        while(true) {
+            System.out.println("Please enter your account name, or type \"exit\" to return to main menu.\n");
+            acctName = "test";
+            tempAccount = allAccounts.get(acctName);
+            if (accountExists(acctName) && !activePlayers.contains(tempAccount)) {
+                break;
+            } else if (accountExists(acctName) && activePlayers.contains(tempAccount)) {
+                System.out.println("That account is already logged in, please log into a different account.\n");
+            } else if (acctName.equals("exit")) {
+                Casino.splashScreen();
+            } else if (!accountExists(acctName)) {
+                System.out.println("There is no record of an account with that name, please re-enter\n" +
+                        "your account name, or return to the main menu and create an account.\n");
+            }
         }
-        return true;
+        while(true) {
+            System.out.println("Please enter your password.\n");
+            pw = "test";
+            if (tempAccount.getPassword().equals(pw)) {
+                System.out.println("Password accepted.\n");
+                break;
+            } else System.out.println("Password does not match account " + acctName + ".\n");
+        }
+        activePlayers.add(tempAccount);
+    }
+    public static int makeBetTest(Account account, int amount){
+        while(true) {
+            if (allAccounts.containsValue(account) && account.balance >= amount) {
+                account.balance -= amount;
+                break;
+            } else if (allAccounts.containsValue(account) && account.balance < amount) {
+                System.out.println("You don't have that much in your account.\n" +
+                        "Current account balance is: " + account.getBalance() + "Please enter a valid amount.\n");
+            }
+        }
+        return account.getBalance();
     }
 }
