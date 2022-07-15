@@ -1,5 +1,8 @@
 package com.github.zipcodewilmington.casino.games;
 
+import com.sun.security.jgss.InquireSecContextPermission;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,13 +47,26 @@ public class Card {
             throw new IllegalArgumentException("valid suits are: " + validSuits);
     }
 
+    public int getValue(){
+        return value;
+    }
+
+    public void setValue(int value){
+        if(value > 0 && value < 15) {
+            this.value = value;
+        }
+        else{
+            throw new IllegalArgumentException("Valid value is 1 to 14" );
+        }
+    }
 
     public String toString(){
         return String.format("%s of %s", faceName, suit);
     }
 
-    public Card(String faceName, String suit) {
+    public Card(String faceName, String suit, int value) {
         setFaceName(faceName);
         setSuit(suit);
+        setValue(value);
     }
 }
