@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Created by leon on 7/21/2020.
  */
-public class NumberGuessGame {
+public class NumberGuessMain {
     static boolean running = true;
     static int input;
     static NumberGuessEngine guessEngine = new NumberGuessEngine();
