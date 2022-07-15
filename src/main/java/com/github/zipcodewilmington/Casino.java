@@ -4,6 +4,8 @@ import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.casino.games.connectfour.ConnectFour;
+import com.github.zipcodewilmington.casino.games.connectfour.ConnectFourPlayer;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
@@ -39,8 +41,8 @@ public class Casino implements Runnable {
 //                        play(new CeeloGame(), new CeeloPlayer());
 //                    } else if (gameSelectionInput.equals("CHUCK A LUCK")) {
 //                        play(new ChuckALuckGame(), new ChuckALuckPlayer());
-//                    } else if (gameSelectionInput.equals("CONNECT 4")) {
-//                        play(new Connect4Game(), new Connect4Player());
+                    } else if (gameSelectionInput.equals("CONNECT 4")) {
+                        play(new ConnectFour(), new ConnectFourPlayer());
 //                    } else if (gameSelectionInput.equals("BLACKJACK")) {
 //                        play(new BlackjackGame(), new BlackjackPlayer());
 //                    }else if (gameSelectionInput.equals("WAR")) {
