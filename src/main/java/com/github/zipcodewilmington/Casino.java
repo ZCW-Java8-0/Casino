@@ -3,6 +3,7 @@ package com.github.zipcodewilmington;
 import com.github.zipcodewilmington.casino.Account;
 import com.github.zipcodewilmington.casino.PlayerSetup;
 import com.github.zipcodewilmington.casino.games.dicegames.highlowdice.HighLowDiceMain;
+import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessMain;
 import com.github.zipcodewilmington.utils.TheScanner;
 
 import java.util.Scanner;
@@ -21,6 +22,7 @@ public class Casino implements Runnable {
         final String PURPLE_BRIGHT = "\033[0;95m"; // PURPLE
         final String CYAN_BRIGHT = "\033[0;96m";   // CYAN
         final String RED_BRIGHT = "\033[0;91m";    // RED
+        PlayerSetup.activePlayers.clear();
         System.out.println("""
                  WELCOME TO...
                  
@@ -58,6 +60,8 @@ public class Casino implements Runnable {
     }
 
     public static void mainMenu(){
+        PlayerSetup.activePlayers.clear();
+
         int menuChoice;
 
         System.out.println("Welcome to the STARDUST VIP Casino and Lounge!\n");
@@ -90,7 +94,7 @@ public class Casino implements Runnable {
         String acctName;
         while(true) {
             acctName = scan.nextLine();
-            if (Account.accountExists(acctName)){break;}
+            if (!Account.accountExists(acctName)){break;}
             else System.out.println("An account by that name already exists, please choose another name\n");
         }
         System.out.println("Excellent Choice!\n" +
@@ -122,11 +126,11 @@ public class Casino implements Runnable {
         while (true) {
             menuChoice = TheScanner.getNumber("Enter a number for the game you would like to play below:\n" +
                     "1) High-Low Dice\n" +
-                    "2) OF\n" +
-                    "3) GAMES\n" +
-                    "4) GOES\n" +
-                    "5) HERE\n" +
-                    "6) !!!!!\n" +
+                    "2) Number Guess Game (No Gambling)\n" +
+                    "3) Under Construction\n" +
+                    "4) Under Construction\n" +
+                    "5) Under Construction\n" +
+                    "6) Under Construction\n" +
                     "7) Return to Main Menu\n" +
                     "8) Leave Casino\n");
             if (menuChoice >= 1 && menuChoice <= 8) {
@@ -136,7 +140,7 @@ public class Casino implements Runnable {
         if (menuChoice == 1) {
             HighLowDiceMain.playGame();
         } else if (menuChoice == 2) {
-            //load game 2
+            NumberGuessMain.playGame();
         }else if (menuChoice == 3) {
             //load game 3
         }else if (menuChoice == 4) {
