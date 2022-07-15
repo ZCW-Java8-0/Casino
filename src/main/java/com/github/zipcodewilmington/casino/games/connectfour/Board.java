@@ -1,10 +1,14 @@
 package com.github.zipcodewilmington.casino.games.connectfour;
 
+import com.github.zipcodewilmington.utils.AnsiColor;
+import com.github.zipcodewilmington.utils.IOConsole;
+
 public class Board {
     public static final String ANSI_YELLOW = "\u001B[33m"; //replace with AnsiColor enums
     private static int length = 15;
     private static int width = 7;
     public static final Character[][] board = new Character[width][length];
+
 
     public Board(Character[][] matrix) {
     }
@@ -35,6 +39,7 @@ public class Board {
             }
             System.out.println("");
         }
+        System.out.println("\t1\t\t2\t\t3\t\t4\t\t5\t\t6\t\t7");
     }
 
 

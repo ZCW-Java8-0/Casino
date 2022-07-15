@@ -1,6 +1,8 @@
 package com.github.zipcodewilmington.casino.games.connectfour;
 
 import com.github.zipcodewilmington.utils.AnsiColor;
+import com.github.zipcodewilmington.utils.IOConsole;
+
 import java.util.*;
 import static com.github.zipcodewilmington.casino.games.connectfour.Board.*;
 
@@ -10,23 +12,22 @@ public class ConnectFour {
 //    static ArrayList<Integer> cpuPositions = new ArrayList<>();
 //    List<Token> userTokens = new ArrayList<>();
 //    List<Token> cpuTokens = new ArrayList<>();
-
 //    static Map<Character[][], Boolean> indexTracker = new HashMap<>();
 
     public static final String ANSI_YELLOW = "\u001B[33m"; //replace with AnsiColor enums
     private static final String ANSI_RED = "\u001B[31m";
     static AnsiColor color;
 
-
     static Scanner sc = new Scanner(System.in);
     static ConnectFourPlayer cfPlayer = new ConnectFourPlayer();
     static Board gameBoard;
+    static IOConsole con = new IOConsole();
 
     static Token userToken = new Token();
     static int round = 1;
     static Character player = 'R';
-//    static Token opponentToken = new Token(AnsiColor.BLACK);
 
+    static int col;
     static boolean winner = false;
     static boolean allowedPlacement;
 
@@ -43,22 +44,18 @@ public class ConnectFour {
 //        };
 //        placeUserPosition(board, "user");
 //        System.out.print(userToken);
-        int col;
-
         gameBoard = new Board(board);
         createGameBoard();
-//        displayGameBoard();
-//        placeUserPosition(board, "user");
 
 
         while (winner == false && round <= 42) {
 
             do {
                 displayGameBoard();
-                System.out.print("Round #" + round+"\nPlayer " +player +
+                con.print("Round #" + round+"\nPlayer " +player +
                         " , enter a number to choose column:");
                 cfPlayer.setPositionPlacement(sc.nextInt());
-                col = cfPlayer.getPositionPlacement();
+                col = cfPlayer.getPositionPlacement()*2-1;
                 allowedPlacement = checkPlacement(col, board);
 
             } while (allowedPlacement == false);
@@ -79,6 +76,7 @@ public class ConnectFour {
             round++;
         }
         displayGameBoard();
+        System.out.println("");
 
         if (winner) {
             if (player =='R') {
@@ -169,10 +167,6 @@ public class ConnectFour {
 
 
     static boolean checkPlacement(int col, Character[][] board) {
-        boolean emptyPosition = true;
-        boolean emptyColumn = true;
-        boolean emptyRow = true;
-
         if (col < 1) { //TODO
             System.out.print("ERROR: invalid number");
             return false;
