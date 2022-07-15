@@ -33,7 +33,7 @@ public class ChuckALuck {
     }
 
     public Integer tossDice1() {
-        d1Value = 1;
+        d1Value = d6.tossAndSum();
         return d1Value;
     }
     public Integer tossDice2() {
@@ -53,21 +53,28 @@ public class ChuckALuck {
     }
 
 
-    public boolean resultIsTriple() {
-        return tossDice1() == tossDice2() && tossDice1() == tossDice3();
-    }
-    public boolean resultIsField() {
-        return sumDice() < 8 && sumDice() > 12;
-    }
-    public boolean isLow() {
-        return sumDice() < 11;
-    }
+//    public boolean resultIsTriple() {
+//        return tossDice1() == tossDice2() && tossDice1() == tossDice3();
+//    }
+//    public boolean resultIsField() {
+//        return sumDice() < 8 && sumDice() > 12;
+//    }
+//    public boolean isLow() {
+//        return sumDice() < 11;
+//    }
 
     public boolean win() {
         Integer sum = sumDice();
         if (betType == 1 && sum > 10) {
             return true;
-        } else return false;
+        } else if (betType == 2 && sum < 11) {
+            return true;
+        } else if (betType == 3 && (sum < 8 && sum > 12)) {
+            return true;
+        } else if (betType == 4 && (tossDice1() == tossDice2() && tossDice1() == tossDice3())) {
+            return true;
+        }
+        else return false;
     }
 
     public void printWinOrLose() {
