@@ -1,6 +1,5 @@
 package com.github.zipcodewilmington.casino.blackjack;
 
-import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
@@ -8,8 +7,8 @@ import java.util.Random;
 
 
 public class BlackJackGame {
-    int playerAmount = 0;
-    int dealerAmount = 0;
+    int playerHand = 0;
+    int dealerHand = 0;
 
     int playerChips = 500;
 
@@ -23,29 +22,37 @@ public class BlackJackGame {
 
 
     void playGame() {
-        getDealerAmount();
+Scanner scan = new Scanner(System.in);
+
         welcomeStatement();
-        getPlayerBet();
-        dealerRecap();
-
-        while (playerAmount < 21 && playerAmount <= dealerAmount){
-            Scanner scan = new Scanner(System.in);
-            if ((playerBet * 2) < playerChips);
-            System.out.println("Kiddo, type 'dd' to double down, or hit enter to draw");
-            String respond = scan.nextLine();
-            System.out.println(respond);
-            if (respond == "dd"){
-                doubleDown();
+        showPlayerBet();
+        showDealerHand1();
+        dealerRecap1();
+        playerRecap();
+        scan.nextLine();
+        showPlayerDraw();
+        showDealerHand2();
+        dealerRecap2();
+        while (playerHand < 21 && playerHand <= dealerHand) {
+            if ((playerChips - playerBet) > playerBet) {
+                System.out.println("Right now you got " + playerHand + ". Type 'dd' to double down, or hit enter to draw");
+                String respond = scan.nextLine();
+                if (respond.equals("dd")) {
+                    doubleDown();
+                } else {
+                    showPlayerDraw();
+                }
             }else{
-                playerDraw();
+                playerRecap();
+                scan.nextLine();
+                showPlayerDraw();
             }
-
         }
 
-        if (playerAmount <= 21 && playerAmount > dealerAmount){
-            playerWins(playerChips, playerBet);
-        } else if (playerAmount > 21){
-            dealerWins(playerChips, playerBet);
+        if (playerHand <= 21 && playerHand > dealerHand){
+            playerWins();
+        } else if (playerHand > 21){
+            dealerWins();
         }
 
     }
@@ -56,78 +63,100 @@ public class BlackJackGame {
         System.out.println("Let's jack it up!\n");
     }
 
-    public int getDealerAmount(){
+    private int showDealerHand1(){
+        dealerHand = 10;
+       return dealerHand;
+    }
+
+    private int showDealerHand2(){
         Random random = new Random();
-        int min = 17;
-        int max = 3;
-        int dealerNum = min + random.nextInt(max);
-        dealerAmount = dealerNum;
-        return dealerAmount;
+        int min = 6;
+        int max = 4;
+        dealerHand += min + random.nextInt(max);
+        return dealerHand;
     }
 
-    public void dealerRecap() {
-        System.out.println("It looks like the dealer has pulled a " + dealerAmount + ". See if you can beat that.");
+    public void dealerRecap1() {
+        System.out.println("It looks like the dealer has pulled a " + dealerHand + ".");
+    }
+    public void dealerRecap2() {
+        System.out.println("It looks like the dealer has pulled a " + dealerHand + ". See if you can beat that.");
     }
 
-    public int playerDraw() {
+    public void playerRecap(){
+        System.out.println("Right now you got " + playerHand + ". Hit enter to draw");
+    }
+
+    private int showPlayerBet(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("How many chips are ya bettin'?");
+        try {
+            playerBet = scan.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("That ain't a number I ever heard of.");
+            showPlayerBet();
+        }
+        if (playerBet > playerChips){
+            System.out.println("That bet is too big for your britches. Try a smaller amount.");
+            showPlayerBet();
+        }else if (playerBet < 0) {
+            System.out.println("Hey, don't try it with the funny business!");
+            showPlayerBet();
+        }
+        return playerBet;
+    }
+
+
+    private int showPlayerDraw() {
         Random random = new Random();
         Scanner scan = new Scanner(System.in);
         int min = 1;
-        System.out.println("OK kid, you got " + playerAmount + ". Draw a card and see if you can win.");
-        System.out.println("Hit enter to draw");
-        scan.nextLine();
-//        int nextDraw = min + random.nextInt(9);
-        int nextDraw = 11;
+        int nextDraw = min + random.nextInt(9);
         if (nextDraw == 1 || nextDraw == 11){
             aces();
             } else{
-            playerAmount += nextDraw;
+            playerHand += nextDraw;
             System.out.println("Ya drew a " + nextDraw + "!");
         }
-        return playerAmount;
+        return playerHand;
     }
 
 
-    public void aces() {
+    private int aces() {
         int nextDraw = 0;
         Scanner scan = new Scanner(System.in);
-        System.out.println("Choose if you want this Ace to be a 1 or an 11.");
-//        try {int nextDraw = scan.nextInt();
-//        } catch (InputMismatchException e) {
-//            System.out.println("That ain't a number I ever heard of.");
-//            aces();}
+        System.out.println("Ooh, an Ace! Choose if you want this Ace to be a 1 or an 11.");
         try {nextDraw = scan.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("That ain't a number I ever heard of.");
             aces();
-
         }
             if (nextDraw == 1 || nextDraw == 11) {
-                playerAmount += nextDraw;
+                playerHand += nextDraw;
                 System.out.println("Ya drew a " + nextDraw + "!");
             }else{
                 System.out.println("Nice try.");
                 aces();
             }
-
+            return playerHand;
         }
 
 
 
-    public void playerWins(int playerChips, int playerBet){
+    public void playerWins(){
         Scanner scan = new Scanner(System.in);
         playerChips += playerBet;
-        System.out.println("Wowzers, you got " + playerAmount + " and won " + playerBet + " chips! You now have " + playerChips + " chips!");
-        playerAmount = 0;
+        System.out.println("Woah! You got " + playerHand + " and won " + playerBet + " chips! You now have " + playerChips + " chips! Hit enter to try again.");
+        playerHand = 0;
         scan.nextLine();
         playGame();
     }
 
-    public void dealerWins(int playerChips, int playerBet){
+    public void dealerWins(){
         Scanner scan = new Scanner(System.in);
         playerChips-=playerBet;
-        System.out.println(playerAmount + "! Welp, them's the breaks, kid. You lost " + playerBet + " chips and now have " + playerChips + " chips.");
-        playerAmount = 0;
+        System.out.println(playerHand + "! Welp, them's the breaks, kid. You lost " + playerBet + " chips and now have " + playerChips + " chips. Hit enter to play again.");
+        playerHand = 0;
         scan.nextLine();
         playGame();
     }
@@ -135,49 +164,14 @@ public class BlackJackGame {
     public void doubleDown(){
         playerBet = playerBet * 2;
         System.out.println("OK kid, this next one is for all da marbles! Let's see what cha got!");
-        playerDraw();
-        if (playerAmount <= 21 && playerAmount > dealerAmount){
-            playerWins(playerChips, playerBet);
+        showPlayerDraw();
+        if (playerHand <= 21 && playerHand > dealerHand){
+            playerWins();
         } else{
-            dealerWins(playerChips, playerBet);
+            dealerWins();
         }
     }
 
-
-    public int getPlayerBet(){
-        Scanner scan = new Scanner(System.in);
-        System.out.println("How many chips are ya bettin'? Bet 0 if ya want!");
-        try {
-        playerBet = scan.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("That ain't a number I ever heard of.");
-            getPlayerBet();
-
-        }
-        if (playerBet > playerChips){
-            System.out.println("Kid, that bet is too big for your britches. Try a smaller amount.");
-            getPlayerBet();
-        }else if (playerBet < 0) {
-            System.out.println("Hey, don't try it with the funny business!");
-            getPlayerBet();
-        }
-        return playerBet;
-        }
-
-
-
-
     }
-
-//    int getNumb(String message) {
-//
-//    Scanner scan = new Scanner(System.in);
-//        while (true) {
-//            System.out.print(message);
-//            try {
-//                return scan.nextInt();
-//            }
-//            catch (InputMismatchException e) {
-//                System.out.println("\"" + scan.next() + "\" isn't a number!");
 
 
