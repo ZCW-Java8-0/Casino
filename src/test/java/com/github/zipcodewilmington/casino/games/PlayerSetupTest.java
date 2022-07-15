@@ -26,5 +26,11 @@ public class PlayerSetupTest {
         Assert.assertEquals(actual, expected);
     }
 
+    @Test
+    public void testPlayerSetup() {
+
+
+
+    }
 
 }
