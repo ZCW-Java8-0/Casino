@@ -1,20 +1,18 @@
 package com.github.zipcodewilmington.casino.games.chuckaluck;
 
+import com.github.zipcodewilmington.casino.GameInterface;
+import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.Dice;
 import com.github.zipcodewilmington.utils.IOConsole;
 
-import java.util.Optional;
-
-public class ChuckALuck {
+public class ChuckALuckGame implements GameInterface {
     private Integer betType = 0;
     private IOConsole console = new IOConsole();
     private int d1Value;
     private int d2Value;
     private int d3Value;
 
-
     Dice d6 = new Dice(1);
-
 
     String s = ("Betting Options \n\n"
             + "Type of Bet:       Condition:			                    Odds:\n"
@@ -83,8 +81,8 @@ public class ChuckALuck {
         } else System.out.println("You lose.");
     }
 
-    public static void main(String[] args) {
-        ChuckALuck game = new ChuckALuck();
+    public static void playChuckALuckGame() {
+        ChuckALuckGame game = new ChuckALuckGame();
         game.printRules();
         while(true) {
             game.askBetType();
@@ -95,5 +93,21 @@ public class ChuckALuck {
             game.printWinOrLose();
             System.out.println(game.sumDice());
         }
+    }
+
+    @Override
+    public void add(PlayerInterface player) {
+
+    }
+
+    @Override
+    public void remove(PlayerInterface player) {
+
+    }
+
+    @Override
+    public void run() {
+        playChuckALuckGame();
+
     }
 }
