@@ -8,27 +8,33 @@ import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
 public class ChuckALuckGame implements GameInterface {
+    private final IOConsole Red = new IOConsole(AnsiColor.RED);
+    private final IOConsole Green = new IOConsole(AnsiColor.GREEN);
+    private final IOConsole Yellow = new IOConsole(AnsiColor.YELLOW);
+    private final IOConsole Blue = new IOConsole(AnsiColor.BLUE);
+    private final IOConsole Purple = new IOConsole(AnsiColor.PURPLE);
+    private static final IOConsole Cyan = new IOConsole(AnsiColor.CYAN);
     private Integer betType = 0;
     private IOConsole console = new IOConsole();
     private int d1Value;
     private int d2Value;
     private int d3Value;
     private int bet;
+    private int winnings;
 
     Dice d6 = new Dice(1);
 
     public void setBet () {
-        this.bet = console.getIntegerInput("Enter your bet: ");
+        this.bet = Yellow.getIntegerInput("ENTER YOUR WAGER: ");
     }
 
-    public String welcome() {
-        return
-                "\n\n\n"+
+    public void welcome() {
+                Blue.println("\n\n\n"+
             "██████ ██   ██ ██    ██  ██████ ██   ██      █████      ██      ██    ██  ██████ ██   ██ ██\n" +
             "██     ██   ██ ██    ██ ██      ██  ██      ██   ██     ██      ██    ██ ██      ██  ██  ██\n" +
             "██     ███████ ██    ██ ██      █████       ███████     ██      ██    ██ ██      █████   ██\n" +
             "██     ██   ██ ██    ██ ██      ██  ██      ██   ██     ██      ██    ██ ██      ██  ██    \n" +
-            "██████ ██   ██  ██████   ██████ ██   ██     ██   ██     ███████  ██████   ██████ ██   ██ ██";
+            "██████ ██   ██  ██████   ██████ ██   ██     ██   ██     ███████  ██████   ██████ ██   ██ ██");
 
     }
 
@@ -52,16 +58,19 @@ public class ChuckALuckGame implements GameInterface {
     }
 
     public void printRules() {
-        System.out.println("\nTry your luck against the roll of the dice!");
+        System.out.println("\nTRY YOUR LUCK AGAINST THE ROLLS OF THE DICE!");
     }
 
     public Integer askBetType() {
-        betType =console.getIntegerInput("\nWhat do you want to bet on? \n\n" +
-                "Types of bets:\n\n" +
-                "1. High -- Total of 3 dice > 10\n" +
-                "2. Low -- Total of 3 dice < 11\n" +
-                "3. Field -- Total of 3 dice < 8 OR > 12\n" +
-                "4. Triples -- Feeling lucky? Win big if all three dice show the same number!");
+        betType =Yellow.getIntegerInput("\nWHAT DO YOU WANT TO BET ON? \n\n" +
+                "1. HIGH\n" +
+                // -- TOTAL OF 3 DICE > 10
+                "2. LOW\n" +
+                // -- TOTAL OF 3 DICE < 11
+                "3. FIELD\n" +
+                // -- Total of 3 dice < 8 OR > 12
+                "4. TRIPLES");
+                // -- FEELING LUCKY?? WIN BIG IF ALL 3 DICE SHOW THE SAME NUMBER!
         return betType;
     }
 
@@ -79,7 +88,7 @@ public class ChuckALuckGame implements GameInterface {
     }
 
     public void showRolls() {
-        System.out.println("\nDice: " + d1Value + " " + d2Value + " " + d3Value);
+        System.out.println("\nROLLS: " + d1Value + " " + d2Value + " " + d3Value);
     }
     public Integer sumDice() {
         return d1Value + d2Value + d3Value;
@@ -96,7 +105,7 @@ public class ChuckALuckGame implements GameInterface {
 //        return sumDice() < 11;
 //    }
 
-    public boolean win() {
+    public boolean winYN() {
         Integer sum = sumDice();
         if (betType == 1 && sum > 10) {
             return true;
@@ -111,25 +120,40 @@ public class ChuckALuckGame implements GameInterface {
     }
 
     public void printWinOrLose() {
-        if (win()) {
-            System.out.println("You Win!");
-        } else System.out.println("You lose.");
+        if (winYN()) {
+            Green.println("*********************");
+            Green.println("YOU WIN!!");
+            Green.println("*********************\n");
+        } else {
+            Red.println("*********************");
+            Red.println("OH NO! YOU LOST.");
+            Red.println("*********************\n");
+        }
     }
 
     public static void playChuckALuckGame() {
         ChuckALuckGame game = new ChuckALuckGame();
-        System.out.println(game.welcome());
+        game.welcome();
         game.printRules();
         System.out.println(game.welcomeDice1());
         System.out.println(game.welcomeDice2());
-        while(true) {
+        Boolean quit = false;
+        game.setBet();
+        while(!quit) {
             game.askBetType();
             game.tossDice1();
             game.tossDice2();
             game.tossDice3();
             game.showRolls();
             game.printWinOrLose();
-            System.out.println(game.sumDice());
+            System.out.println("Sum: " + game.sumDice());
+            Integer input = Cyan.getIntegerInput("PLAY AGAIN?\n\n" +
+                    "1.YES  2.NO  3.CHANGE BET");
+            if (input == 2) {
+                quit = true;
+            } else if (input == 3) {
+                game.setBet();
+            }
         }
     }
 
