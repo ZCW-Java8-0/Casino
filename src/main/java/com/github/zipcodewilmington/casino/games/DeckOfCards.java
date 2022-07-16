@@ -8,10 +8,7 @@ import java.util.List;
 public class DeckOfCards  {
     private ArrayList<Card> deck;
     private Card drawnCard;
-    private boolean blackJackTrueWarFalse;
-    private ArrayList<Integer> deckSelector;
-    private ArrayList<Integer> warValues = (ArrayList<Integer>) Arrays.asList(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
-    private ArrayList<Integer> blackJackValues = (ArrayList<Integer>) Arrays.asList(2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11);
+    public static boolean blackJackTrueWarFalse;
 
     public DeckOfCards(ArrayList<Card> deck) {
         this.deck = deck;
@@ -44,26 +41,20 @@ public class DeckOfCards  {
         return drawnCard;
     }
 
-    public DeckOfCards(boolean blackJackTrueWarFalse){
-        if(blackJackTrueWarFalse == true){
-            deckSelector.addAll(blackJackValues);
-        }
-        else{
-            deckSelector.addAll(warValues);
-        }
-
+    public DeckOfCards(){
         List<String> suits = Card.getValidSuits();
         List<String> faceNames = Card.getValidFaceNames();
+        List<Integer> values = Card.getValidValues();
 
         deck = new ArrayList<>();
-
+        int i;
         for (String suit: suits){
+            i = 0;
             for (String faceName: faceNames){
-                deck.add(new Card(faceName, suit, 1));
+                deck.add(new Card(faceName, suit, values.get(i)));
+//                System.out.println(deck.size()+". "+faceName+" of "+suit+" value:"+values.get(i));
+                i++;
             }
-//            for (int i = 0; i < deck.size();i++){
-//                deck.set(i, );
-//            }
         }
     }
 }

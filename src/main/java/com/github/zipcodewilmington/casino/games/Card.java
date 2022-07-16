@@ -23,7 +23,7 @@ public class Card {
         List<String> validFaceNames = getValidFaceNames();
         faceName = faceName.toLowerCase();
         if (validFaceNames.contains(faceName)){
-        this.faceName = faceName;}
+            this.faceName = faceName;}
         else
             throw new IllegalArgumentException("Valid face names are: " + validFaceNames);
     }
@@ -47,8 +47,21 @@ public class Card {
             throw new IllegalArgumentException("valid suits are: " + validSuits);
     }
 
+    public String toString(){
+        return String.format("%s of %s", faceName, suit);
+    }
+
     public int getValue(){
         return value;
+    }
+
+    public static List<Integer> getValidValues(){
+        if (DeckOfCards.blackJackTrueWarFalse == true){
+            return Arrays.asList(2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11);
+        }
+        else{
+            return Arrays.asList(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
+        }
     }
 
     public void setValue(int value){
@@ -60,11 +73,7 @@ public class Card {
         }
     }
 
-    public String toString(){
-        return String.format("%s of %s", faceName, suit);
-    }
-
-    public Card(String faceName, String suit, int value) {
+    public Card(String faceName, String suit, Integer value) {
         setFaceName(faceName);
         setSuit(suit);
         setValue(value);
