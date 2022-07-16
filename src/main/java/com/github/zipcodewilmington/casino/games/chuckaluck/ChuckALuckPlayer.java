@@ -10,13 +10,7 @@ public class ChuckALuckPlayer extends Player implements PlayerInterface {
     Player player;
     CasinoAccount casinoAccount;
 
-    public ChuckALuckPlayer(Player player, CasinoAccount casinoAccount){
-        this.player = player;
-        this.casinoAccount = casinoAccount;
-    }
-
     public ChuckALuckPlayer(){
-
     }
 
     public Player getPlayer(){
