@@ -3,30 +3,74 @@ package com.github.zipcodewilmington.casino.games.chuckaluck;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.Dice;
+import com.github.zipcodewilmington.casino.games.Player;
+import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
 public class ChuckALuckGame implements GameInterface {
+    private final IOConsole Red = new IOConsole(AnsiColor.RED);
+    private final IOConsole Green = new IOConsole(AnsiColor.GREEN);
+    private final IOConsole Yellow = new IOConsole(AnsiColor.YELLOW);
+    private final IOConsole Blue = new IOConsole(AnsiColor.BLUE);
+    private final IOConsole Purple = new IOConsole(AnsiColor.PURPLE);
+    private static final IOConsole Cyan = new IOConsole(AnsiColor.CYAN);
     private Integer betType = 0;
     private IOConsole console = new IOConsole();
     private int d1Value;
     private int d2Value;
     private int d3Value;
+    private int bet;
+    private int winnings;
 
     Dice d6 = new Dice(1);
 
-    String s = ("Betting Options \n\n"
-            + "Type of Bet:       Condition:			                    Odds:\n"
-            + "1. High	     	   Total of 3 dice > 10                      1:1\n"
-            + "2. Low	     	   Total of 3 dice < 11            	         1:1\n"
-            + "3. Field           Total of 3 dice < 8 or total is > 12      1:1\n"
-            + "4. Triples		   All 3 dice show same number              30:1");
+    public void setBet () {
+        this.bet = Yellow.getIntegerInput("ENTER YOUR WAGER: ");
+    }
+
+    public void welcome() {
+                Blue.println("\n\n\n"+
+            "██████ ██   ██ ██    ██  ██████ ██   ██      █████      ██      ██    ██  ██████ ██   ██ ██\n" +
+            "██     ██   ██ ██    ██ ██      ██  ██      ██   ██     ██      ██    ██ ██      ██  ██  ██\n" +
+            "██     ███████ ██    ██ ██      █████       ███████     ██      ██    ██ ██      █████   ██\n" +
+            "██     ██   ██ ██    ██ ██      ██  ██      ██   ██     ██      ██    ██ ██      ██  ██    \n" +
+            "██████ ██   ██  ██████   ██████ ██   ██     ██   ██     ███████  ██████   ██████ ██   ██ ██");
+
+    }
+
+    public String welcomeDice1() {
+        return
+                        "  ____\n" +
+                        " /\\' .\\     _____\n" +
+                        "/: \\___\\   / .  /\\\n" +
+                        "\\' / . /  /____/..\\\n" +
+                        " \\/___/   \\'  '\\  /\n" +
+                        "           \\'__'\\/";
+    }
+
+    public String welcomeDice2() {
+        return
+                        "\t  ____\n" +
+                        "\t /\\': \\\n" +
+                        "\t/  \\___\\\n" +
+                        "\t\\' / : /\n" +
+                        "\t \\/___/\n";
+    }
 
     public void printRules() {
-        System.out.println(s);
+        System.out.println("\nTRY YOUR LUCK AGAINST THE ROLLS OF THE DICE!");
     }
 
     public Integer askBetType() {
-        betType = console.getIntegerInput("\nPlace a bet: \n1. High\n2. Low\n3. Field\n4. Triples");
+        betType =Yellow.getIntegerInput("\nWHAT DO YOU WANT TO BET ON? \n\n" +
+                "1. HIGH\n" +
+                // -- TOTAL OF 3 DICE > 10
+                "2. LOW\n" +
+                // -- TOTAL OF 3 DICE < 11
+                "3. FIELD\n" +
+                // -- Total of 3 dice < 8 OR > 12
+                "4. TRIPLES");
+                // -- FEELING LUCKY?? WIN BIG IF ALL 3 DICE SHOW THE SAME NUMBER!
         return betType;
     }
 
@@ -44,7 +88,7 @@ public class ChuckALuckGame implements GameInterface {
     }
 
     public void showRolls() {
-        System.out.println("\nDice: " + d1Value + " " + d2Value + " " + d3Value);
+        System.out.println("\nROLLS: " + d1Value + " " + d2Value + " " + d3Value);
     }
     public Integer sumDice() {
         return d1Value + d2Value + d3Value;
@@ -61,7 +105,7 @@ public class ChuckALuckGame implements GameInterface {
 //        return sumDice() < 11;
 //    }
 
-    public boolean win() {
+    public boolean winYN() {
         Integer sum = sumDice();
         if (betType == 1 && sum > 10) {
             return true;
@@ -76,22 +120,40 @@ public class ChuckALuckGame implements GameInterface {
     }
 
     public void printWinOrLose() {
-        if (win()) {
-            System.out.println("You Win!");
-        } else System.out.println("You lose.");
+        if (winYN()) {
+            Green.println("*********************");
+            Green.println("YOU WIN!!");
+            Green.println("*********************\n");
+        } else {
+            Red.println("*********************");
+            Red.println("OH NO! YOU LOST.");
+            Red.println("*********************\n");
+        }
     }
 
     public static void playChuckALuckGame() {
         ChuckALuckGame game = new ChuckALuckGame();
+        game.welcome();
         game.printRules();
-        while(true) {
+        System.out.println(game.welcomeDice1());
+        System.out.println(game.welcomeDice2());
+        Boolean quit = false;
+        game.setBet();
+        while(!quit) {
             game.askBetType();
             game.tossDice1();
             game.tossDice2();
             game.tossDice3();
             game.showRolls();
             game.printWinOrLose();
-            System.out.println(game.sumDice());
+            System.out.println("Sum: " + game.sumDice());
+            Integer input = Cyan.getIntegerInput("PLAY AGAIN?\n\n" +
+                    "1.YES  2.NO  3.CHANGE BET");
+            if (input == 2) {
+                quit = true;
+            } else if (input == 3) {
+                game.setBet();
+            }
         }
     }
 

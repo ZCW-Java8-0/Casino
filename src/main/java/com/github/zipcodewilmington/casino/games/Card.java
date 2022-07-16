@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Card {
     private String faceName, suit;
+    private int value;
 
     public String getFaceName() {
         return faceName;
@@ -42,6 +43,7 @@ public class Card {
         else
             throw new IllegalArgumentException("valid suits are: " + validSuits);
     }
+
 
     public String toString(){
         return String.format("%s of %s", faceName, suit);
