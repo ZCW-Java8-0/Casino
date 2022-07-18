@@ -12,7 +12,7 @@ public class ChuckALuckGame implements GameInterface {
     private final IOConsole Green = new IOConsole(AnsiColor.GREEN);
     private final IOConsole Yellow = new IOConsole(AnsiColor.YELLOW);
     private final IOConsole Blue = new IOConsole(AnsiColor.BLUE);
-    private final IOConsole Purple = new IOConsole(AnsiColor.PURPLE);
+    private static final IOConsole Purple = new IOConsole(AnsiColor.PURPLE);
     private static final IOConsole Cyan = new IOConsole(AnsiColor.CYAN);
     private Integer betType = 0;
     private IOConsole console = new IOConsole();
@@ -21,11 +21,51 @@ public class ChuckALuckGame implements GameInterface {
     private int d3Value;
     private int bet;
     private int winnings;
-
+    private int balance = 500;
     Dice d6 = new Dice(1);
 
+
+    public static void playChuckALuckGame() {
+        ChuckALuckGame game = new ChuckALuckGame();
+        game.welcome();
+        game.printRules();
+        System.out.println(game.welcomeDice1());
+        System.out.println(game.welcomeDice2());
+        Boolean quit = false;
+        System.out.print("YOUR CURRENT BALANCE IS: " + game.balance + "\n");
+        game.setBet();
+        while(!quit) {
+            game.askBetType();
+            game.tossDice1();
+            game.tossDice2();
+            game.tossDice3();
+            game.showRolls();
+            game.printWinOrLose();
+            System.out.println("SUM: " + game.sumDice() + "\n");
+            game.winYN();
+            game.adjustBalance();
+            System.out.println("YOUR NEW BALANCE IS: " + game.balance + "\n\n");
+            Integer input = Purple.getIntegerInput("PLAY AGAIN?\n\n" +
+                    "1.YES  2.NO  3.CHANGE BET");
+            if (input == 2) {
+                quit = true;
+            } else if (input == 3) {
+                game.setBet();
+            }
+        }
+    }
     public void setBet () {
         this.bet = Yellow.getIntegerInput("ENTER YOUR WAGER: ");
+    }
+
+
+    public Integer adjustBalance() {
+        if (winYN()) {
+            balance += bet*1.5;
+        } else if(winYN() && betType == 3) {
+            balance += bet*500;
+        } else balance -= bet;
+        return balance;
     }
 
     public void welcome() {
@@ -37,7 +77,6 @@ public class ChuckALuckGame implements GameInterface {
             "██████ ██   ██  ██████   ██████ ██   ██     ██   ██     ███████  ██████   ██████ ██   ██ ██");
 
     }
-
     public String welcomeDice1() {
         return
                         "  ____\n" +
@@ -47,7 +86,6 @@ public class ChuckALuckGame implements GameInterface {
                         " \\/___/   \\'  '\\  /\n" +
                         "           \\'__'\\/";
     }
-
     public String welcomeDice2() {
         return
                         "\t  ____\n" +
@@ -56,11 +94,9 @@ public class ChuckALuckGame implements GameInterface {
                         "\t\\' / : /\n" +
                         "\t \\/___/\n";
     }
-
     public void printRules() {
         System.out.println("\nTRY YOUR LUCK AGAINST THE ROLLS OF THE DICE!");
     }
-
     public Integer askBetType() {
         betType =Yellow.getIntegerInput("\nWHAT DO YOU WANT TO BET ON? \n\n" +
                 "1. HIGH\n" +
@@ -131,31 +167,6 @@ public class ChuckALuckGame implements GameInterface {
         }
     }
 
-    public static void playChuckALuckGame() {
-        ChuckALuckGame game = new ChuckALuckGame();
-        game.welcome();
-        game.printRules();
-        System.out.println(game.welcomeDice1());
-        System.out.println(game.welcomeDice2());
-        Boolean quit = false;
-        game.setBet();
-        while(!quit) {
-            game.askBetType();
-            game.tossDice1();
-            game.tossDice2();
-            game.tossDice3();
-            game.showRolls();
-            game.printWinOrLose();
-            System.out.println("Sum: " + game.sumDice());
-            Integer input = Cyan.getIntegerInput("PLAY AGAIN?\n\n" +
-                    "1.YES  2.NO  3.CHANGE BET");
-            if (input == 2) {
-                quit = true;
-            } else if (input == 3) {
-                game.setBet();
-            }
-        }
-    }
 
     @Override
     public void add(PlayerInterface player) {
